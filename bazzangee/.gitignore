@@ -27,4 +27,4 @@
 
 ### Team7 Security Files ###
 application.properties
-*/.travis.yml
+.travis.yml
