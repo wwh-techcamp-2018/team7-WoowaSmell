@@ -19,8 +19,12 @@ public class Review {
     private String imageUrl;
     @Column
     private double starPoint;
-    @OneToMany
-    private List<Like> likes;
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    private List<Good> goods;
+
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_review_food_category"))
+    private FoodCategory foodCategory;
     @Column
     private boolean isDeleted;
     @Column
