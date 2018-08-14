@@ -26,5 +26,5 @@
 /.nb-gradle/
 
 ### Team7 Security Files ###
-application.properties
+*/application.properties
 */.travis.yml
