@@ -14,9 +14,9 @@ public class FoodCategory {
     private String name;
     @Column
     private int priority;
-    @OneToMany
+    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants;
-    @OneToMany
+    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
     private List<Review> reviews;
     @OneToOne
     private Chat chat;

@@ -11,6 +11,9 @@ public class ChatMessage {
 
     @OneToOne
     private User user;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_chat_message_chat"))
+    private Chat chat;
     @Column
     @Lob
     private String contents;
