@@ -15,8 +15,12 @@ public class Restaurant {
     private String address;
     @Column
     private String phoneNumber;
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Food> foods;
     @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_parent_restaurant"))
     private Restaurant parentRestaurant;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_food_category"))
+    private FoodCategory foodCategory;
 }
