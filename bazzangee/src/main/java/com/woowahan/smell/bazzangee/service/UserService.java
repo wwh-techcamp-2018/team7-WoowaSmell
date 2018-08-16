@@ -28,4 +28,16 @@ public class UserService {
         savedUser.matchPasswordBy(userLoginDto, passwordEncoder);
         return savedUser;
     }
+
+    public boolean isCreatedUser(User user) {
+        return userRepository.findByUserId(user.getUserId()).isPresent();
+    }
+
+    public void createKakaoUser(User kakaoUser) {
+        userRepository.save(kakaoUser);
+    }
+
+    public User getUserByUserId(String userId) {
+        return userRepository.findByUserId(userId).get();
+    }
 }
