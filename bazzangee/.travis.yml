@@ -21,6 +21,8 @@ notifications:
     recipients:
       slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
 
+
+
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
