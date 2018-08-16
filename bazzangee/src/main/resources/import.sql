@@ -1,0 +1,1 @@
+insert into user (user_id, password, name, phone_number) values ('serverwizard@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기', '012-1233-1233');
