@@ -1,6 +1,6 @@
 package com.woowahan.smell.bazzangee.exception;
 
-public class NotMatchException extends Exception {
+public class NotMatchException extends RuntimeException {
     public NotMatchException() {
     }
 
