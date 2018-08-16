@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bab3222-d915-4ba5-8b51-7a1532e18f44" name="Default" comment="" />
+    <list default="true" id="0bab3222-d915-4ba5-8b51-7a1532e18f44" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/bazzangee/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bazzangee/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bazzangee/src/main/java/com/woowahan/smell/bazzangee/domain/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/bazzangee/src/main/java/com/woowahan/smell/bazzangee/domain/Chat.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Chat.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bazzangee/src/main/java/com/woowahan/smell/bazzangee/domain/Chat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,6 +45,13 @@
       </map>
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/bazzangee/src/main/java/com/woowahan/smell/bazzangee/domain/Chat.java" />
+      </list>
+    </option>
+  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -47,10 +70,101 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="woowahan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="woowahan" type="462c0819:PsiDirectoryNode" />
+              <item name="smell" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="woowahan" type="462c0819:PsiDirectoryNode" />
+              <item name="smell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team7-WoowaSmell" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team7-WoowaSmell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="woowahan" type="462c0819:PsiDirectoryNode" />
+              <item name="smell" type="462c0819:PsiDirectoryNode" />
+              <item name="bazzangee" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -127,14 +241,16 @@
       <updated>1534227192036</updated>
       <workItem from="1534227193213" duration="6000" />
       <workItem from="1534227451081" duration="4000" />
+      <workItem from="1534378752800" duration="24000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10000" />
+    <option name="totallyTimeSpent" value="34000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -170,6 +286,15 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bazzangee/src/main/java/com/woowahan/smell/bazzangee/domain/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
