@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/css/custom.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container" style="background: whitesmoke">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <form class="form-horizontal form-label-left" novalidate>
+              <span class="section">회원가입</span>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">아이디 <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="email" id="email" name="email" class="form-control" required="required" placeholder="baezzangee@woowahan.com">
+                  <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">비밀번호 <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input id="password" type="password" name="password" class="form-control" required="required">
+                  <span class="fa fa-key form-control-feedback right" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label for="repassword" class="control-label col-md-3 col-sm-3 col-xs-12">비밀번호 확인 <span class="required">*</span></label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input id="repassword" type="password" name="repassword" class="form-control" required="required">
+                  <span class="fa fa-key form-control-feedback right" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">이름 <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input id="name" data-validate-length-range="6" class="form-control" name="name" placeholder="이름을 입력해주세요." required="required" type="text">
+                  <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">전화번호 <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                  <input type="number" class="form-control" id="phone" placeholder="- 없이 입력해주세요." required="required">
+                  <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birth">생년월일 <span class="required">*</span>
+                </label>
+                <div class="control-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="controls">
+                    <div class="input-group date" id="birth-container">
+                      <input type="text" class="form-control" id="birth" placeholder="2018-01-01">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 t-center padding-bottom-20">
+                  <span id="join-validation-span"></span>
+                </div>
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                  <button type="submit" class="col-md-5 col-sm-5 col-xs-5 btn btn-danger">취소</button>
+                  <button id="join-form-send-btn" type="button" class="col-md-5 col-sm-5 col-xs-5 btn btn-success">회원가입</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="join-dialog" class="join-dialog">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 join-dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+          <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1>어서와~</h1></span>
+          <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h2>배짱이는</h2></span>
+          <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h2>처음이지?</h2></span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+          <img src="img/baezzangee.png" style="max-width: 100%"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <!-- validator -->
+    <script src="/vendors/validator/validator.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="/js/custom.min.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="/vendors/moment/min/moment.min.js"></script>
+    <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+      $('#birth-container').datetimepicker({
+          format: 'YYYY-MM-DD'
+      });
+  </script>
+  <script type="module" src="/js/join/join.js"></script>
+  </body>
+</html>
