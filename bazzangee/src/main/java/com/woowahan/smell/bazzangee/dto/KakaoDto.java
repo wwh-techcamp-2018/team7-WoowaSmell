@@ -7,6 +7,7 @@ public class KakaoDto {
 
     private String userId;
     private String name;
+    private String imageUrl;
 
     public String getUserId() {
         return userId;
@@ -20,11 +21,16 @@ public class KakaoDto {
         this.name = name;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "KakaoDto{" +
                 "userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 
