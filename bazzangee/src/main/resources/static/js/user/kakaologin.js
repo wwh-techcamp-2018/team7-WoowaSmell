@@ -20,12 +20,14 @@ Kakao.Auth.createLoginButton({
 });
 
 function kakaoLogin({id, properties}) {
+    console.log(properties);
     fetchManager({
         url: '/api/users/login/kakao',
         method: 'POST',
         body: JSON.stringify({
             userId : id,
-            name : properties.nickname
+            name : properties.nickname,
+            imageUrl : properties.thumbnail_image
         }),
         headers: { 'content-type': 'application/json'},
         callback: onSuccess,

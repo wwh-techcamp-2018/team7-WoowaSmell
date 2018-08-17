@@ -31,6 +31,8 @@ public class User extends BaseTimeEntity{
     @Column
     @Enumerated(EnumType.STRING)
     private UserType type;
+    @Column
+    private String imageUrl;
 
     @Builder
     public User(String userId, String password, String name, String phoneNumber, LocalDate birth) {

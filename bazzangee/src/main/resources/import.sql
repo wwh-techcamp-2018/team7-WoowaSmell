@@ -1,1 +1,38 @@
 insert into user (user_id, password, name, phone_number) values ('serverwizard@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기', '012-1233-1233');
+insert into user (user_id, password, name, phone_number) values ('serverwizard2@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기2', '013-1233-1233');
+
+insert into review (title, contents, star_point, written_time, updated_time) values ('교촌치킨', '허니콤보 맛잇어요', 4, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('네네치킨', '맛나요', 4, '2018-06-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('석촌치킨', '존맛탱', 5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('방이치킨', '입니다', 4, '2018-08-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('잠실치킨', '별로에요', 2.5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('종완치킨', '노맛..', 1.5, '2018-07-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('맥날버거', '안먹어요', 1, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('롯데버거', '짱이에요', 5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('크롱버거', '괜찮아요', 4.5, '2018-01-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('포비버거', '먹을만해요', 3.5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('주하버거', '또먹을래요', 4.5, '2018-02-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('교촌피자', '허니콤보 맛잇어요', 4, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('네네피자', '맛나요', 4, '2018-06-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('석촌피자', '존맛탱', 5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('방이피자', '입니다', 4, '2018-08-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('잠실피자', '별로에요', 2.5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('종완피자', '노맛..', 1.5, '2018-07-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('맥날피자', '안먹어요', 1, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('롯데피자', '짱이에요', 5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('크롱피자', '괜찮아요', 4.5, '2018-01-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('포비피자', '먹을만해요', 3.5, '2018-05-02T20:00:00', '2018-05-02T20:00:00');
+insert into review (title, contents, star_point, written_time, updated_time) values ('주하피자', '또먹을래요', 4.5, '2018-02-02T20:00:00', '2018-05-02T20:00:00');
+
+insert into good (user_id, review_id) values (1, 1);
+insert into good (user_id, review_id) values (1, 2);
+insert into good (user_id, review_id) values (2, 3);
+insert into good (user_id, review_id) values (1, 4);
+insert into good (user_id, review_id) values (2, 5);
+insert into good (user_id, review_id) values (1, 5);
+insert into good (user_id, review_id) values (1, 6);
+insert into good (user_id, review_id) values (2, 7);
+insert into good (user_id, review_id) values (1, 8);
+insert into good (user_id, review_id) values (2, 9);
+insert into good (user_id, review_id) values (1, 10);
+insert into good (user_id, review_id) values (1, 11);
