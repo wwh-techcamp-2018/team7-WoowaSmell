@@ -3,17 +3,18 @@ package com.woowahan.smell.bazzangee.domain;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseTimeEntity{
+@NoArgsConstructor
+@ToString
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -51,11 +52,24 @@ public class User extends BaseTimeEntity{
     }
 
     public boolean matchPasswordBy(UserLoginDto userLoginDto, PasswordEncoder passwordEncoder) {
-        if(!passwordEncoder.matches(userLoginDto.getPassword(), this.password)) {
+        if (!passwordEncoder.matches(userLoginDto.getPassword(), this.password)) {
             throw new NotMatchException("패스워드가 일치하지 않습니다.");
         }
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) &&
+                Objects.equals(password, user.password);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(userId, password);
+    }
 }

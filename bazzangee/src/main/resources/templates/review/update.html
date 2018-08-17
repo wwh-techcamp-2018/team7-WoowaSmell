@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+</head>
+<body>
+<form action="/api/reviews/1" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" name="contents" value="컨텐츠수정입니다.">
+    <input type="file" name="image">
+    <input type="text" name="starPoint" value="1.5">
+    <button>수정</button>
+</form>
+</body>
+</html>

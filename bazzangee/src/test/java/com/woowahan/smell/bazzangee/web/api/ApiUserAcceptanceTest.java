@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.web;
+package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
