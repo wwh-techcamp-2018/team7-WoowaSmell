@@ -1,5 +1,7 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.*;

@@ -28,6 +28,5 @@ public class ApiReviewController {
     public ResponseEntity<List> getReviewList(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable) {
         log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.getLists(pageable));
-
     }
 }

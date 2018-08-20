@@ -1,5 +1,7 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
@@ -28,6 +30,7 @@ public class Review {
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Good> goods;
     @OneToOne
+    @JsonIgnore
     private OrderFood orderFood;
 
     @ManyToOne
@@ -42,4 +45,13 @@ public class Review {
     private LocalDateTime updatedTime;
 
 
+    public ReviewResponseDto toReviewDto() {
+        return new ReviewResponseDto(this,
+                this.orderFood.getOrderedUser().getName(),
+                this.orderFood.getQuantity(),
+                this.orderFood.getFood().getName(),
+                this.orderFood.getFood().getRestaurant(),
+                this.orderFood.getOrderTime()
+        );
+    }
 }

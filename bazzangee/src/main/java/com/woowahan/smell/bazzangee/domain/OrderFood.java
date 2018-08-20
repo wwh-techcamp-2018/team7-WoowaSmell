@@ -1,8 +1,11 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 public class OrderFood {
     @Id
