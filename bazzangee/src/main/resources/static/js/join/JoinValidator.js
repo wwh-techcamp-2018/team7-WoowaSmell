@@ -65,7 +65,6 @@ export class JoinValidator{
             $("#join-validation-span").text("생년월일 형식이 올바르지 않습니다.");
             return false;
         }
-
         return true;
     }
 
