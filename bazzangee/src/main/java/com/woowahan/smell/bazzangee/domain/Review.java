@@ -1,17 +1,15 @@
 package com.woowahan.smell.bazzangee.domain;
 
-import lombok.Getter;
-import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import com.woowahan.smell.bazzangee.dto.ReviewDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Slf4j
+@Where(clause = "is_deleted != true")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +58,13 @@ public class Review {
     @Column
     private LocalDateTime updatedTime;
 
+    public Review(User user, String contents, double starPoint) {
+        this.user = user;
+        this.contents = contents;
+        this.starPoint = starPoint;
+        this.writtenTime = LocalDateTime.now();
+    }
+
     public Review(User user, String contents, String imageUrl, double starPoint) {
         this.user = user;
         this.contents = contents;
@@ -68,24 +74,22 @@ public class Review {
     }
 
     public void delete(User loginUser) {
-        if(!loginUser.equals(this.user))
+        if (!loginUser.equals(this.user))
             throw new NotMatchException("글쓴이가 아닙니다.");
         this.isDeleted = true;
     }
 
     public void update(ReviewDto reviewDto, User loginUser) {
-//        if(!this.user.equals(loginUser))
-        log.info("loginUser : {}", loginUser);
-        log.info("user : {}", this.user);
-        if(!loginUser.equals(this.user))
+        if (!loginUser.equals(this.user))
             throw new NotMatchException("타인의 리뷰는 수정할 수 없습니다.");
 
         this.contents = reviewDto.getContents();
-        log.info("contents : {}", contents);
-        this.imageUrl = reviewDto.getImage().getOriginalFilename();
-        log.info("contents : {}", imageUrl);
+        if(reviewDto.getImage() != null)
+            this.imageUrl = reviewDto.getImage().getOriginalFilename();
+        if(reviewDto.getImage() == null)
+            this.imageUrl = null;
         this.starPoint = reviewDto.getStarPoint();
-        log.info("contents : {}", starPoint);
+        this.updatedTime = LocalDateTime.now();
     }
 }
 

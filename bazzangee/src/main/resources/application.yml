@@ -9,6 +9,13 @@ handlebars:
   suffix: .html
   cache: false
 
+cloud:
+  aws:
+    s3:
+      bucket: baezzangee
+    region:
+      static: ap-northeast-2
+
 ---
 spring:
   profiles: local
@@ -29,7 +36,6 @@ spring:
   h2:
     console:
       enabled: true
-
 ---
 spring:
   profiles: dev

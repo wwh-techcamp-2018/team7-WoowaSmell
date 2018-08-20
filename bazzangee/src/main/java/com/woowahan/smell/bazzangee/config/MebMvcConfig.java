@@ -32,5 +32,6 @@ public class MebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("/index");
         registry.addViewController("/reviews").setViewName("/review/create");
         registry.addViewController("/reviews/update").setViewName("/review/update");
+        registry.addViewController("/star").setViewName("/index2");
     }
 }

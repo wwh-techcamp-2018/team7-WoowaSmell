@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>글쓰기</title>
+    <link rel="stylesheet" href="/css/rater.css">
 </head>
 <body>
-<form action="/api/reviews" method="post" enctype="multipart/form-data">
+<form>
     <input type="text" name="contents" value="컨텐츠입니다.">
     <input type="file" name="image">
-    <input type="text" name="starPoint" value="4.5">
-    <button>추가</button>
+    <div class="rate" data-rate-value=0></div>
+    <input class="review-create-btn" type="button" value="추가">
 </form>
 
 
@@ -17,5 +18,8 @@
     <input type="hidden" name="_method" value="DELETE">
     <button>삭제</button>
 </form>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
+<script src="/js/review/rater.js" charset="utf-8"></script>
+<script type="module" src="/js/review/write.js" charset="utf-8"></script>
 </body>
 </html>
