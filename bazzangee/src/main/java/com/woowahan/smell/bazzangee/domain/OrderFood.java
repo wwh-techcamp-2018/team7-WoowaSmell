@@ -1,8 +1,11 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 public class OrderFood {
     @Id
@@ -15,8 +18,6 @@ public class OrderFood {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_order_food_user"))
     private User orderedUser;
-    @OneToOne
-    private Review review;
     @Column
     private LocalDateTime orderTime;
 }

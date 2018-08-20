@@ -1,13 +1,15 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Getter
@@ -18,7 +20,7 @@ public class User extends BaseTimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String userId;
     @Column
     private String password;
@@ -28,6 +30,11 @@ public class User extends BaseTimeEntity{
     private String phoneNumber;
     @Column
     private LocalDate birth;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private UserType type;
+    @Column
+    private String imageUrl;
 
     @Builder
     public User(String userId, String password, String name, String phoneNumber, LocalDate birth) {
@@ -36,6 +43,13 @@ public class User extends BaseTimeEntity{
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birth = birth;
+        this.type = UserType.NORMAL;
+    }
+
+    public User(String userId, String name, UserType type) {
+        this.userId = userId;
+        this.name = name;
+        this.type = type;
     }
 
     public boolean matchPasswordBy(UserLoginDto userLoginDto, PasswordEncoder passwordEncoder) {

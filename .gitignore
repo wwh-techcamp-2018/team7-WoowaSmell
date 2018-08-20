@@ -16,7 +16,7 @@
 *.iws
 *.iml
 *.ipr
-/out/
+/bazzangee/out/
 
 ### NetBeans ###
 /nbproject/private/
