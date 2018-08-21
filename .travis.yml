@@ -13,8 +13,8 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
+before_install: cd bazzangee
 script:
-    - cd bazzangee
     - "./gradlew clean build"
 
 
