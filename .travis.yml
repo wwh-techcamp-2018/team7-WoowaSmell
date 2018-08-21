@@ -13,13 +13,15 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gradlew clean build"
+script: "pwd"
 
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
     recipients:
       slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
+
+
 
 deploy:
   - provider: s3
@@ -31,5 +33,5 @@ deploy:
     acl: public_read
     wait-until-deployed: true
     on:
-      repo: wwh-techcamp-2018/team7-WoowaSmell #Github 주소
+      repo: serverwizard/team7-WoowaSmell #Github 주소
       branch: dev
