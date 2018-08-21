@@ -49,7 +49,6 @@ insert into review (title, contents, star_point, written_time, updated_time, ord
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('교촌피자', '허니콤보 맛잇어요', 4, '2018-05-02 20:00:00', '2018-05-02 20:00:00', 12);
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('주하피자', '또먹을래요', 4.5, '2018-02-02 20:00:00', '2018-05-02 20:00:00', 13);
 
-insert into good (user_id, review_id) values (1, 1);
 insert into good (user_id, review_id) values (1, 2);
 insert into good (user_id, review_id) values (2, 3);
 insert into good (user_id, review_id) values (1, 4);

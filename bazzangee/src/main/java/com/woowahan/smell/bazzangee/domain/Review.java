@@ -41,7 +41,7 @@ public class Review extends BaseTimeEntity {
 
     @Column
     private double starPoint;
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Good> goods;
     @OneToOne
     @JsonIgnore
@@ -93,6 +93,14 @@ public class Review extends BaseTimeEntity {
                 this.orderFood.getOrderTime(),
                 this.goods.size()
         );
+    }
+
+    public void removeGood(Good good) {
+        this.goods.remove(good);
+    }
+
+    public void addGood(Good good) {
+        this.goods.add(good);
     }
 }
 

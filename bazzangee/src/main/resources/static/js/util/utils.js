@@ -14,3 +14,13 @@ export function fetchManager({ url, method, body, headers, callback, errCallback
             })
         })
 }
+
+export function throttle(callback, wait) {
+    let time = Date.now();
+    return function() {
+        if ((time + wait - Date.now()) < 0) {
+            callback();
+            time = Date.now();
+        }
+    }
+}
