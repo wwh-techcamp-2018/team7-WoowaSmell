@@ -1,0 +1,5 @@
+version: 0.0
+os: ubuntu
+files:
+  - source:  baezzangee
+    destination: /home/ubuntu/Project/travis/build/
