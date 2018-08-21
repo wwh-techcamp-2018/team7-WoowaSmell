@@ -18,6 +18,8 @@ public class OrderFood {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_order_food_user"))
     private User orderedUser;
+    @OneToOne(mappedBy = "orderFood")
+    private Review review;
     @Column
     private LocalDateTime orderTime;
 }

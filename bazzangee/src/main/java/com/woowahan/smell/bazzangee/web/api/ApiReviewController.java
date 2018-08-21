@@ -1,6 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
+import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
@@ -25,6 +26,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -38,9 +41,42 @@ public class ApiReviewController {
     private ReviewService reviewService;
 
     @GetMapping("")
-    public ResponseEntity<List> getReviewList(@PageableDefault(size = REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort = "writtenTime") Pageable pageable) {
+
+    public ResponseEntity<List> getReviewList(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long filterId) {
         log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
-        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getLists(pageable));
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByWrittenTime(pageable));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByStarPoint(pageable));
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List> getReviewListByCategory(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long categoryId, Long filterId) {
+        log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByWrittenTime(pageable, categoryId));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByStarPoint(pageable, categoryId));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List> getReviewListOfUser(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long filterId, HttpSession session) {
+        User user = getUserFromSession(session);
+        log.info("getReviewList : {}, {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize(), user);
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByWrittenTime(pageable));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByStarPoint(pageable));
+    }
+
+    @GetMapping("/user/categories")
+    public ResponseEntity<List> getReviewListOfUserByCategory(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long categoryId, Long filterId, HttpSession session) {
+        User user = getUserFromSession(session);
+        log.info("getReviewList : {}, {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize(), user.getUserId());
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByWrittenTime(pageable, categoryId));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByStarPoint(pageable, categoryId));
     }
 
     @PostMapping(value = "")

@@ -61,3 +61,52 @@
 .padding-bottom-20{
     padding-bottom: 20px;
 }
+
+.category_button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.category_button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.category_button:before,category_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.category_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.category_button:hover:before,category_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+.clicked{
+  background:#fff;
+    color:#1AAB8A;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+}
