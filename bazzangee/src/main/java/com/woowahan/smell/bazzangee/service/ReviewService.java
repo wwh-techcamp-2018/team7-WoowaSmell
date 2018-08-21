@@ -51,7 +51,7 @@ public class ReviewService {
     }
 
     public List<ReviewResponseDto> getListsOrderByWrittenTime(Pageable pageable) {
-        Page<Review> reviews = reviewRepository.findAllByIsDeletedFalseOrderByWrittenTime(pageable);
+        Page<Review> reviews = reviewRepository.findAllByIsDeletedFalseOrderByWrittenTimeDesc(pageable);
         if (!reviews.hasContent()) {
             throw new NotMatchException("there is no Reviews!");
         }
@@ -88,7 +88,7 @@ public class ReviewService {
 
     public List<ReviewResponseDto> getListsByCategoryOrderByWrittenTime(Pageable pageable, Long categoryId) {
         log.info("foodCagtegory : {}", foodCategoryRepository.findById(categoryId).get());
-        Page<Review> reviews = reviewRepository.findAllByFoodCategoryAndIsDeletedFalseOrderByWrittenTime(pageable, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!")));
+        Page<Review> reviews = reviewRepository.findAllByFoodCategoryAndIsDeletedFalseOrderByWrittenTimeDesc(pageable, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!")));
         if (!reviews.hasContent()) {
             throw new NotMatchException("there is no Reviews!");
         }

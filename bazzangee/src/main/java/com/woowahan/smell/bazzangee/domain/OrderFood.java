@@ -22,4 +22,11 @@ public class OrderFood {
     private Review review;
     @Column
     private LocalDateTime orderTime;
+
+    public boolean hasValidReview() {
+        if (review == null || review.isDeleted() == true) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -21,15 +21,15 @@ public class MebMvcConfig implements WebMvcConfigurer {
         registry.addConverter(new LocalDateTimeConverter("yyyy-MM-dd'T'HH:mm:ss.SSS"));
     }
 
-    @Bean
-    public BasicAuthInterceptor basicAuthInterceptor() {
-        return new BasicAuthInterceptor();
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(basicAuthInterceptor());
-    }
+//    @Bean
+//    public BasicAuthInterceptor basicAuthInterceptor() {
+//        return new BasicAuthInterceptor();
+//    }
+//
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(basicAuthInterceptor());
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

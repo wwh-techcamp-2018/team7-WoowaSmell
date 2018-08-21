@@ -1,3 +1,3 @@
-import { ReviewScroll } from "/js/review/reviewScroll.js";
+import { ClosetReviewScroll } from "/js/review/closetReviewScroll.js";
 
-const reviewScroll = new ReviewScroll(0, false);
+const closetReviewScroll = new ClosetReviewScroll(0);

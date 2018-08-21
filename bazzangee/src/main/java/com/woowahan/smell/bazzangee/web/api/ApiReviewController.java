@@ -86,7 +86,7 @@ public class ApiReviewController {
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
         String url = s3Uploader.upload(reviewRequestDto.getImage(), "static");
         log.info("url : {}", url);
-        reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session));
+        reviewService.create(reviewRequestDto, url, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -94,7 +94,7 @@ public class ApiReviewController {
     public ResponseEntity<Void> delete(@PathVariable Long id, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 삭제 가능합니다.");
-        reviewService.delete(id, HttpSessionUtils.getUserFromSession(session));
+        reviewService.delete(id, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -103,7 +103,7 @@ public class ApiReviewController {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
         log.info("reviewRequestDto : {}", reviewRequestDto.toString());
-        reviewService.update(id, reviewRequestDto, HttpSessionUtils.getUserFromSession(session));
+        reviewService.update(id, reviewRequestDto, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -126,6 +126,6 @@ public class ApiReviewController {
     public ResponseEntity<ReviewResponseDto> addGood(@PathVariable Long id, HttpSession httpSession) {
         if (!HttpSessionUtils.isLoginUser(httpSession))
             throw new UnAuthenticationException("로그인 후 이용 가능합니다.");
-        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, HttpSessionUtils.getUserFromSession(httpSession)));
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, getUserFromSession(httpSession)));
     }
 }

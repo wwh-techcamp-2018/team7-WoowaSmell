@@ -1,8 +1,7 @@
 import {$, fetchManager, throttle} from "/js/util/utils.js";
 
 export class ReviewScroll{
-    constructor(id, isTimeline) {
-        this.isTimeline = isTimeline;
+    constructor(id) {
         this.foodCategoryId = id;
         this.filterId = 0;
         this.currentPage = 0;
@@ -12,7 +11,7 @@ export class ReviewScroll{
         document.addEventListener('scroll', this.onScrollDown.bind(this));
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
         $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
-        $("#radios").addEventListener("click", this.onClickRadios.bind(this));
+        $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
     }
 
     onClickRadios({target}) {
@@ -82,14 +81,6 @@ export class ReviewScroll{
         if(!this.canLoad) return;
         this.canLoad = false;
         $("#loader").classList.toggle("invisible");
-        if(this.isTimeline) {
-            this.fetchTimeline();
-        } else {
-            this.fetchCloset();
-        }
-    }
-
-    fetchTimeline() {
         if(this.foodCategoryId == 0) {
             fetchManager({
               url: '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId,
@@ -101,26 +92,6 @@ export class ReviewScroll{
         } else {
             fetchManager({
               url: '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId,
-              method: 'GET',
-              headers: { 'content-type': 'application/json'},
-              callback: this.onSuccessLoad.bind(this),
-              errCallback: this.onFailLoad.bind(this)
-             });
-        }
-    }
-
-    fetchCloset() {
-        if(this.foodCategoryId == 0) {
-            fetchManager({
-              url: '/api/reviews/user/?page=' + this.currentPage + '&filterId=' + this.filterId,
-              method: 'GET',
-              headers: { 'content-type': 'application/json'},
-              callback: this.onSuccessLoad.bind(this),
-              errCallback: this.onFailLoad.bind(this)
-             });
-        } else {
-            fetchManager({
-              url: '/api/reviews/user/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId,
               method: 'GET',
               headers: { 'content-type': 'application/json'},
               callback: this.onSuccessLoad.bind(this),

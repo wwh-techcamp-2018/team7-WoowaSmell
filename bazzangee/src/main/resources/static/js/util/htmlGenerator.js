@@ -36,6 +36,13 @@ const HtmlGenerator = (function () {
                             </div>
                         </li>`;
             return reviewHTML;
+        },
+
+        getOrderFoodHTML(orderFood) {
+            let orderFoodHTML = `<li>
+                                내용을 넣어주세요.
+                        </li>`;
+            return orderFoodHTML;
         }
     }
 })();

@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/css/timeline.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-</head>
-<body>
-옷장 페이지
-<a href="/">홈</a>
+{{#partial "header"}}
+<link href="/css/custom/timeline.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
+{{/partial}}
+{{#partial "content"}}
 <div id="buttons">
     <button value="0" class="category_button clicked">전체</button>
     <button value="1" class="category_button">치킨</button>
@@ -20,14 +14,15 @@
     <button value="7" class="category_button">분식</button>
     <button value="8" class="category_button">햄버거</button>
 </div>
-<div id="radios">
-    <input type="radio" name="chk_info" value="0" checked="checked">작성시간순
+<div id="timeline-align-container">
+    <input type="radio" name="chk_info" value="0" checked="checked">주문시간순
     <input type="radio" name="chk_info" value="1">별점순
 </div>
-
 <ul class="cbp_tmtimeline" id="timeline_standard">
 </ul>
 <div id="loader" class="invisible"></div>
-<script type="module" src="/js/review/review.js"></script>
-</body>
-</html>
+{{/partial}}
+{{#partial "footer"}}
+<script type="module" src="/js/review/closetReview.js"></script>
+{{/partial}}
+{{>base}}
