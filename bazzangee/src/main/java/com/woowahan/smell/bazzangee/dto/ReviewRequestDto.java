@@ -12,12 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @Getter
 @NoArgsConstructor
-public class ReviewDto {
+public class ReviewRequestDto {
     private String contents;
     private MultipartFile image;
     private double starPoint;
 
-    public ReviewDto(String contents, MultipartFile image, double starPoint) {
+    public ReviewRequestDto(String contents, MultipartFile image, double starPoint) {
         this.contents = contents;
         this.image = image;
         this.starPoint = starPoint;

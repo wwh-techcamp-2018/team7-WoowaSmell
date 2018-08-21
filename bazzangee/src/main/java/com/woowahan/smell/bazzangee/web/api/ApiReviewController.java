@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
-import com.woowahan.smell.bazzangee.dto.ReviewDto;
+import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.ReviewService;
 import com.woowahan.smell.bazzangee.utils.FileUtils;
@@ -43,13 +43,13 @@ public class ApiReviewController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Void> create(ReviewDto reviewDto, HttpSession session) throws IOException {
-        log.info("reviewDto : {}", reviewDto);
+    public ResponseEntity<Void> create(ReviewRequestDto reviewRequestDto, HttpSession session) throws IOException {
+        log.info("reviewRequestDto : {}", reviewRequestDto);
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
-        String url = s3Uploader.upload(reviewDto.getImage(), "static");
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), "static");
         log.info("url : {}", url);
-        reviewService.create(reviewDto, url, HttpSessionUtils.getUserFromSession(session));
+        reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -62,11 +62,11 @@ public class ApiReviewController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, ReviewDto reviewDto, HttpSession session) {
+    public ResponseEntity<Void> update(@PathVariable Long id, ReviewRequestDto reviewRequestDto, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
-        log.info("reviewDto : {}", reviewDto.toString());
-        reviewService.update(id, reviewDto, HttpSessionUtils.getUserFromSession(session));
+        log.info("reviewRequestDto : {}", reviewRequestDto.toString());
+        reviewService.update(id, reviewRequestDto, HttpSessionUtils.getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

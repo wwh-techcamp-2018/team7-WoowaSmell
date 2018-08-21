@@ -2,7 +2,7 @@ package com.woowahan.smell.bazzangee.service;
 
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
-import com.woowahan.smell.bazzangee.dto.ReviewDto;
+import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
 
     @Transactional
-    public void create(ReviewDto reviewDto, String url, User loginUser) {
-        reviewRepository.save(reviewDto.toEntity(url, loginUser));
+    public void create(ReviewRequestDto reviewRequestDto, String url, User loginUser) {
+        reviewRepository.save(reviewRequestDto.toEntity(url, loginUser));
     }
 
     @Transactional
@@ -32,9 +32,9 @@ public class ReviewService {
     }
 
     @Transactional
-    public void update(Long id, ReviewDto reviewDto, User loginUser) {
+    public void update(Long id, ReviewRequestDto reviewRequestDto, User loginUser) {
         Review savedReview = getSavedReviewById(id);
-        savedReview.update(reviewDto, loginUser);
+        savedReview.update(reviewRequestDto, loginUser);
     }
 
     private Review getSavedReviewById(Long id) {

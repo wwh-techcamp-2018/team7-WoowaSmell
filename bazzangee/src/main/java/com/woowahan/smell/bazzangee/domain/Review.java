@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.woowahan.smell.bazzangee.dto.ReviewDto;
+import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.Getter;
@@ -12,7 +12,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -74,16 +73,16 @@ public class Review extends BaseTimeEntity {
         this.isDeleted = true;
     }
 
-    public void update(ReviewDto reviewDto, User loginUser) {
+    public void update(ReviewRequestDto reviewRequestDto, User loginUser) {
         if (!loginUser.equals(this.user))
             throw new NotMatchException("타인의 리뷰는 수정할 수 없습니다.");
 
-        this.contents = reviewDto.getContents();
-        if (reviewDto.getImage() != null)
-            this.imageUrl = reviewDto.getImage().getOriginalFilename();
-        if (reviewDto.getImage() == null)
+        this.contents = reviewRequestDto.getContents();
+        if (reviewRequestDto.getImage() != null)
+            this.imageUrl = reviewRequestDto.getImage().getOriginalFilename();
+        if (reviewRequestDto.getImage() == null)
             this.imageUrl = null;
-        this.starPoint = reviewDto.getStarPoint();
+        this.starPoint = reviewRequestDto.getStarPoint();
     }
     public ReviewResponseDto toReviewDto () {
         return new ReviewResponseDto(this,
