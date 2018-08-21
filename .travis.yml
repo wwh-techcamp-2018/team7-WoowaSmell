@@ -13,7 +13,9 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gradlew clean build"
+script:
+    - cd bazzangee
+    - ./gradlew clean build
 
 
 before_deploy:
@@ -28,8 +30,6 @@ notifications:
   email:
     recipients:
       slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
-
-
 
 deploy:
   - provider: s3
