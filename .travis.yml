@@ -57,6 +57,6 @@ deploy:
     region: ap-northeast-2
     wait-until-deployed: true
     on:
-       repo: serverwizard/team7-WoowaSmell #Github 주소
-            branch: dev
+      repo: serverwizard/team7-WoowaSmell #Github 주소
+      branch: dev
 
