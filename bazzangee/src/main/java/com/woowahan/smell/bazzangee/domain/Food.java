@@ -13,9 +13,11 @@ public class Food {
 
     @Column
     private String name;
+
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_food_restaurant"))
     private Restaurant restaurant;
+
     @Column
     private String imageUrl;
 }

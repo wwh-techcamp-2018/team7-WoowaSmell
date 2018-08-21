@@ -61,4 +61,3 @@ insert into good (user_id, review_id) values (1, 8);
 insert into good (user_id, review_id) values (2, 9);
 insert into good (user_id, review_id) values (1, 10);
 insert into good (user_id, review_id) values (1, 11);
-

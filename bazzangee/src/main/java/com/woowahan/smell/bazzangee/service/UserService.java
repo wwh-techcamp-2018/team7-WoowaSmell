@@ -3,7 +3,6 @@ package com.woowahan.smell.bazzangee.service;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
-import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
