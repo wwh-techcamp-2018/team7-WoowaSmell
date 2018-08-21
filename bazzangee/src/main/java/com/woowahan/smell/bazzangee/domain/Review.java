@@ -15,7 +15,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Getter
-@ToString(exclude = "imageUrl")
+@ToString
 @NoArgsConstructor
 @Entity
 @Slf4j
@@ -54,13 +54,15 @@ public class Review extends BaseTimeEntity {
     @ColumnDefault("false")
     private boolean isDeleted;
 
-    public Review(User user, String contents, double starPoint) {
+    public Review(OrderFood orderFood, User user, String contents, double starPoint) {
+        this.orderFood = orderFood;
         this.user = user;
         this.contents = contents;
         this.starPoint = starPoint;
     }
 
-    public Review(User user, String contents, double starPoint, String imageUrl) {
+    public Review(OrderFood orderFood, User user, String contents, double starPoint, String imageUrl) {
+        this.orderFood = orderFood;
         this.user = user;
         this.contents = contents;
         this.starPoint = starPoint;

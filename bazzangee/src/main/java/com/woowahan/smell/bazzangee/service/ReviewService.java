@@ -1,9 +1,11 @@
 package com.woowahan.smell.bazzangee.service;
 
+import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
+import com.woowahan.smell.bazzangee.repository.OrderFoodRepository;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,14 @@ import java.util.stream.Collectors;
 public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private OrderFoodRepository orderFoodRepository;
 
     @Transactional
     public void create(ReviewRequestDto reviewRequestDto, String url, User loginUser) {
-        reviewRepository.save(reviewRequestDto.toEntity(url, loginUser));
+        OrderFood orderFood = orderFoodRepository.findById(reviewRequestDto.getOrderFoodId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문 내역입니다."));
+        reviewRepository.save(reviewRequestDto.toEntity(orderFood, url, loginUser));
     }
 
     @Transactional

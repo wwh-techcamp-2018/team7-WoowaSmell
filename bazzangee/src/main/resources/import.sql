@@ -20,22 +20,25 @@ insert into food (name, restaurant_id) values ('포비포테이토피자', 3);
 insert into food (name, restaurant_id) values ('볼케이노치킨', 1);
 insert into food (name, restaurant_id) values ('치즈버거', 10);
 
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 10, 1, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 10, 1, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (3, 10, 1, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 10, 1, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (3, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
-insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 10, 1, '2018-05-02 20:01:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 10, 1, '2018-05-02 20:02:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (3, 10, 1, '2018-05-02 20:03:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 10, 1, '2018-05-02 20:04:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 20, 2, '2018-05-02 20:05:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (3, 20, 2, '2018-05-02 20:06:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 20, 2, '2018-05-02 20:07:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:08:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:09:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:10:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:20:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:30:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (4, 20, 2, '2018-05-02 20:40:00');
 
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 1, 1, '2018-05-02 20:50:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 2, 1, '2018-05-02 20:12:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (3, 1, 1, '2018-05-02 20:13:00');
 
-insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('교촌치킨', '허니콤보 맛잇어요', 4, '2018-05-02 20:00:00', '2018-05-02 20:00:00', 1);
+insert into review (title, contents, star_point, written_time, updated_time, order_food_id, image_url) values ('교촌치킨', '허니콤보 맛잇어요', 4, '2018-05-02 20:00:00', '2018-05-02 20:00:00', 1, 'https://baezzangee.s3.ap-northeast-2.amazonaws.com/static/49690e99-19c9-423a-893c-d02d729cdb52');
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('네네치킨', '맛나요', 4, '2018-06-02 20:00:00', '2018-05-02 20:00:00', 2);
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('석촌치킨', '존맛탱', 5, '2018-05-02 20:00:00', '2018-05-02 20:00:00', 3);
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('방이치킨', '입니다', 4, '2018-08-02 20:00:00', '2018-05-02 20:00:00', 4);
@@ -48,6 +51,8 @@ insert into review (title, contents, star_point, written_time, updated_time, ord
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('주하버거', '또먹을래요', 4.5, '2018-02-02 20:00:00', '2018-05-02 20:00:00', 11);
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('교촌피자', '허니콤보 맛잇어요', 4, '2018-05-02 20:00:00', '2018-05-02 20:00:00', 12);
 insert into review (title, contents, star_point, written_time, updated_time, order_food_id) values ('주하피자', '또먹을래요', 4.5, '2018-02-02 20:00:00', '2018-05-02 20:00:00', 13);
+
+update review set is_deleted = 'true' where id = '2';
 
 insert into good (user_id, review_id) values (1, 1);
 insert into good (user_id, review_id) values (1, 2);
