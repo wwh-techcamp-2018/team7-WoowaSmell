@@ -1,7 +1,10 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
+@Getter
 @Entity
 public class Food {
     @Id

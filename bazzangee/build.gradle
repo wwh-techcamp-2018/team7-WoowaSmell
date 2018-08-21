@@ -36,13 +36,14 @@ dependencies {
     compile('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-websocket')
-    runtime('org.springframework.boot:spring-boot-devtools')
     compile('org.hibernate:hibernate-java8')
     compile('mysql:mysql-connector-java')
     compile('org.springframework.cloud:spring-cloud-starter-aws')
-    compileOnly('org.projectlombok:lombok')
-    runtime('com.h2database:h2')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile('com.googlecode.json-simple:json-simple')
+    runtime('com.h2database:h2')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

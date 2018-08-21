@@ -23,9 +23,9 @@ public class ReviewDto {
         this.starPoint = starPoint;
     }
 
-    public Review toEntity(User user) {
+    public Review toEntity(String url, User user) {
         if(this.image == null)
             return new Review(user, contents, this.starPoint);
-        return new Review(user, contents, this.image.getOriginalFilename(), this.starPoint);
+        return new Review(user, contents, this.starPoint, url);
     }
 }

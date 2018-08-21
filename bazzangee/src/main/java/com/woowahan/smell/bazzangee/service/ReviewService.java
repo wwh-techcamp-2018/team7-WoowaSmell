@@ -3,6 +3,7 @@ package com.woowahan.smell.bazzangee.service;
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewDto;
+import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -19,8 +21,8 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
 
     @Transactional
-    public void create(ReviewDto reviewDto, User loginUser) {
-        reviewRepository.save(reviewDto.toEntity(loginUser));
+    public void create(ReviewDto reviewDto, String url, User loginUser) {
+        reviewRepository.save(reviewDto.toEntity(url, loginUser));
     }
 
     @Transactional
@@ -39,7 +41,9 @@ public class ReviewService {
         return reviewRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
     }
 
-    public List<Review> getLists(Pageable pageable) {
-        return reviewRepository.findAllByIsDeleted(pageable, false).getContent();
+    public List<ReviewResponseDto> getLists(Pageable pageable) {
+        return reviewRepository.findAllByIsDeleted(pageable, false)
+                .stream().map((Review::toReviewDto))
+                .collect(Collectors.toList());
     }
 }

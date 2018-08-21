@@ -1,6 +1,8 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.woowahan.smell.bazzangee.dto.ReviewDto;
+import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import java.util.List;
 @Entity
 @Slf4j
 @Where(clause = "is_deleted != true")
-public class Review {
+public class Review extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,6 +45,7 @@ public class Review {
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Good> goods;
     @OneToOne
+    @JsonIgnore
     private OrderFood orderFood;
 
     @ManyToOne
@@ -52,25 +55,17 @@ public class Review {
     @ColumnDefault("false")
     private boolean isDeleted;
 
-    @Column
-    private LocalDateTime writtenTime;
-
-    @Column
-    private LocalDateTime updatedTime;
-
     public Review(User user, String contents, double starPoint) {
         this.user = user;
         this.contents = contents;
         this.starPoint = starPoint;
-        this.writtenTime = LocalDateTime.now();
     }
 
-    public Review(User user, String contents, String imageUrl, double starPoint) {
+    public Review(User user, String contents, double starPoint, String imageUrl) {
         this.user = user;
         this.contents = contents;
-        this.imageUrl = imageUrl;
         this.starPoint = starPoint;
-        this.writtenTime = LocalDateTime.now();
+        this.imageUrl = imageUrl;
     }
 
     public void delete(User loginUser) {
@@ -84,12 +79,20 @@ public class Review {
             throw new NotMatchException("타인의 리뷰는 수정할 수 없습니다.");
 
         this.contents = reviewDto.getContents();
-        if(reviewDto.getImage() != null)
+        if (reviewDto.getImage() != null)
             this.imageUrl = reviewDto.getImage().getOriginalFilename();
-        if(reviewDto.getImage() == null)
+        if (reviewDto.getImage() == null)
             this.imageUrl = null;
         this.starPoint = reviewDto.getStarPoint();
-        this.updatedTime = LocalDateTime.now();
+    }
+    public ReviewResponseDto toReviewDto () {
+        return new ReviewResponseDto(this,
+                this.orderFood.getOrderedUser().getName(),
+                this.orderFood.getQuantity(),
+                this.orderFood.getFood().getName(),
+                this.orderFood.getFood().getRestaurant(),
+                this.orderFood.getOrderTime()
+        );
     }
 }
 

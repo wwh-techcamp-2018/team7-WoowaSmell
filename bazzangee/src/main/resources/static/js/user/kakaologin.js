@@ -36,8 +36,7 @@ function kakaoLogin({id, properties}) {
 }
 
 function onSuccess(res) {
-        console.log(res);
-//    location.href = "/";
+    location.href = "/";
 }
 
 function onFailure(res) {
