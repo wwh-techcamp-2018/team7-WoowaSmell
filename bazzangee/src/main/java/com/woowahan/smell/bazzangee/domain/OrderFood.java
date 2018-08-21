@@ -2,7 +2,6 @@ package com.woowahan.smell.bazzangee.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-//
 @Entity
 public class OrderFood {
     @Id
