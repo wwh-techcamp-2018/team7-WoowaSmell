@@ -13,7 +13,15 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "pwd"
+script: "./gradlew clean build"
+
+
+before_deploy:
+  - zip -r baezzangee bazzangee
+  - mkdir -p deploy
+  - mv baezzangee.zip deploy/baezzangee.zip
+
+
 
 # CI 실행 완료시 메일로 알람
 notifications:
@@ -31,7 +39,9 @@ deploy:
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
     on:
       repo: serverwizard/team7-WoowaSmell #Github 주소
       branch: dev
+
