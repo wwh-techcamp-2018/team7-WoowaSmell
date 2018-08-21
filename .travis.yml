@@ -15,7 +15,7 @@ cache:
 
 script:
     - cd bazzangee
-    - ./gradlew clean build
+    - "./gradlew clean build"
 
 
 before_deploy:
@@ -41,6 +41,10 @@ deploy:
     acl: public_read
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
+    key: baezzangee.zip # 빌드 파일을 압축해서 전달
+    bundle_type: zip
+    application: baezzangee # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+    deployment_group: baezzangee-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     on:
       repo: serverwizard/team7-WoowaSmell #Github 주소
       branch: dev
