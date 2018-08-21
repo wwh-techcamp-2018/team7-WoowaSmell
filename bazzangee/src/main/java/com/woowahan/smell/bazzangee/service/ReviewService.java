@@ -46,4 +46,8 @@ public class ReviewService {
                 .stream().map((Review::toReviewDto))
                 .collect(Collectors.toList());
     }
+
+//    public void updateGood(Long id, User sessionUser) {
+//        Review review = reviewRepository.findById(id).orElseThrow();
+//    }
 }

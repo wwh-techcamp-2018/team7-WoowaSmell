@@ -84,4 +84,10 @@ public class ApiReviewController {
         jsonObject.put("url", url);
         return jsonObject;
     }
+
+//    @GetMapping("/{id}/good")
+//    public ResponseEntity<Void> getReviewList(@PathVariable Long id, HttpSession httpSession) {
+//        reviewService.updateGood(id, HttpSessionUtils.getUserFromSession(httpSession));
+//        return ResponseEntity.status(HttpStatus.OK).build();
+//    }
 }

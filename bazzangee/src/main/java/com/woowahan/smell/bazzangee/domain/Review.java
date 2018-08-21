@@ -90,7 +90,8 @@ public class Review extends BaseTimeEntity {
                 this.orderFood.getQuantity(),
                 this.orderFood.getFood().getName(),
                 this.orderFood.getFood().getRestaurant(),
-                this.orderFood.getOrderTime()
+                this.orderFood.getOrderTime(),
+                this.goods.size()
         );
     }
 }
