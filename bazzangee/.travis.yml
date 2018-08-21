@@ -33,5 +33,5 @@ deploy:
     acl: public_read
     wait-until-deployed: true
     on:
-      repo: wwh-techcamp-2018/team7-WoowaSmell #Github 주소
+      repo: serverwizard/team7-WoowaSmell #Github 주소
       branch: dev
