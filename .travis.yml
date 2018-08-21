@@ -15,11 +15,11 @@ cache:
 
 before_install: cd bazzangee
 script:
-    - "./gradlew clean build"
+    - ./gradlew clean build
 
 
 before_deploy:
-  - zip -r baezzangee bazzangee
+  - zip -r baezzangee *
   - mkdir -p deploy
   - mv baezzangee.zip deploy/baezzangee.zip
 
