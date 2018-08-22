@@ -1,5 +1,6 @@
 package com.woowahan.smell.bazzangee.web.api;
 
+import com.woowahan.smell.bazzangee.domain.UserType;
 import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
@@ -10,6 +11,7 @@ import com.woowahan.smell.bazzangee.utils.HttpSessionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -17,7 +19,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import java.net.URI;
+
 import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.USER_SESSION_KEY;
+import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
 
 
 @Slf4j
@@ -55,7 +60,12 @@ public class ApiUserController {
 
     @GetMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session) {
+        User loginUser = getUserFromSession(session);
+        if(UserType.KAKAO.equals(loginUser.getType())) {
+            log.info("this is KAKAO !");
+            RequestEntity.post(URI.create("https://kapi.kakao.com/v1/user/logout")).build();
+        }
         HttpSessionUtils.removeUserInSession(session);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
     }
 }
