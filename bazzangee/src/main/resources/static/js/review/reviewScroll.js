@@ -1,13 +1,51 @@
 import {$, fetchManager, throttle} from "/js/util/utils.js";
 
 export class ReviewScroll{
-    constructor() {
+    constructor(id) {
+        this.foodCategoryId = id;
+        this.filterId = 0;
         this.currentPage = 0;
         this.canLoad = true;
         this.clickedTarget = null;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
         document.addEventListener('scroll', this.onScrollDown.bind(this));
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
+        $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
+        $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+    }
+
+    onClickRadios({target}) {
+        if(target.type != "radio") {
+            return;
+        }
+        this.canLoad = true;
+        if(target.value == this.filterId) {
+            return;
+        }
+        this.filterId = target.value;
+        this.currentPage = 0;
+        this.removeAllTimelines();
+        this.loadReviews();
+    }
+
+    onClickCategories({target}) {
+        if(target.type != "submit") {
+            return;
+        }
+        this.canLoad = true;
+        if(target.value == this.foodCategoryId) {
+            return;
+        }
+        $("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
+        target.classList.toggle("clicked");
+        this.foodCategoryId = target.value;
+        this.currentPage = 0;
+        this.removeAllTimelines();
+        this.loadReviews();
+    }
+
+    removeAllTimelines() {
+        $("#timeline_standard").innerHTML = '';
     }
 
     onScrollDown() {
@@ -39,13 +77,24 @@ export class ReviewScroll{
         if(!this.canLoad) return;
         this.canLoad = false;
         $("#loader").classList.toggle("invisible");
+        const url = (this.foodCategoryId == 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
+                        : '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
         fetchManager({
+<<<<<<< HEAD
             url: '/api/reviews?page=' + this.currentPage,
             method: 'GET',
             headers: { 'content-type': 'application/json'},
             callback: this.onSuccessLoad.bind(this),
             errCallback: this.onFailLoad.bind(this)
         });
+=======
+          url: url,
+          method: 'GET',
+          headers: { 'content-type': 'application/json'},
+          callback: this.onSuccessLoad.bind(this),
+          errCallback: this.onFailLoad.bind(this)
+         });
+>>>>>>> team7/feature/timeline
     }
 
     onSuccessLoad(response) {
@@ -73,7 +122,17 @@ export class ReviewScroll{
         $("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
     }
 
-    onFailLoad() {
+    onFailLoad(msg) {
+        console.log("Error Message : {}", msg);
+        $("#loader").classList.toggle("invisible");
+        if(!$("#timeline_standard").hasChildNodes()) {
+            var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
+            $("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
+        }
+    }
+
+    onFailUpdateGood(error) {
+        alert(error.message);
     }
 
     onFailUpdateGood(error) {
