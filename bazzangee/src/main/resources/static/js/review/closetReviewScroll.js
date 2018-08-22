@@ -45,35 +45,17 @@ export class ClosetReviewScroll{
         $("#timeline_standard").innerHTML = '';
     }
 
-    throttle(callback, wait) {
-         var time = Date.now();
-         return function() {
-             if ((time + wait - Date.now()) < 0) {
-               callback();
-               time = Date.now();
-             }
-         }
-     }
-
     loadReviews() {
         $("#loader").classList.toggle("invisible");
-        if(this.foodCategoryId == 0) {
-            fetchManager({
-                url: '/api/orderfoods/?filterId=' + this.filterId,
-                method: 'GET',
-                headers: { 'content-type': 'application/json'},
-                callback: this.onSuccessLoad.bind(this),
-                errCallback: this.onFailLoad.bind(this)
-             });
-        } else {
-            fetchManager({
-                url: '/api/orderfoods/categories/?categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId,
-                method: 'GET',
-                headers: { 'content-type': 'application/json'},
-                callback: this.onSuccessLoad.bind(this),
-                errCallback: this.onFailLoad.bind(this)
-             });
-        }
+        const url = (this.foodCategoryId === 0) ? '/api/orderfoods/?filterId=' + this.filterId
+                        : '/api/orderfoods/categories/?categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
+        fetchManager({
+            url: url,
+            method: 'GET',
+            headers: { 'content-type': 'application/json'},
+            callback: this.onSuccessLoad.bind(this),
+            errCallback: this.onFailLoad.bind(this)
+         });
     }
 
     onSuccessLoad(response) {

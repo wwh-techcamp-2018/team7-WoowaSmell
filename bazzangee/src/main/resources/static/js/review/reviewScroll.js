@@ -81,23 +81,16 @@ export class ReviewScroll{
         if(!this.canLoad) return;
         this.canLoad = false;
         $("#loader").classList.toggle("invisible");
-        if(this.foodCategoryId == 0) {
-            fetchManager({
-              url: '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId,
-              method: 'GET',
-              headers: { 'content-type': 'application/json'},
-              callback: this.onSuccessLoad.bind(this),
-              errCallback: this.onFailLoad.bind(this)
-             });
-        } else {
-            fetchManager({
-              url: '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId,
-              method: 'GET',
-              headers: { 'content-type': 'application/json'},
-              callback: this.onSuccessLoad.bind(this),
-              errCallback: this.onFailLoad.bind(this)
-             });
-        }
+        const url = (this.foodCategoryId === 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
+                        : '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
+
+        fetchManager({
+          url: url,
+          method: 'GET',
+          headers: { 'content-type': 'application/json'},
+          callback: this.onSuccessLoad.bind(this),
+          errCallback: this.onFailLoad.bind(this)
+         });
     }
 
     onSuccessLoad(response) {
