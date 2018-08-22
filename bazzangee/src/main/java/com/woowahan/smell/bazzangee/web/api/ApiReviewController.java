@@ -1,6 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
+import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
@@ -25,6 +26,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -38,9 +41,42 @@ public class ApiReviewController {
     private ReviewService reviewService;
 
     @GetMapping("")
-    public ResponseEntity<List> getReviewList(@PageableDefault(size = REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort = "writtenTime") Pageable pageable) {
+
+    public ResponseEntity<List> getReviewList(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long filterId) {
         log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
-        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getLists(pageable));
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByWrittenTime(pageable));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByStarPoint(pageable));
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List> getReviewListByCategory(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long categoryId, Long filterId) {
+        log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByWrittenTime(pageable, categoryId));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByStarPoint(pageable, categoryId));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List> getReviewListOfUser(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long filterId, HttpSession session) {
+        User user = getUserFromSession(session);
+        log.info("getReviewList : {}, {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize(), user);
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByWrittenTime(pageable));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsOrderByStarPoint(pageable));
+    }
+
+    @GetMapping("/user/categories")
+    public ResponseEntity<List> getReviewListOfUserByCategory(@PageableDefault(size=REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort="writtenTime") Pageable pageable, Long categoryId, Long filterId, HttpSession session) {
+        User user = getUserFromSession(session);
+        log.info("getReviewList : {}, {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize(), user.getUserId());
+        if(filterId == 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByWrittenTime(pageable, categoryId));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByStarPoint(pageable, categoryId));
     }
 
     @PostMapping(value = "")
@@ -50,7 +86,7 @@ public class ApiReviewController {
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
         String url = s3Uploader.upload(reviewRequestDto.getImage(), "static");
         log.info("url : {}", url);
-        reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session));
+        reviewService.create(reviewRequestDto, url, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -58,7 +94,7 @@ public class ApiReviewController {
     public ResponseEntity<Void> delete(@PathVariable Long id, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 삭제 가능합니다.");
-        reviewService.delete(id, HttpSessionUtils.getUserFromSession(session));
+        reviewService.delete(id, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -67,7 +103,7 @@ public class ApiReviewController {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
         log.info("reviewRequestDto : {}", reviewRequestDto.toString());
-        reviewService.update(id, reviewRequestDto, HttpSessionUtils.getUserFromSession(session));
+        reviewService.update(id, reviewRequestDto, getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -90,6 +126,6 @@ public class ApiReviewController {
     public ResponseEntity<ReviewResponseDto> addGood(@PathVariable Long id, HttpSession httpSession) {
         if (!HttpSessionUtils.isLoginUser(httpSession))
             throw new UnAuthenticationException("로그인 후 이용 가능합니다.");
-        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, HttpSessionUtils.getUserFromSession(httpSession)));
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, getUserFromSession(httpSession)));
     }
 }
