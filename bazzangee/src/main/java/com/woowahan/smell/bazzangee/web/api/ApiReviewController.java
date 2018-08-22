@@ -6,6 +6,7 @@ import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.ReviewService;
 import com.woowahan.smell.bazzangee.utils.FileUtils;
 import com.woowahan.smell.bazzangee.utils.HttpSessionUtils;
+import com.woowahan.smell.bazzangee.vo.PageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -30,14 +31,14 @@ import java.util.List;
 @RequestMapping("/api/reviews")
 public class ApiReviewController {
 
-    private final int REVIEW_PAGE_NUM = 10;
     private final S3Uploader s3Uploader;
 
     @Autowired
     private ReviewService reviewService;
 
     @GetMapping("")
-    public ResponseEntity<List> getReviewList(@PageableDefault(size = REVIEW_PAGE_NUM, direction = Sort.Direction.DESC, sort = "writtenTime") Pageable pageable) {
+    public ResponseEntity<List> getReviewList(PageVO pageVO) {
+        Pageable pageable = pageVO.makePageable(Sort.Direction.DESC.ordinal(), "writtenTime");
         log.info("getReviewList : {}, {}, {}", pageable.getPageNumber(), pageable.getOffset(), pageable.getPageSize());
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.getLists(pageable));
     }
@@ -54,11 +55,11 @@ public class ApiReviewController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id, HttpSession session) {
+    public ResponseEntity<Long> delete(@PathVariable Long id, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 삭제 가능합니다.");
         reviewService.delete(id, HttpSessionUtils.getUserFromSession(session));
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK).body(id);
     }
 
     @PostMapping("/{id}")

@@ -32,7 +32,7 @@ public class S3Uploader {
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         if(multipartFile == null) {
-            return reviewRepository.findById(14L).orElseThrow(() -> new IllegalArgumentException("해당하는 리뷰가 존재하지 않습니다.")).getImageUrl();
+            return reviewRepository.findById(1L).orElseThrow(() -> new IllegalArgumentException("해당하는 리뷰가 존재하지 않습니다.")).getImageUrl();
         }
 
         File uploadFile = convert(multipartFile)

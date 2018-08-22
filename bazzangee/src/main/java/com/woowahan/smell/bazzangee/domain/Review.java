@@ -10,6 +10,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.util.List;
@@ -40,6 +41,9 @@ public class Review extends BaseTimeEntity {
     private String imageUrl;
 
     @Column
+    private String originName;
+
+    @Column
     private double starPoint;
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Good> goods;
@@ -61,12 +65,13 @@ public class Review extends BaseTimeEntity {
         this.starPoint = starPoint;
     }
 
-    public Review(OrderFood orderFood, User user, String contents, double starPoint, String imageUrl) {
+    public Review(OrderFood orderFood, User user, String contents, double starPoint, String imageUrl, String originName) {
         this.orderFood = orderFood;
         this.user = user;
         this.contents = contents;
         this.starPoint = starPoint;
         this.imageUrl = imageUrl;
+        this.originName = originName;
     }
 
     public void delete(User loginUser) {

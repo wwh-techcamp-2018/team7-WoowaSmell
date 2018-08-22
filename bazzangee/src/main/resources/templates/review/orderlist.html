@@ -17,24 +17,9 @@
             <h2>{{food.name}} - {{food.restaurant.name}}</h2>
             <p>수량: {{quantity}}</p>
             {{#review}}
-                {{#isDeleted}}
-                <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
-                <div class="card invisible" style="width:400px ">
-                    <img class="card-img-top" src="" style="width:200px">
-                    <div class="card-body">
-                        <input type="text" name="contents" class="card-text"> <br/><br/>
-                        <input type="file" name="image" class="btn btn-primary" >
-                        <div class="rate" data-rate-value=0></div>
-                        <button type="button" class="btn btn-danger invisible">삭제</button>
-                        <input type="button" class="btn-review-submit" value="저장">
-                    </div>
-                </div>
-                {{/isDeleted}}
-                {{^isDeleted}}
                 <img class="card-img-top" src="{{imageUrl}}" style="width:200px">
                 <p>{{contents}}</p>
                 <div class="rate" data-rate-value={{starPoint}} style="pointer-events:none;"></div>
-                {{/isDeleted}}
             {{/review}}
             {{^review}}
             <button type="button" class="orderfood-review-write">리뷰 쓰기</button>

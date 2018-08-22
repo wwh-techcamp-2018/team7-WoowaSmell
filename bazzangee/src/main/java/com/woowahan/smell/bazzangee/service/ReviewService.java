@@ -32,8 +32,8 @@ public class ReviewService {
     }
 
     @Transactional
-    public void delete(Long id, User loginUser) {
-        Review savedReview = getSavedReviewById(id);
+    public void delete(Long reviewId, User loginUser) {
+        Review savedReview = getSavedReviewById(reviewId);
         savedReview.delete(loginUser);
     }
 
