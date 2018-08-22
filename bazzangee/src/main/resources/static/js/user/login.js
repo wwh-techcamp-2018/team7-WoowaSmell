@@ -54,4 +54,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeEventListener();
 })
 
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";

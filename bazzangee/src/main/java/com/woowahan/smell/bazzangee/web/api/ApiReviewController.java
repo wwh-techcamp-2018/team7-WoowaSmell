@@ -2,6 +2,7 @@ package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
+import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.ReviewService;
 import com.woowahan.smell.bazzangee.utils.FileUtils;
@@ -83,5 +84,12 @@ public class ApiReviewController {
         System.out.println("url : {}"+ url);
         jsonObject.put("url", url);
         return jsonObject;
+    }
+
+    @GetMapping("/{id}/good")
+    public ResponseEntity<ReviewResponseDto> addGood(@PathVariable Long id, HttpSession httpSession) {
+        if (!HttpSessionUtils.isLoginUser(httpSession))
+            throw new UnAuthenticationException("로그인 후 이용 가능합니다.");
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, HttpSessionUtils.getUserFromSession(httpSession)));
     }
 }

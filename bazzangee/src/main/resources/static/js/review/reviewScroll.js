@@ -1,11 +1,13 @@
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager, throttle} from "/js/util/utils.js";
 
 export class ReviewScroll{
     constructor() {
         this.currentPage = 0;
         this.canLoad = true;
+        this.clickedTarget = null;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
         document.addEventListener('scroll', this.onScrollDown.bind(this));
+        $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
     }
 
     onScrollDown() {
@@ -14,18 +16,23 @@ export class ReviewScroll{
         }
     }
 
-    throttle(callback, wait) {
-         var time = Date.now();
-         return function() {
-             if ((time + wait - Date.now()) < 0) {
-               callback();
-               time = Date.now();
-             }
-         }
-     }
-
     onLoadDocument() {
         this.loadReviews();
+    }
+
+    onclickGoodButton({target}) {
+        if (!target.classList.contains("good-btn") && !target.parentElement.classList.contains("good-btn")
+            && !target.parentElement.parentElement.classList.contains("good-btn"))
+            return;
+
+        this.clickedTarget = target;
+        fetchManager({
+            url: '/api/reviews/' + this.clickedTarget.getAttribute("data-value") + '/good',
+            method: 'GET',
+            headers: { 'content-type': 'application/json'},
+            callback: this.onSuccessUpdateGood.bind(this),
+            errCallback: this.onFailUpdateGood.bind(this)
+        });
     }
 
     loadReviews() {
@@ -33,49 +40,43 @@ export class ReviewScroll{
         this.canLoad = false;
         $("#loader").classList.toggle("invisible");
         fetchManager({
-          url: '/api/reviews?page=' + this.currentPage,
-          method: 'GET',
-          headers: { 'content-type': 'application/json'},
-          callback: this.onSuccessLoad.bind(this),
-          errCallback: this.onFailLoad.bind(this)
-         });
+            url: '/api/reviews?page=' + this.currentPage,
+            method: 'GET',
+            headers: { 'content-type': 'application/json'},
+            callback: this.onSuccessLoad.bind(this),
+            errCallback: this.onFailLoad.bind(this)
+        });
     }
 
     onSuccessLoad(response) {
-        console.log('onSuccessLoad');
-
         response.json().then((reviews) => {
             if(reviews.length === 0) {
-                this.canLoad = false;
-                document.removeEventListener('scroll', this.onScrollDown.bind(this));
-                $("#loader").classList.toggle("invisible");
-                return;
-            }
-            this.currentPage += 1;
-            reviews.forEach(this.appendReviewHTML);
+            this.canLoad = false;
+            document.removeEventListener('scroll', this.onScrollDown.bind(this));
             $("#loader").classList.toggle("invisible");
-            this.canLoad = true;
-        })
+            return;
+        }
+        this.currentPage += 1;
+        reviews.forEach(this.appendReviewHTML);
+        $("#loader").classList.toggle("invisible");
+        this.canLoad = true;
+    })
+    }
+
+    onSuccessUpdateGood(response) {
+        response.json().then((reviewDto) => {
+            this.clickedTarget.closest(".good-btn").lastElementChild.innerHTML = reviewDto.goodCount;
+        });
     }
 
     appendReviewHTML(reviewDto) {
-        var written = reviewDto.review.writtenTime;
-        var writtenDate = written.slice(0, 10)
-        var writtenTime = written.slice(11, 16)
-        var reviewHTML = `<li>
-                           <time class="cbp_tmtime" datetime="${reviewDto.review.writtenTime}"><span>${writtenDate}</span> <span>${writtenTime}</span></time>
-                           <div class="cbp_tmicon cbp_tmicon-phone"></div>
-                           <div class="cbp_tmlabel">
-                               <h2>${reviewDto.restaurant.name} - ${reviewDto.foodName}</h2>
-                               <p>${reviewDto.review.starPoint}</p>
-                               <p>${reviewDto.review.contents}</p>
-                               <p>${reviewDto.userName}</p>
-                               <p>${reviewDto.restaurant.address}</p>
-                           </div>
-                       </li>`;
-       $("#timeline_standard").insertAdjacentHTML("beforeend", reviewHTML);
+        $("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
     }
 
     onFailLoad() {
+    }
+
+    onFailUpdateGood(error) {
+        alert(error.message);
     }
 }
