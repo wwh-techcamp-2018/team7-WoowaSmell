@@ -15,7 +15,7 @@ cache:
 
 before_install: cd bazzangee
 script:
-    - ./gradlew build
+    - "./gradlew build"
 
 
 before_deploy:
