@@ -19,13 +19,11 @@ export class ReviewScroll{
             return;
         }
         this.canLoad = true;
-        console.log("now is ", target.value);
         if(target.value == this.filterId) {
             return;
         }
         this.filterId = target.value;
         this.currentPage = 0;
-        console.log("target", target);
         this.removeAllTimelines();
         this.loadReviews();
     }
@@ -35,7 +33,6 @@ export class ReviewScroll{
             return;
         }
         this.canLoad = true;
-        console.log("now is ", target.value);
         if(target.value == this.foodCategoryId) {
             return;
         }
@@ -43,7 +40,6 @@ export class ReviewScroll{
         target.classList.toggle("clicked");
         this.foodCategoryId = target.value;
         this.currentPage = 0;
-        console.log("target", target);
         this.removeAllTimelines();
         this.loadReviews();
     }
@@ -81,9 +77,8 @@ export class ReviewScroll{
         if(!this.canLoad) return;
         this.canLoad = false;
         $("#loader").classList.toggle("invisible");
-        const url = (this.foodCategoryId === 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
+        const url = (this.foodCategoryId == 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
                         : '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
-
         fetchManager({
           url: url,
           method: 'GET',

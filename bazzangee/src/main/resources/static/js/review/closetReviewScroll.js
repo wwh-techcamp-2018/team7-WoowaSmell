@@ -14,13 +14,11 @@ export class ClosetReviewScroll{
             return;
         }
         this.canLoad = true;
-        console.log("now is ", target.value);
         if(target.value == this.filterId) {
             return;
         }
         this.filterId = target.value;
         this.currentPage = 0;
-        console.log("target", target);
         this.removeAllTimelines();
         this.loadReviews();
     }
@@ -29,14 +27,12 @@ export class ClosetReviewScroll{
         if(target.type != "submit") {
             return;
         }
-        console.log("now is ", target.value);
         if(target.value == this.foodCategoryId) {
             return;
         }
         $("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
         target.classList.toggle("clicked");
         this.foodCategoryId = target.value;
-        console.log("target", target);
         this.removeAllTimelines();
         this.loadReviews();
     }
@@ -47,7 +43,7 @@ export class ClosetReviewScroll{
 
     loadReviews() {
         $("#loader").classList.toggle("invisible");
-        const url = (this.foodCategoryId === 0) ? '/api/orderfoods/?filterId=' + this.filterId
+        const url = (this.foodCategoryId == 0) ? '/api/orderfoods/?filterId=' + this.filterId
                         : '/api/orderfoods/categories/?categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
         fetchManager({
             url: url,
@@ -59,7 +55,6 @@ export class ClosetReviewScroll{
     }
 
     onSuccessLoad(response) {
-        console.log('onSuccessLoad');
         response.json().then((orderFoods) => {
             orderFoods.forEach(this.appendOrderFoodHTML);
             $("#loader").classList.toggle("invisible");

@@ -1,13 +1,15 @@
 package com.woowahan.smell.bazzangee.service;
 
 import com.woowahan.smell.bazzangee.domain.Good;
+import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
-import com.woowahan.smell.bazzangee.repository.GoodRepository;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.repository.FoodCategoryRepository;
+import com.woowahan.smell.bazzangee.repository.GoodRepository;
+import com.woowahan.smell.bazzangee.repository.OrderFoodRepository;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +30,19 @@ public class ReviewService {
     private GoodRepository goodRepository;
     @Autowired
     private FoodCategoryRepository foodCategoryRepository;
+    @Autowired
+    private OrderFoodRepository orderFoodRepository;
 
     @Transactional
     public void create(ReviewRequestDto reviewRequestDto, String url, User loginUser) {
-        reviewRepository.save(reviewRequestDto.toEntity(url, loginUser));
+        OrderFood orderFood = orderFoodRepository.findById(reviewRequestDto.getOrderFoodId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문 내역입니다."));
+        reviewRepository.save(reviewRequestDto.toEntity(orderFood, url, loginUser));
     }
 
     @Transactional
-    public void delete(Long id, User loginUser) {
-        Review savedReview = getSavedReviewById(id);
+    public void delete(Long reviewId, User loginUser) {
+        Review savedReview = getSavedReviewById(reviewId);
         savedReview.delete(loginUser);
     }
 
@@ -71,7 +77,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDto updateGood(Long id, User sessionUser){
+    public ReviewResponseDto updateGood(Long id, User sessionUser) {
         Review review = reviewRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당하는 리뷰가 없습니다."));
         List<Good> goods = review.getGoods().stream().filter((good) -> good.matchUser(sessionUser)).collect(Collectors.toList());
 
@@ -87,8 +93,8 @@ public class ReviewService {
     }
 
     public List<ReviewResponseDto> getListsByCategoryOrderByWrittenTime(Pageable pageable, Long categoryId) {
-        log.info("foodCagtegory : {}", foodCategoryRepository.findById(categoryId).get());
         Page<Review> reviews = reviewRepository.findAllByFoodCategoryAndIsDeletedFalseOrderByWrittenTimeDesc(pageable, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!")));
+        log.info("first\n");
         if (!reviews.hasContent()) {
             throw new NotMatchException("there is no Reviews!");
         }
@@ -99,7 +105,6 @@ public class ReviewService {
     }
 
     public List<ReviewResponseDto> getListsByCategoryOrderByStarPoint(Pageable pageable, Long categoryId) {
-        log.info("foodCagtegory : {}", foodCategoryRepository.findById(categoryId).get());
         Page<Review> reviews = reviewRepository.findAllByFoodCategoryAndIsDeletedFalseOrderByStarPointDesc(pageable, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!")));
         if (!reviews.hasContent()) {
             throw new NotMatchException("there is no Reviews!");
