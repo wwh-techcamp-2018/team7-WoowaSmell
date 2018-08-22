@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
-import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.domain.User;
+import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
@@ -16,8 +16,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
-import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.USER_SESSION_KEY;
 
 
 @Slf4j
