@@ -48,7 +48,7 @@ public class ApiReviewController {
         log.info("reviewRequestDto : {}", reviewRequestDto);
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), "static");
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
         log.info("url : {}", url);
         reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session));
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -80,7 +80,7 @@ public class ApiReviewController {
 
         // JSONObject 사용
         JSONObject jsonObject = new JSONObject();
-        String url = s3Uploader.upload(multipartFile, String.format("static/%s", LocalDate.now().toString().replace("-", "")));
+        String url = s3Uploader.upload(multipartFile, String.format("static/tempImage/%s", LocalDate.now().toString().replace("-", "")));
         System.out.println("url : {}"+ url);
         jsonObject.put("url", url);
         return jsonObject;

@@ -44,4 +44,8 @@ public class OrderFood {
         String datatime[] = formatDateTime.split(" ")[1].split(":");
         return datatime[0] + ":" + datatime[1];
     }
+
+    public boolean isMatchedBy(User reviewUser) {
+        return this.orderedUser.equals(reviewUser);
+    }
 }

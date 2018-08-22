@@ -45,7 +45,7 @@ public class S3Uploader {
         // 오리지널 이름 : uploadFile.getName();
         // 저장 이름 : saved file name
 
-        String fileName = dirName + "/" + UUID.randomUUID().toString();
+        String fileName = dirName + "/" + System.currentTimeMillis();
         String uploadImageUrl = putS3(uploadFile, fileName);
         removeNewFile(uploadFile);
 
