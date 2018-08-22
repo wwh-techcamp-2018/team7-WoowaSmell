@@ -1,4 +1,4 @@
-import {$, fetchManager, throttle} from "/js/util/utils.js";
+import {$, fetchManager, throttle, addDropdownListener} from "/js/util/utils.js";
 
 export class ReviewScroll{
     constructor(id) {
@@ -12,6 +12,7 @@ export class ReviewScroll{
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
         $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        addDropdownListener();
     }
 
     onClickRadios({target}) {

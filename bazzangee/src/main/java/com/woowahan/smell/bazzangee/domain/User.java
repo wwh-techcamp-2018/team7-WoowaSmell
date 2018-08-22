@@ -48,10 +48,11 @@ public class User extends BaseTimeEntity {
         this.type = UserType.NORMAL;
     }
 
-    public User(String userId, String name, UserType type) {
+    public User(String userId, String name, String imageUrl, UserType type) {
         this.userId = userId;
         this.name = name;
         this.type = type;
+        this.imageUrl = imageUrl;
     }
 
     public boolean matchPasswordBy(UserLoginDto userLoginDto, PasswordEncoder passwordEncoder) {

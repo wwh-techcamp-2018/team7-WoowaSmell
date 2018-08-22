@@ -24,3 +24,16 @@ export function throttle(callback, wait) {
         }
     }
 }
+
+export function addDropdownListener() {
+    $(".user-profile").addEventListener("click", (event) => {
+        event.preventDefault();
+        const display = $(".dropdown-menu").style.display;
+        if(display == "none") {
+            $(".dropdown-menu").style.display = "block";
+            return;
+        }
+        $(".dropdown-menu").style.display = "none";
+        return;
+    })
+}

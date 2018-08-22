@@ -35,6 +35,6 @@ public class KakaoDto {
     }
 
     public User toUser() {
-        return new User(this.userId, this.name, UserType.KAKAO);
+        return new User(this.userId, this.name, this.imageUrl, UserType.KAKAO);
     }
 }

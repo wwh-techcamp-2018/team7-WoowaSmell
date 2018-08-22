@@ -1,4 +1,4 @@
-import {$, fetchManager} from "/js/util/utils.js";
+import {$, fetchManager, addDropdownListener} from "/js/util/utils.js";
 
 export class ClosetReviewScroll{
     constructor(id) {
@@ -7,6 +7,7 @@ export class ClosetReviewScroll{
         document.addEventListener("DOMContentLoaded", this.loadReviews.bind(this));
         $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        addDropdownListener();
     }
 
     onClickRadios({target}) {
