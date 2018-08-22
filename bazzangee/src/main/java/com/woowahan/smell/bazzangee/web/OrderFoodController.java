@@ -22,6 +22,6 @@ public class OrderFoodController {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 이용 가능합니다.");
         model.addAttribute("orderFoods", orderFoodService.getList(HttpSessionUtils.getUserFromSession(session)));
-        return "/review/orderlist";
+        return "/closet/orderlist";
     }
 }

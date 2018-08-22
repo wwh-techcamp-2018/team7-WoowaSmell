@@ -79,4 +79,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";
