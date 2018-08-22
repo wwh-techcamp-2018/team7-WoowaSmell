@@ -1,8 +1,14 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@ToString(exclude = "review")
 public class Good {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +19,20 @@ public class Good {
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_good_review"))
     private Review review;
+
+    public boolean matchUser(User user) {
+        return this.user.equals(user);
+    }
+
+    public Good(User user, Review review) {
+        this.user = user;
+        this.review = review;
+    }
+
+    public void resetReview() {
+        this.review = null;
+    }
 }

@@ -10,7 +10,6 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.util.List;
@@ -39,15 +38,13 @@ public class Review extends BaseTimeEntity {
 
     @Column
     private String imageUrl;
-
     @Column
     private String originName;
-
     @Column
     private double starPoint;
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Good> goods;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private OrderFood orderFood;
 
@@ -87,7 +84,6 @@ public class Review extends BaseTimeEntity {
     public void update(ReviewRequestDto reviewRequestDto, User loginUser) {
         if (!loginUser.equals(this.user))
             throw new NotMatchException("타인의 리뷰는 수정할 수 없습니다.");
-
         this.contents = reviewRequestDto.getContents();
         if (reviewRequestDto.getImage() != null)
             this.imageUrl = reviewRequestDto.getImage().getOriginalFilename();
@@ -101,8 +97,17 @@ public class Review extends BaseTimeEntity {
                 this.orderFood.getQuantity(),
                 this.orderFood.getFood().getName(),
                 this.orderFood.getFood().getRestaurant(),
-                this.orderFood.getOrderTime()
+                this.orderFood.getOrderTime(),
+                this.goods.size()
         );
+    }
+
+    public void removeGood(Good good) {
+        this.goods.remove(good);
+    }
+
+    public void addGood(Good good) {
+        this.goods.add(good);
     }
 }
 

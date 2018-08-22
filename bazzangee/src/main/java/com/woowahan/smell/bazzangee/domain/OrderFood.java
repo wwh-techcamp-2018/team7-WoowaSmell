@@ -1,9 +1,7 @@
 package com.woowahan.smell.bazzangee.domain;
 
-import com.woowahan.smell.bazzangee.converter.LocalDateTimeConverter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -47,5 +45,12 @@ public class OrderFood {
 
     public boolean isMatchedBy(User reviewUser) {
         return this.orderedUser.equals(reviewUser);
+    }
+
+    public boolean hasValidReview() {
+        if (review == null || review.isDeleted() == true) {
+            return false;
+        }
+        return true;
     }
 }

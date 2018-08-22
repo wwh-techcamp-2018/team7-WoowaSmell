@@ -51,4 +51,4 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#btnSubmit').addEventListener("click", imageSubmitHandler);
 });
 
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";

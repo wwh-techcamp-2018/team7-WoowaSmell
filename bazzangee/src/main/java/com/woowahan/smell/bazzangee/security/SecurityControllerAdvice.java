@@ -18,20 +18,27 @@ public class SecurityControllerAdvice {
     @ExceptionHandler(UnAuthenticationException.class)
     public ResponseEntity<ErrorResponse> unAuthentication(Exception exception) {
         log.debug("UnAuthenticationException is happened!");
-        return new ResponseEntity<ErrorResponse>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotMatchException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> notMatch(Exception exception) {
         log.debug("NotMatchException is happened!");
-        return new ResponseEntity<ErrorResponse>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     public ResponseEntity<ErrorResponse> notAllowedArgument(Exception exception) {
         log.debug("ValidationException is happened!");
+        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> IllegalArgument(Exception exception) {
+        log.debug("IllegalArgumentException is happened!");
         return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.FORBIDDEN);
     }
 }

@@ -9,4 +9,8 @@ import java.util.Optional;
 
 public interface OrderFoodRepository extends CrudRepository<OrderFood, Long> {
     Optional<List<OrderFood>> findByOrderedUser(User user);
+
+    List<OrderFood> findAllByOrderedUserOrderByOrderTimeDesc(User user);
+
+    List<OrderFood> findAllByOrderedUser(User user);
 }

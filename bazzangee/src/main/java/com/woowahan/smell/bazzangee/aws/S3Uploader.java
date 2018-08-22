@@ -23,6 +23,7 @@ import java.util.UUID;
 public class S3Uploader {
 
     private final AmazonS3Client amazonS3Client;
+    private final String HONEY_COMBO_IMGURL = "static/img/honey_combo.png";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -32,7 +33,7 @@ public class S3Uploader {
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         if(multipartFile == null) {
-            return reviewRepository.findById(1L).orElseThrow(() -> new IllegalArgumentException("해당하는 리뷰가 존재하지 않습니다.")).getImageUrl();
+            return HONEY_COMBO_IMGURL;
         }
 
         File uploadFile = convert(multipartFile)
