@@ -7,7 +7,7 @@ timeline.css
 	font-style: normal;
 } /* Made with http://icomoon.io/ */
 
-#buttons{
+#buttons, #chat-container{
 	margin-top: 150px;
 }
 

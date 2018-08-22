@@ -80,21 +80,12 @@ export class ReviewScroll{
         const url = (this.foodCategoryId == 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
                         : '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
         fetchManager({
-<<<<<<< HEAD
-            url: '/api/reviews?page=' + this.currentPage,
-            method: 'GET',
-            headers: { 'content-type': 'application/json'},
-            callback: this.onSuccessLoad.bind(this),
-            errCallback: this.onFailLoad.bind(this)
-        });
-=======
           url: url,
           method: 'GET',
           headers: { 'content-type': 'application/json'},
           callback: this.onSuccessLoad.bind(this),
           errCallback: this.onFailLoad.bind(this)
          });
->>>>>>> team7/feature/timeline
     }
 
     onSuccessLoad(response) {
@@ -119,7 +110,7 @@ export class ReviewScroll{
     }
 
     appendReviewHTML(reviewDto) {
-        $("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
+        $("#timeline-container").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
     }
 
     onFailLoad(msg) {

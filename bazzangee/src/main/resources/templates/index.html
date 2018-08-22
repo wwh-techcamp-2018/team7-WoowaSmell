@@ -14,28 +14,32 @@
     <button value="7" class="category_button">분식</button>
     <button value="8" class="category_button">햄버거</button>
 </div>
-<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="timeline-container">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="0" checked> <span class="label-text">최신 순</span>
-            </label>
-        </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="1"> <span class="label-text">별점 순</span>
-            </label>
-        </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
-            </label>
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="timeline-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="0" checked> <span class="label-text">최신 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="1"> <span class="label-text">별점 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
+                </label>
+            </div>
         </div>
     </div>
-    <ul class="cbp_tmtimeline" id="timeline_standard">
-    </ul>
-</div>
-<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" id="chat-container">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" id="chat-container">
+        <div style="border: 1px solid black; width: 100%; height: 300px">
+            <ul class="cbp_tmtimeline" id="timeline_standard">
+            </ul>
+        </div>
+    </div>
 </div>
 <div id="loader" class="invisible"></div>
 {{/partial}}
