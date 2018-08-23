@@ -4,10 +4,22 @@ spring:
   devtools:
     livereload:
       enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
 
 handlebars:
   suffix: .html
   cache: false
+
+cloud:
+  aws:
+    s3:
+      bucket: baezzangee
+    region:
+      static: ap-northeast-2
+    credentials:
+          instanceProfile: true
 
 ---
 spring:
@@ -29,7 +41,6 @@ spring:
   h2:
     console:
       enabled: true
-
 ---
 spring:
   profiles: dev

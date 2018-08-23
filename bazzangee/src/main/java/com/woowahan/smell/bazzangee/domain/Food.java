@@ -1,7 +1,10 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
+@Getter
 @Entity
 public class Food {
     @Id
@@ -10,9 +13,11 @@ public class Food {
 
     @Column
     private String name;
+
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_food_restaurant"))
     private Restaurant restaurant;
+
     @Column
     private String imageUrl;
 }

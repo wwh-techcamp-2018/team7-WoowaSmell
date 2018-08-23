@@ -4,10 +4,11 @@ Kakao.init(KAKAO_LOGIN_KEY);
 Kakao.Auth.createLoginButton({
   container: '#kakao-login-btn',
   success: function(authObj) {
+    const accessToken = JSON.stringify(authObj);
     Kakao.API.request({
       url: '/v1/user/me',
       success: function(res) {
-        kakaoLogin(res);
+        kakaoLogin(res, authObj);
       },
       fail: function(error) {
         alert(JSON.stringify(error));
@@ -19,13 +20,17 @@ Kakao.Auth.createLoginButton({
   }
 });
 
-function kakaoLogin({id, properties}) {
+function kakaoLogin(res, accessToken) {
+    console.log(res.properties);
+    console.log(accessToken);
     fetchManager({
         url: '/api/users/login/kakao',
         method: 'POST',
         body: JSON.stringify({
-            userId : id,
-            name : properties.nickname
+            userId : res.id,
+            password : accessToken.access_token,
+            name : res.properties.nickname,
+            imageUrl : res.properties.thumbnail_image
         }),
         headers: { 'content-type': 'application/json'},
         callback: onSuccess,
@@ -34,13 +39,12 @@ function kakaoLogin({id, properties}) {
 }
 
 function onSuccess(res) {
-        console.log(res);
-//    location.href = "/";
+    location.href = "/";
 }
 
 function onFailure(res) {
     alert("KakaoTalk error!!");
 }
 
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";
 
