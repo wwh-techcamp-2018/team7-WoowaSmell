@@ -1,6 +1,5 @@
 package com.woowahan.smell.bazzangee.web.api;
 
-import com.amazonaws.protocol.json.JsonContent;
 import com.woowahan.smell.bazzangee.domain.UserType;
 import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.domain.User;
@@ -17,17 +16,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import java.net.URI;
 
 import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.USER_SESSION_KEY;
 import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
-
 
 @Slf4j
 @RestController

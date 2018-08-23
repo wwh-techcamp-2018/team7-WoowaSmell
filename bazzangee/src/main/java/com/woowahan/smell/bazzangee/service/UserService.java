@@ -39,7 +39,6 @@ public class UserService {
     public User getUserByUserId(String userId) {
         return userRepository.findByUserId(userId).get();
     }
-
     public void updatePassword(User kakaoUser) {
         userRepository.findByUserId(kakaoUser.getUserId()).orElseThrow(() -> new UnAuthenticationException("해당 사용자가 존재하지 않습니다.")).updatePassword(kakaoUser.getPassword());
     }

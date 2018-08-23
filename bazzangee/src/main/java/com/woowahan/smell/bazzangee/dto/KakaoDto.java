@@ -10,7 +10,6 @@ public class KakaoDto {
     private String name;
     private String imageUrl;
 
-
     public String getUserId() {
         return userId;
     }
@@ -42,6 +41,6 @@ public class KakaoDto {
     }
 
     public User toUser() {
-        return new User(this.userId, this.password, this.name, this.imageUrl, UserType.KAKAO);
+        return new User(this.userId, this.name, UserType.KAKAO);
     }
 }
