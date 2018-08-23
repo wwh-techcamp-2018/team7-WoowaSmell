@@ -12,6 +12,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -43,7 +44,7 @@ public class Review extends BaseTimeEntity {
     @Column
     private double starPoint;
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Good> goods;
+    private List<Good> goods = new ArrayList<>();
     @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private OrderFood orderFood;

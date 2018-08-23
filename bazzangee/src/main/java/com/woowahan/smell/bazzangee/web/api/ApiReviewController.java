@@ -1,6 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
+import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
@@ -38,6 +39,43 @@ public class ApiReviewController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @PostMapping(value = "")
+    public ResponseEntity<ReviewResponseDto> create(ReviewRequestDto reviewRequestDto, HttpSession session) throws IOException {
+        log.info("reviewRequestDto : {}", reviewRequestDto);
+        if (!HttpSessionUtils.isLoginUser(session))
+            throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
+        return ResponseEntity.status(HttpStatus.OK).body(reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> delete(@PathVariable Long id, HttpSession session) {
+        if (!HttpSessionUtils.isLoginUser(session))
+            throw new UnAuthenticationException("로그인 사용자만 삭제 가능합니다.");
+        reviewService.delete(id, HttpSessionUtils.getUserFromSession(session));
+        return ResponseEntity.status(HttpStatus.OK).body(id);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, ReviewRequestDto reviewRequestDto, HttpSession session) {
+        if (!HttpSessionUtils.isLoginUser(session))
+            throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
+        reviewService.update(id, reviewRequestDto, HttpSessionUtils.getUserFromSession(session));
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/upload")
+    public JSONObject upload(@RequestParam("data") MultipartFile multipartFile) throws IOException {
+        if (multipartFile != null && multipartFile.getSize() > FileUtils.MAXIMUM_SIZE_MB)
+            throw new ValidationException("업로드 가능한 이미지 최대 크기는 10MB 이상입니다.");
+
+        // JSONObject 사용
+        JSONObject jsonObject = new JSONObject();
+        String url = s3Uploader.upload(multipartFile, String.format("static/tempImage/%s", LocalDate.now().toString().replace("-", "")));
+        jsonObject.put("url", url);
+        return jsonObject;
+    }
 
     @GetMapping("")
     public ResponseEntity<List> getReviewList(PageVO pageVO, Long filterId) {
@@ -84,40 +122,4 @@ public class ApiReviewController {
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, getUserFromSession(httpSession)));
     }
 
-    @PostMapping(value = "")
-    public ResponseEntity<Void> create(ReviewRequestDto reviewRequestDto, HttpSession session) throws IOException {
-        if (!HttpSessionUtils.isLoginUser(session))
-            throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
-        reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session));
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Long> delete(@PathVariable Long id, HttpSession session) {
-        if (!HttpSessionUtils.isLoginUser(session))
-            throw new UnAuthenticationException("로그인 사용자만 삭제 가능합니다.");
-        reviewService.delete(id, HttpSessionUtils.getUserFromSession(session));
-        return ResponseEntity.status(HttpStatus.OK).body(id);
-    }
-
-    @PostMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, ReviewRequestDto reviewRequestDto, HttpSession session) {
-        if (!HttpSessionUtils.isLoginUser(session))
-            throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
-        reviewService.update(id, reviewRequestDto, HttpSessionUtils.getUserFromSession(session));
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @PostMapping("/upload")
-    public JSONObject upload(@RequestParam("data") MultipartFile multipartFile) throws IOException {
-        if (multipartFile != null && multipartFile.getSize() > FileUtils.MAXIMUM_SIZE_MB)
-            throw new ValidationException("업로드 가능한 이미지 최대 크기는 10MB 이상입니다.");
-
-        // JSONObject 사용
-        JSONObject jsonObject = new JSONObject();
-        String url = s3Uploader.upload(multipartFile, String.format("static/tempImage/%s", LocalDate.now().toString().replace("-", "")));
-        jsonObject.put("url", url);
-        return jsonObject;
-    }
 }

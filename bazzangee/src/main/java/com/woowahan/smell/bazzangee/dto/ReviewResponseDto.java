@@ -4,6 +4,7 @@ import com.woowahan.smell.bazzangee.domain.Restaurant;
 import com.woowahan.smell.bazzangee.domain.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@ToString
 public class ReviewResponseDto {
     @NotBlank
     private Review review;

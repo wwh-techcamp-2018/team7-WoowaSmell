@@ -2,6 +2,7 @@ package com.woowahan.smell.bazzangee.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Entity
 @NoArgsConstructor
+@ToString
 public class OrderFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

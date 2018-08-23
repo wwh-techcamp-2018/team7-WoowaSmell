@@ -1,12 +1,16 @@
-import {$, fetchManager} from "/js/util/utils.js";
+import {fetchManager} from "/js/util/utils.js";
+
+function $_(selector) {
+    return document.querySelector(selector);
+}
 
 export class ClosetReviewScroll{
     constructor(id) {
         this.foodCategoryId = id;
         this.filterId = 0;
         document.addEventListener("DOMContentLoaded", this.loadReviews.bind(this));
-        $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
-        $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
+        $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
     }
 
     onClickRadios({target}) {
@@ -30,7 +34,7 @@ export class ClosetReviewScroll{
         if(target.value == this.foodCategoryId) {
             return;
         }
-        $("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
+        $_("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
         target.classList.toggle("clicked");
         this.foodCategoryId = target.value;
         this.removeAllTimelines();
@@ -38,11 +42,11 @@ export class ClosetReviewScroll{
     }
 
     removeAllTimelines() {
-        $("#timeline_standard").innerHTML = '';
+        $_("#timeline_standard").innerHTML = '';
     }
 
     loadReviews() {
-        $("#loader").classList.toggle("invisible");
+        $_("#loader").classList.toggle("invisible");
         const url = (this.foodCategoryId == 0) ? '/api/orderfoods/?filterId=' + this.filterId
                         : '/api/orderfoods/categories/?categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
         fetchManager({
@@ -57,21 +61,22 @@ export class ClosetReviewScroll{
     onSuccessLoad(response) {
         response.json().then((orderFoods) => {
             orderFoods.forEach(this.appendOrderFoodHTML);
-            $("#loader").classList.toggle("invisible");
+            $_("#loader").classList.toggle("invisible");
+            $(".rate").rate();
         })
     }
 
     appendOrderFoodHTML(orderFood) {
         var orderFoodHTML = HtmlGenerator.getOrderFoodHTML(orderFood);
-       $("#timeline_standard").insertAdjacentHTML("beforeend", orderFoodHTML);
+       $_("#timeline_standard").insertAdjacentHTML("beforeend", orderFoodHTML);
     }
 
     onFailLoad(msg) {
         console.log("Error Message : {}", msg);
-        $("#loader").classList.toggle("invisible");
-        if(!$("#timeline_standard").hasChildNodes()) {
+        $_("#loader").classList.toggle("invisible");
+        if(!$_("#timeline_standard").hasChildNodes()) {
             var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
-            $("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
+            $_("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
         }
     }
 }

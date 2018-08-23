@@ -46,5 +46,4 @@ public class ApiOrderFoodController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsByCategoryOrderByStarPoint(user, categoryId));
     }
-
 }

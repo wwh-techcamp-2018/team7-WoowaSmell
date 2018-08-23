@@ -15,6 +15,6 @@ public class HomeController {
         if(getUserFromSession(session) == null) {
             return "/login";
         }
-        return "/closet";
+        return "/closet/closet";
     }
 }

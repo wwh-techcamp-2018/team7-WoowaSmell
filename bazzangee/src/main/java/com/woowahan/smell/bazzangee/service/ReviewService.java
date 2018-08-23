@@ -34,10 +34,10 @@ public class ReviewService {
     private OrderFoodRepository orderFoodRepository;
 
     @Transactional
-    public void create(ReviewRequestDto reviewRequestDto, String url, User loginUser) {
+    public ReviewResponseDto create(ReviewRequestDto reviewRequestDto, String url, User loginUser) {
         OrderFood orderFood = orderFoodRepository.findById(reviewRequestDto.getOrderFoodId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문 내역입니다."));
-        reviewRepository.save(reviewRequestDto.toEntity(orderFood, url, loginUser));
+        return reviewRepository.save(reviewRequestDto.toEntity(orderFood, url, loginUser)).toReviewDto();
     }
 
     @Transactional
