@@ -1,8 +1,12 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
 @Entity
 public class Restaurant {
     @Id
@@ -15,6 +19,7 @@ public class Restaurant {
     private String address;
     @Column
     private String phoneNumber;
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Food> foods;
     @ManyToOne
