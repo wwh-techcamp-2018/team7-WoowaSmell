@@ -1,12 +1,13 @@
-import {$, fetchManager} from "/js/util/utils.js";
+import {$, fetchManager, addDropdownListener} from "/js/util/utils.js";
 
 export class ClosetReviewScroll{
     constructor(id) {
         this.foodCategoryId = id;
         this.filterId = 0;
-        document.addEventListener("DOMContentLoaded", this.loadReviews.bind(this));
         $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        addDropdownListener();
+        this.loadReviews();
     }
 
     onClickRadios({target}) {
@@ -69,9 +70,7 @@ export class ClosetReviewScroll{
     onFailLoad(msg) {
         console.log("Error Message : {}", msg);
         $("#loader").classList.toggle("invisible");
-        if(!$("#timeline_standard").hasChildNodes()) {
-            var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
-            $("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
-        }
+        var noImageHTML = `<img src="/img/no_image.png" width="500" height="auto"/>`;
+        $("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
     }
 }
