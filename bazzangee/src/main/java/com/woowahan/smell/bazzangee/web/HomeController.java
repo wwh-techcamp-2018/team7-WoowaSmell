@@ -12,16 +12,6 @@ import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSes
 @Controller
 public class HomeController {
 
-    @GetMapping("/closet")
-    public String closet(HttpSession session, Model model) {
-        User loginUser = getUserFromSession(session);
-        if(loginUser == null) {
-            return "/login";
-        }
-        model.addAttribute("loginUser", loginUser);
-        return "/closet/closet";
-    }
-
     @GetMapping("/")
     public String home(HttpSession session, Model model) {
         User loginUser = getUserFromSession(session);
@@ -31,6 +21,23 @@ public class HomeController {
         return "/index";
     }
 
+    @GetMapping("/login")
+    public String login(HttpSession session) {
+        if(getUserFromSession(session) != null) {
+            return "redirect:/";
+        }
+        return "/user/login";
+    }
+
+    @GetMapping("/closet")
+    public String closet(HttpSession session, Model model) {
+        User loginUser = getUserFromSession(session);
+        if(loginUser == null) {
+            return "/login";
+        }
+        model.addAttribute("loginUser", loginUser);
+        return "/closet/closet";
+    }
     @GetMapping("/join")
     public String join() {
         return "/user/join";

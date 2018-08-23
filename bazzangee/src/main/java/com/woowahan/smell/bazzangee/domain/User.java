@@ -48,8 +48,9 @@ public class User extends BaseTimeEntity {
         this.type = UserType.NORMAL;
     }
 
-    public User(String userId, String name, String imageUrl, UserType type) {
+    public User(String userId, String password, String name, String imageUrl, UserType type) {
         this.userId = userId;
+        this.password = password;
         this.name = name;
         this.type = type;
         this.imageUrl = imageUrl;
@@ -75,5 +76,9 @@ public class User extends BaseTimeEntity {
     public int hashCode() {
 
         return Objects.hash(userId, password);
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
     }
 }

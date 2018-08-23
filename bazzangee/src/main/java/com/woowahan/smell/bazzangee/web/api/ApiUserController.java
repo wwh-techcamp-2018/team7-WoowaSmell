@@ -1,19 +1,23 @@
 package com.woowahan.smell.bazzangee.web.api;
 
+import com.amazonaws.protocol.json.JsonContent;
 import com.woowahan.smell.bazzangee.domain.UserType;
 import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
+import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.UserService;
 import com.woowahan.smell.bazzangee.utils.HttpSessionUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpSession;
@@ -50,9 +54,12 @@ public class ApiUserController {
         System.out.println("kakaoDto : " + kakaoDto.toString());
         User kakaoUser = kakaoDto.toUser();
         if(!userService.isCreatedUser(kakaoUser)) {
-            userService.createKakaoUser(kakaoUser);
+            log.info("Creating Kakao User.. : {}", kakaoUser);
+            kakaoUser = userService.createKakaoUser(kakaoUser);
+        } else {
+            log.info("Updating Kakao User.. : {}", kakaoUser);
+            userService.updatePassword(kakaoUser);
         }
-//        kakaoUser = userService.getUserByUserId(kakaoDto.getUserId());
         HttpSessionUtils.setUserInSession(session, kakaoUser);
         log.info("session : {}", RequestContextHolder.getRequestAttributes().getSessionId());
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -62,8 +69,7 @@ public class ApiUserController {
     public ResponseEntity<Void> logout(HttpSession session) {
         User loginUser = getUserFromSession(session);
         if(UserType.KAKAO.equals(loginUser.getType())) {
-            log.info("this is KAKAO !");
-            RequestEntity.post(URI.create("https://kapi.kakao.com/v1/user/logout")).build();
+            log.info("this is KAKAO User!");
         }
         HttpSessionUtils.removeUserInSession(session);
         return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
