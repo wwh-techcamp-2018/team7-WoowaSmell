@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+textarea {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    font: 14px/22px "Lato", Arial, sans-serif;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+
+}
+#chat-message-container{
+    list-style: none;
+}
+.chat {
+    width: 490px;
+    float: left;
+    background: #ebeef1;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 2px solid white;
+    color: #434651;
+    box-shadow: 2px 2px #d6d6d6;
+}
+.chat-header {
+    padding: 20px;
+    border-bottom: 2px solid white;
+}
+.chat-about {
+    float: left;
+    padding-left: 10px;
+    margin-top: 6px;
+}
+.fa-star {
+    float: right;
+    color: #D8DADF;
+    font-size: 20px;
+    margin-top: 12px;
+}
+.chat-history {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid white;
+    overflow-y: scroll;
+    height: 400px;
+}
+.message-data {
+    margin-bottom: 15px;
+}
+.message-data-time {
+    color: #92959E;
+    padding-left: 6px;
+}
+.message {
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    width: 90%;
+    position: relative;
+}
+.my-message {
+    background: #36bfb8;
+}
+
+.other-message {
+    border: 2px solid #36bfb8;
+    color: black;
+}
+
+.chat-message {
+    padding: 30px;
+}
+.fa-file-o, .fa-file-image-o {
+    font-size: 16px;
+    color: gray;
+    cursor: pointer;
+
+}
+.align-left {
+    text-align: left;
+}
+.align-right {
+    text-align: right;
+}
+.float-right {
+    float: right;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

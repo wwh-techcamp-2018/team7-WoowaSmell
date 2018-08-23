@@ -2,6 +2,7 @@ package com.woowahan.smell.bazzangee.domain;
 
 
 //import lombok.extern.slf4j.Slf4j;
+import com.woowahan.smell.bazzangee.config.ChatRoomName;
 import com.woowahan.smell.bazzangee.repository.UserRepository;
 import org.junit.After;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserRepositoryTest {
     @Autowired

@@ -110,7 +110,7 @@ export class ReviewScroll{
     }
 
     appendReviewHTML(reviewDto) {
-        $("#timeline-container").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
+        $("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
     }
 
     onFailLoad(msg) {

@@ -1,5 +1,6 @@
 {{#partial "header"}}
 <link href="/css/custom/timeline.css" rel="stylesheet">
+<link href="/css/custom/chat.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
 {{/partial}}
 {{#partial "content"}}
@@ -33,17 +34,36 @@
                 </label>
             </div>
         </div>
+        <ul class="cbp_tmtimeline" id="timeline_standard">
+        </ul>
     </div>
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" id="chat-container">
-        <div style="border: 1px solid black; width: 100%; height: 300px">
-            <ul class="cbp_tmtimeline" id="timeline_standard">
-            </ul>
+        <div class="chat">
+            <div class="chat-header clearfix">
+                <div class="chat-about">
+                    <img src="/img/honey_combo.png" alt="avatar" width="30px" />
+                    <span>Chicken 채팅</span>
+                </div>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="chat-history">
+                <ul id="chat-message-container">
+                </ul>
+            </div>
+            <div class="chat-message clearfix">
+                <textarea name="message-to-send" id="chat-message-send" placeholder="메세지를 입력하세요." rows="3"></textarea>
+                <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-file-image-o"></i>
+                <button id="chat-send-btn" class="btn btn-primary bg-main" type="button">보내기</button>
+            </div>
         </div>
     </div>
 </div>
 <div id="loader" class="invisible"></div>
 {{/partial}}
 {{#partial "footer"}}
-<script type="module" src="/js/review/review.js"></script>
+<script type="module" src="/js/home/home.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 {{/partial}}
 {{>base}}

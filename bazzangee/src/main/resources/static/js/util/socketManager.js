@@ -20,8 +20,8 @@ export class SocketManager {
         this.stompClient.subscribe(url, callback);
     }
 
-    sendMessage(url, dataObject) {
-        this.stompClient.send(url, {}, JSON.stringify(dataObject));
+    sendMessage(url, contentType, dataObject) {
+        this.stompClient.send(url, contentType, JSON.stringify(dataObject));
     }
 
     disconnect(preFunction, callback) {
