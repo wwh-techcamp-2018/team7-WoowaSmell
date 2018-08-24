@@ -13,12 +13,21 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gradlew clean build"
+before_install: cd bazzangee
+script:
+    - "./gradlew build"
+
+before_deploy:
+  - zip -r baezzangee *
+  - mkdir -p deploy
+  - mv baezzangee.zip deploy/baezzangee.zip
 
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
     recipients:
+      recipients:
+        - 92jpark@gmail.com
       slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
 
 deploy:
@@ -29,7 +38,22 @@ deploy:
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
     on:
       repo: wwh-techcamp-2018/team7-WoowaSmell #Github 주소
+      branch: dev
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: baezzangee # S3 버킷
+    key: baezzangee.zip # 빌드 파일을 압축해서 전달
+    bundle_type: zip
+    application: BaezzangeeLife-Service # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+    deployment_group: BaezzangeeLife-Service-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      repo: wwh-techcamp-2018/team7-WoowaSmell
       branch: dev
