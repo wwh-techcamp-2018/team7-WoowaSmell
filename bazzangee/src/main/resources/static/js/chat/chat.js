@@ -49,6 +49,7 @@ export class Chat{
             return;
         }
         this.socketManager.sendMessage("/chat", {}, { message: $("#chat-message-send").value, roomId: this.chatRoomId });
+        $("#chat-message-send").value = null;
     }
 
     loadChat() {
@@ -66,11 +67,11 @@ export class Chat{
     onKeyDownChatTextArea({keyCode, target}) {
         if(keyCode === 13) {
             this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
+            $("#chat-message-send").value = null;
         }
     }
 
     onReceiveMessage(response) {
-        $("#chat-message-send").value = null;
         this.addNewMessage(JSON.parse(response.body));
     }
 
