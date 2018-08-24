@@ -1,11 +1,10 @@
-version: 0.0
+version: 0.1
 os: linux
 files:
-  - source:  /
+  - source: /
     destination: /home/ubuntu/Project/travis/build
 
 hooks:
   AfterInstall:
     - location: execute-deploy.sh
       timeout: 180
-    destination: /home/ubuntu/Project/travis/build/
