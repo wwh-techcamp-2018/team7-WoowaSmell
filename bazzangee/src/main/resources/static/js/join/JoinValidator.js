@@ -1,4 +1,4 @@
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";
 
 export class JoinValidator{
     constructor() {
@@ -65,7 +65,6 @@ export class JoinValidator{
             $("#join-validation-span").text("생년월일 형식이 올바르지 않습니다.");
             return false;
         }
-
         return true;
     }
 

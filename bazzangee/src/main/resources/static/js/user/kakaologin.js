@@ -25,7 +25,8 @@ function kakaoLogin({id, properties}) {
         method: 'POST',
         body: JSON.stringify({
             userId : id,
-            name : properties.nickname
+            name : properties.nickname,
+            imageUrl : properties.thumbnail_image
         }),
         headers: { 'content-type': 'application/json'},
         callback: onSuccess,
@@ -34,13 +35,13 @@ function kakaoLogin({id, properties}) {
 }
 
 function onSuccess(res) {
-        console.log(res);
-//    location.href = "/";
+    location.href = "/";
 }
 
 function onFailure(res) {
     alert("KakaoTalk error!!");
 }
 
-import {$, fetchManager} from "/js/utils.js";
+
+import {$, fetchManager} from "/js/util/utils.js";
 

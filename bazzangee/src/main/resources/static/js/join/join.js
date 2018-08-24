@@ -1,3 +1,3 @@
-import { JoinValidator } from "./JoinValidator.js";
+import { JoinValidator } from "./joinValidator.js";
 
 const joinValidator = new JoinValidator();
