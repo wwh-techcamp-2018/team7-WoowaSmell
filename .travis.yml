@@ -17,10 +17,13 @@ before_install: cd bazzangee
 script:
     - "./gradlew build"
 
+
 before_deploy:
   - zip -r baezzangee *
   - mkdir -p deploy
   - mv baezzangee.zip deploy/baezzangee.zip
+
+
 
 # CI 실행 완료시 메일로 알람
 notifications:
@@ -57,3 +60,6 @@ deploy:
     on:
       repo: wwh-techcamp-2018/team7-WoowaSmell
       branch: dev
+
+
+
