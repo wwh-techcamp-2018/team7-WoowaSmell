@@ -1,5 +1,6 @@
 package com.woowahan.smell.bazzangee.dto;
 
+import com.woowahan.smell.bazzangee.domain.FoodCategory;
 import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
@@ -28,7 +29,7 @@ public class ReviewRequestDto {
 
     public Review toEntity(OrderFood orderFood, String url, User user) {
         if(this.image == null)
-            return new Review(orderFood, user, contents, this.starPoint);
-        return new Review(orderFood, user, contents, this.starPoint, url, this.image.getOriginalFilename());
+            return new Review(orderFood, user, contents, this.starPoint, orderFood.getFood().getRestaurant().getFoodCategory());
+        return new Review(orderFood, user, contents, this.starPoint, url, this.image.getOriginalFilename(), orderFood.getFood().getRestaurant().getFoodCategory());
     }
 }

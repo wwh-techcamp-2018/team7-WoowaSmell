@@ -45,7 +45,7 @@ public class OrderFoodService {
         }
         orderFoods = orderFoods
                 .stream()
-                .filter(orderFood -> { return orderFood.getFood().getRestaurant().getFoodCategory().equals(foodCategory);})
+                .filter(orderFood -> { return foodCategory.equals(orderFood.getFood().getRestaurant().getFoodCategory());})
                 .collect(Collectors.toList());
         if (orderFoods.isEmpty()) {
             throw new NotMatchException("there is no OrderFoods by this category!");
@@ -74,7 +74,7 @@ public class OrderFoodService {
         log.info("orderFoods : {}", orderFoods);
         orderFoods = orderFoods
                 .stream()
-                .filter(orderFood -> orderFood.hasValidReview() && orderFood.getReview().getFoodCategory().equals(foodCategory))
+                .filter(orderFood -> orderFood.hasValidReview() && foodCategory.equals(orderFood.getReview().getFoodCategory()))
                 .collect(Collectors.toList());
         Collections.sort(orderFoods, new StarPointComparator());
         if (orderFoods.isEmpty()) {

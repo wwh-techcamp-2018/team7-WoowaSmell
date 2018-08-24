@@ -56,16 +56,17 @@ public class Review extends BaseTimeEntity {
     @ColumnDefault("false")
     private boolean isDeleted;
 
-    public Review(OrderFood orderFood, User loginUser, String contents, double starPoint) {
+    public Review(OrderFood orderFood, User loginUser, String contents, double starPoint, FoodCategory foodCategory) {
         if(!orderFood.isMatchedBy(loginUser))
             throw new NotMatchException("타인의 리뷰는 등록할 수 없습니다.");
         this.orderFood = orderFood;
         this.user = loginUser;
         this.contents = contents;
         this.starPoint = starPoint;
+        this.foodCategory = foodCategory;
     }
 
-    public Review(OrderFood orderFood, User loginUser, String contents, double starPoint, String imageUrl, String originName) {
+    public Review(OrderFood orderFood, User loginUser, String contents, double starPoint, String imageUrl, String originName, FoodCategory foodCategory) {
         if(!orderFood.isMatchedBy(loginUser))
             throw new NotMatchException("타인의 리뷰는 등록할 수 없습니다.");
         this.orderFood = orderFood;
@@ -74,6 +75,7 @@ public class Review extends BaseTimeEntity {
         this.starPoint = starPoint;
         this.imageUrl = imageUrl;
         this.originName = originName;
+        this.foodCategory = foodCategory;
     }
 
     public void delete(User loginUser) {
