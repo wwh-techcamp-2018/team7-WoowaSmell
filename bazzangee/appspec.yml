@@ -8,4 +8,3 @@ hooks:
   AfterInstall:
     - location: execute-deploy.sh
       timeout: 180
-    destination: /home/ubuntu/Project/travis/build/
