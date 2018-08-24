@@ -41,15 +41,20 @@ public class ReviewService {
     }
 
     @Transactional
-    public void delete(Long reviewId, User loginUser) {
-        Review savedReview = getSavedReviewById(reviewId);
+    public OrderFood delete(Long orderFoodId, User loginUser) {
+        OrderFood orderFood = orderFoodRepository.findById(orderFoodId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문 내역입니다."));
+        Review savedReview = getSavedReviewById(orderFood.getReview().getId());
         savedReview.delete(loginUser);
+        return orderFood;
     }
 
+
     @Transactional
-    public void update(Long id, ReviewRequestDto reviewRequestDto, User loginUser) {
-        Review savedReview = getSavedReviewById(id);
-        savedReview.update(reviewRequestDto, loginUser);
+    public OrderFood update(Long orderFoodId, String url, ReviewRequestDto reviewRequestDto, User loginUser) {
+        OrderFood orderFood = orderFoodRepository.findById(orderFoodId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문 내역입니다."));
+        Review savedReview = getSavedReviewById(orderFood.getReview().getId());
+        savedReview.update(reviewRequestDto, loginUser, url);
+        return orderFood;
     }
 
     private Review getSavedReviewById(Long id) {
@@ -73,6 +78,14 @@ public class ReviewService {
         }
         return reviews
                 .stream().map((Review::toReviewDto))
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewResponseDto> getListsOrderByGoodsCount(Pageable pageable) {
+        Page<Review> reviews = reviewRepository.findAllByIsDeletedFalseOrderByGoodsSIZE(pageable);
+        return reviews.getContent()
+                .stream()
+                .map(Review::toReviewDto)
                 .collect(Collectors.toList());
     }
 
@@ -113,5 +126,17 @@ public class ReviewService {
                 .stream()
                 .map((Review::toReviewDto))
                 .collect(Collectors.toList());
+    }
+
+    public List<ReviewResponseDto> getListsByCategoryOrderByGoodsCount(Pageable pageable, Long categoryId) {
+        Page<Review> reviews = reviewRepository.findAllByFoodCategoryAndIsDeletedFalseOrderByGoodsSIZEDesc(pageable, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("선택하신 음식 카테고리가 존재하지 않습니다.!")));
+        return reviews
+                .stream()
+                .map((Review::toReviewDto))
+                .collect(Collectors.toList());
+    }
+
+    public OrderFood getReviewOne(Long orderId) {
+        return orderFoodRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
     }
 }

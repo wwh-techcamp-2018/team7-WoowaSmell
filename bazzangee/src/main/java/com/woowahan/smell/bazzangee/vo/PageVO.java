@@ -13,7 +13,7 @@ public class PageVO {
     private int page;
 
     public PageVO() {
-        this.page = 1;
+        this.page = 0;
         this.size = DEFAULT_SIZE;
     }
 
@@ -22,11 +22,11 @@ public class PageVO {
     }
 
     public void setPage(int page) {
-        this.page = page <= 0 ? 1 : page;
+        this.page = page < 0 ? 0 : page;
     }
 
     public Pageable makePageable(int direction, String... props) {
         Sort.Direction dir = direction == 0 ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return PageRequest.of(this.page - 1, this.size, dir, props);
+        return PageRequest.of(this.page, this.size, dir, props);
     }
 }

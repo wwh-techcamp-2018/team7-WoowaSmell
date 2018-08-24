@@ -21,6 +21,7 @@ import java.net.URI;
 
 import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/api/users")

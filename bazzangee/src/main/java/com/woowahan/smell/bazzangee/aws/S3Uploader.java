@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,9 +31,14 @@ public class S3Uploader {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public String upload(MultipartFile multipartFile, String dirName) throws IOException {
-        if(multipartFile == null) {
+    public String upload(MultipartFile multipartFile, String dirName, String existImageUrl) throws IOException {
+        log.info("multipartFile : {}, existImageUrl : {}", multipartFile, existImageUrl);
+        if(multipartFile == null && existImageUrl == null) {
             return HONEY_COMBO_IMGURL;
+        }
+
+        if(multipartFile == null && !StringUtils.isBlank(existImageUrl)) {
+            return existImageUrl;
         }
 
         File uploadFile = convert(multipartFile)

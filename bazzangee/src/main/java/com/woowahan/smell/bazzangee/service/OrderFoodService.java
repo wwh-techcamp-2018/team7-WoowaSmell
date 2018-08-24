@@ -65,6 +65,19 @@ public class OrderFoodService {
         return validOrderFoods;
     }
 
+//    public List<OrderFood> getListsOrderByGoodsCount(User user) {
+//        List<OrderFood> validOrderFoods = orderFoodRepository.findAllByOrderedUser(user)
+//                .stream()
+//                .filter(orderFood -> orderFood.hasValidReview())
+//
+//                .collect(Collectors.toList());
+//        Collections.sort(validOrderFoods, new StarPointComparator());
+//        if (validOrderFoods.isEmpty()) {
+//            throw new NotMatchException("there is no validOrderFoods!");
+//        }
+//        return validOrderFoods;
+//    }
+
     public List<OrderFood> getListsByCategoryOrderByStarPoint(User user, Long categoryId) {
         FoodCategory foodCategory = foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!"));
         List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUser(user);
@@ -81,5 +94,13 @@ public class OrderFoodService {
             throw new NotMatchException("there is no OrderFoods by this category!");
         }
         return orderFoods;
+    }
+
+    public List<OrderFood> getListsOrderByGoodsCount(User user) {
+        return orderFoodRepository.findAllByOrderedUserOrderByGoodCountDesc(user);
+    }
+
+    public List<OrderFood> getListsByCategoryOrderByGoodsCount(User user, Long categoryId) {
+        return orderFoodRepository.findAllByCategoryOrderByGoodsCount(user, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("선택하신 음식 카테고리가 존재하지 않습니다.!")));
     }
 }

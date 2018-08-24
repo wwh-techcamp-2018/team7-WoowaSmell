@@ -2,6 +2,7 @@ package com.woowahan.smell.bazzangee.dto;
 
 import com.woowahan.smell.bazzangee.domain.Restaurant;
 import com.woowahan.smell.bazzangee.domain.Review;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,6 +31,7 @@ public class ReviewResponseDto {
     @DecimalMin("0")
     private int goodCount;
 
+    @Builder
     public ReviewResponseDto(Review review, String userName, int quantity, String foodName, Restaurant restaurant, LocalDateTime orderedTime, int goodCount) {
         this.review = review;
         this.userName = userName;

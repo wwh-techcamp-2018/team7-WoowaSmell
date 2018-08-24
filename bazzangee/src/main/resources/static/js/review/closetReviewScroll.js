@@ -67,6 +67,7 @@ export class ClosetReviewScroll{
         })
     }
 
+    // 옷장 첫 로딩시 호출
     appendOrderFoodHTML(orderFood) {
         var orderFoodHTML = HtmlGenerator.getOrderFoodHTML(orderFood);
        $_("#timeline_standard").insertAdjacentHTML("beforeend", orderFoodHTML);

@@ -18,7 +18,7 @@ export class ReviewScroll{
         $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
         addDropdownListener();
-        $_("#logout").addEventListener("click", logoutListener);
+        // $_("#logout").addEventListener("click", logoutListener);
     }
 
     onClickRadios({target}) {
