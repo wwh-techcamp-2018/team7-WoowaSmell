@@ -26,8 +26,6 @@ before_deploy:
 notifications:
   email:
     recipients:
-      recipients:
-        - 92jpark@gmail.com
       slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
 
 deploy:

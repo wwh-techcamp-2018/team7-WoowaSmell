@@ -48,8 +48,8 @@ export class Chat{
             location.href = "/login";
             return;
         }
-        this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
-        target.value = null;
+        this.socketManager.sendMessage("/chat", {}, { message: $("#chat-message-send").value, roomId: this.chatRoomId });
+        $("#chat-message-send").value = null;
     }
 
     loadChat() {
@@ -67,7 +67,7 @@ export class Chat{
     onKeyDownChatTextArea({keyCode, target}) {
         if(keyCode === 13) {
             this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
-            target.value = null;
+            $("#chat-message-send").value = null;
         }
     }
 
