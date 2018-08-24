@@ -130,3 +130,27 @@
     width: 100%;
     z-index: 2;
 }
+
+.menubar {
+    text-align: center;
+    width: 185px;
+    padding-top: 15px;
+}
+
+.menubar li ul {
+    top: 100%;
+    position: absolute;
+    background: #36bfb8 !important;
+    width: 185px;
+    z-index: 10;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba~(0,0,0,.15);
+    border-radius: .25rem;
+}

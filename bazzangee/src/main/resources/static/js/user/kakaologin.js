@@ -4,10 +4,11 @@ Kakao.init(KAKAO_LOGIN_KEY);
 Kakao.Auth.createLoginButton({
   container: '#kakao-login-btn',
   success: function(authObj) {
+    const accessToken = JSON.stringify(authObj);
     Kakao.API.request({
       url: '/v1/user/me',
       success: function(res) {
-        kakaoLogin(res);
+        kakaoLogin(res, authObj);
       },
       fail: function(error) {
         alert(JSON.stringify(error));
@@ -19,15 +20,17 @@ Kakao.Auth.createLoginButton({
   }
 });
 
-function kakaoLogin({id, properties}) {
-    console.log(properties);
+function kakaoLogin(res, accessToken) {
+    console.log(res.properties);
+    console.log(accessToken);
     fetchManager({
         url: '/api/users/login/kakao',
         method: 'POST',
         body: JSON.stringify({
-            userId : id,
-            name : properties.nickname,
-            imageUrl : properties.thumbnail_image
+            userId : res.id,
+            password : accessToken.access_token,
+            name : res.properties.nickname,
+            imageUrl : res.properties.thumbnail_image
         }),
         headers: { 'content-type': 'application/json'},
         callback: onSuccess,

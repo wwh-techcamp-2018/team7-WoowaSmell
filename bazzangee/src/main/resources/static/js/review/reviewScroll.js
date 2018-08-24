@@ -1,4 +1,5 @@
-import {fetchManager, throttle} from "/js/util/utils.js";
+import {fetchManager, throttle, addDropdownListener} from "/js/util/utils.js";
+import {logoutListener} from "/js/user/kakaologout.js";
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -16,6 +17,8 @@ export class ReviewScroll{
         $_("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
         $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        addDropdownListener();
+        $_("#logout").addEventListener("click", logoutListener);
     }
 
     onClickRadios({target}) {
@@ -30,7 +33,6 @@ export class ReviewScroll{
         this.currentPage = 0;
         this.removeAllTimelines();
         this.loadReviews();
-
     }
 
     onClickCategories({target}) {
@@ -96,17 +98,17 @@ export class ReviewScroll{
     onSuccessLoad(response) {
         response.json().then((reviews) => {
             if(reviews.length === 0) {
-            this.canLoad = false;
-            document.removeEventListener('scroll', this.onScrollDown.bind(this));
+                this.canLoad = false;
+                document.removeEventListener('scroll', this.onScrollDown.bind(this));
+                $_("#loader").classList.toggle("invisible");
+                return;
+            }
+            this.currentPage += 1;
+            reviews.forEach(this.appendReviewHTML);
             $_("#loader").classList.toggle("invisible");
-            return;
-        }
-        this.currentPage += 1;
-        reviews.forEach(this.appendReviewHTML);
-        $_("#loader").classList.toggle("invisible");
-        this.canLoad = true;
-        $(".rate").rate();
-    })
+            this.canLoad = true;
+            $(".rate").rate();
+        })
     }
 
     onSuccessUpdateGood(response) {
