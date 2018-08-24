@@ -1,5 +1,9 @@
-import {$, fetchManager, throttle, addDropdownListener} from "/js/util/utils.js";
+import {fetchManager, throttle, addDropdownListener} from "/js/util/utils.js";
 import {logoutListener} from "/js/user/kakaologout.js";
+
+function $_(selector) {
+    return document.querySelector(selector);
+}
 
 export class ReviewScroll{
     constructor(id) {
@@ -10,11 +14,11 @@ export class ReviewScroll{
         this.clickedTarget = null;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
         document.addEventListener('scroll', this.onScrollDown.bind(this));
-        $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
-        $("#buttons").addEventListener("click", this.onClickCategories.bind(this));
-        $("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
+        $_("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
+        $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
+        $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
         addDropdownListener();
-        $("#logout").addEventListener("click", logoutListener);
+        $_("#logout").addEventListener("click", logoutListener);
     }
 
     onClickRadios({target}) {
@@ -39,7 +43,7 @@ export class ReviewScroll{
         if(target.value == this.foodCategoryId) {
             return;
         }
-        $("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
+        $_("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
         target.classList.toggle("clicked");
         this.foodCategoryId = target.value;
         this.currentPage = 0;
@@ -48,7 +52,7 @@ export class ReviewScroll{
     }
 
     removeAllTimelines() {
-        $("#timeline_standard").innerHTML = '';
+        $_("#timeline_standard").innerHTML = '';
     }
 
     onScrollDown() {
@@ -79,10 +83,9 @@ export class ReviewScroll{
     loadReviews() {
         if(!this.canLoad) return;
         this.canLoad = false;
-        $("#loader").classList.toggle("invisible");
+        $_("#loader").classList.toggle("invisible");
         const url = (this.foodCategoryId == 0) ? '/api/reviews?page=' + this.currentPage + '&filterId=' + this.filterId
                         : '/api/reviews/categories/?page=' + this.currentPage + '&categoryId=' + this.foodCategoryId + '&filterId=' + this.filterId;
-
         fetchManager({
           url: url,
           method: 'GET',
@@ -90,41 +93,22 @@ export class ReviewScroll{
           callback: this.onSuccessLoad.bind(this),
           errCallback: this.onFailLoad.bind(this)
          });
-
-//         const reviews = {
-//            "review" : {
-//                "id" : "1",
-//                "writtenTime" : "2018-05-20 20:00:00",
-//                "starPoint" : "5",
-//            },
-//            "foodName" : "pobi",
-//            "restaurant" : {
-//                "name" : "crong",
-//                "address" : "잠실"
-//            },
-//            "goodCount" : "5",
-//         };
-//         this.onSuccessLoad(reviews);
     }
 
     onSuccessLoad(response) {
-
         response.json().then((reviews) => {
             if(reviews.length === 0) {
                 this.canLoad = false;
                 document.removeEventListener('scroll', this.onScrollDown.bind(this));
-                $("#loader").classList.toggle("invisible");
+                $_("#loader").classList.toggle("invisible");
                 return;
             }
             this.currentPage += 1;
             reviews.forEach(this.appendReviewHTML);
-            $("#loader").classList.toggle("invisible");
+            $_("#loader").classList.toggle("invisible");
             this.canLoad = true;
+            $(".rate").rate();
         })
-
-//    console.log("append start")
-//    this.appendReviewHTML(response);
-//    console.log("append end")
     }
 
     onSuccessUpdateGood(response) {
@@ -134,15 +118,15 @@ export class ReviewScroll{
     }
 
     appendReviewHTML(reviewDto) {
-        $("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
+        $_("#timeline_standard").insertAdjacentHTML("beforeend", HtmlGenerator.getReviewHTML(reviewDto));
     }
 
     onFailLoad(msg) {
         console.log("Error Message : {}", msg);
-        $("#loader").classList.toggle("invisible");
-        if(!$("#timeline_standard").hasChildNodes()) {
-            var noImageHTML = `<img src="/img/no_image.png" width="500" height="auto"/>`;
-            $("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
+        $_("#loader").classList.toggle("invisible");
+        if(!$_("#timeline_standard").hasChildNodes()) {
+            var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
+            $_("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
         }
     }
 

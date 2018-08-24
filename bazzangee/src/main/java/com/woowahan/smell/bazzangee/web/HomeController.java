@@ -43,5 +43,4 @@ public class HomeController {
         return "/user/join";
     }
 
-
 }

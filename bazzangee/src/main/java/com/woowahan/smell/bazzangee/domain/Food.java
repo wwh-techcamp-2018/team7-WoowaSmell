@@ -1,11 +1,15 @@
 package com.woowahan.smell.bazzangee.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@ToString
+@NoArgsConstructor
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

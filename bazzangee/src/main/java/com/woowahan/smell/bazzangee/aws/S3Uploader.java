@@ -23,7 +23,7 @@ import java.util.UUID;
 public class S3Uploader {
 
     private final AmazonS3Client amazonS3Client;
-    private final String HONEY_COMBO_IMGURL = "static/img/honey_combo.png";
+    private final String HONEY_COMBO_IMGURL = "https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
