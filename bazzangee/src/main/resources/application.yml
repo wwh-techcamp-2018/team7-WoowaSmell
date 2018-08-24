@@ -1,13 +1,24 @@
 spring:
   profiles:
     active: local
-  devtools:
-    livereload:
-      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
 
 handlebars:
   suffix: .html
   cache: false
+
+cloud:
+  aws:
+    s3:
+      bucket: baezzangee
+    region:
+      static: ap-northeast-2
+    stack:
+          auto: false
+    credentials:
+          instanceProfile: true
 
 ---
 spring:
@@ -17,6 +28,7 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+
 
   freemarker:
     cache: false
@@ -29,6 +41,10 @@ spring:
   h2:
     console:
       enabled: true
+  redis:
+    host: localhost
+    password: password
+    port: 6379
 
 ---
 spring:

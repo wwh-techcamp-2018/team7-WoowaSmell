@@ -1,30 +1,35 @@
-language: node_js
-node_js:
-  - "5.10"
+language: java
+jdk:
+  - oraclejdk8
 
-before_install:
-  - "export CHROME_BIN=/usr/bin/google-chrome"
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+branches:
+  only:
+    - master
+    - dev
 
-before_script:
-  - npm install
+# Travis CI 서버의 Home
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
-script:
-  - gulp test
-  - gulp coverage
-  - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+script: "./gradlew clean build"
 
+# CI 실행 완료시 메일로 알람
 notifications:
-  slack: chartjs:pcfCZR6ugg5TEcaLtmIfQYuA
+  email:
+    recipients:
+      slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
 
-sudo: required
-dist: trusty
-
-addons:
-  firefox: latest
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: baezzangee # 6-3-3에서 생성한 S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    wait-until-deployed: true
+    on:
+      repo: wwh-techcamp-2018/team7-WoowaSmell #Github 주소
+      branch: dev

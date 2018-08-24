@@ -3,15 +3,12 @@ function goHome() {
 }
 
 function onSuccess() {
-    alert("어서와~ 배민찬은 처음이지?");
+    console.log("어서와~ 배짱이 생활은 처음이지?");
     goHome();
 }
 
 function onError(result) {
     let message = result.message;
-    // if (result.hasOwnProperty("errors")) {
-    //     message = result.errors[0].errorMessage;
-    // }
     alert(message);
 }
 
@@ -57,4 +54,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeEventListener();
 })
 
-import {$, fetchManager} from "/js/utils.js";
+import {$, fetchManager} from "/js/util/utils.js";
