@@ -1,13 +1,6 @@
 <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-main">
     <a class="navbar-brand" href="/"><img src="/img/logo.png" height="70px" /></a>
     <ul class="navbar-nav ml-auto navbar-left">
-        <li class="nav-item active">
-            <a class="nav-link" href="#">
-                <i class="fa fa-home"></i>
-                홈
-                <span class="sr-only">(current)</span>
-            </a>
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fa fa-bullhorn">
@@ -18,10 +11,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/closet">
-                <i class="fa fa-bullhorn">
-                    <span class="badge badge-danger">11</span>
-                </i>
-                내 옷장
+                <i class="fa fa-bullhorn"> </i>내 옷장
             </a>
         </li>
         {{#loginUser}}
@@ -32,7 +22,7 @@
                     <img src="{{loginUser.imageUrl}}" style="width: 29px; height: 29px"> {{loginUser.name}}
                     {{/loginUser.imageUrl}}
                     {{^loginUser.imageUrl}}
-                    <img src="/img/avartar.png" style="width: 29px; height: 29px"> {{loginUser.name}}
+                    <img src="/img/avatar.png" style="width: 29px; height: 29px"> {{loginUser.name}}
                     {{/loginUser.imageUrl}}
                 </a>
                 <ul class="menuitem" style="display:none">

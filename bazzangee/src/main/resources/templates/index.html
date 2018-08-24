@@ -1,5 +1,6 @@
 {{#partial "header"}}
 <link href="/css/custom/timeline.css" rel="stylesheet">
+<link href="/css/custom/chat.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/rater/rater.css">
 {{/partial}}
@@ -15,35 +16,70 @@
     <button value="7" class="category_button">분식</button>
     <button value="8" class="category_button">햄버거</button>
 </div>
-<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="timeline-container">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="0" checked> <span class="label-text">최신 순</span>
-            </label>
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="timeline-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="0" checked> <span class="label-text">최신 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="1"> <span class="label-text">별점 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
+                </label>
+            </div>
         </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="1"> <span class="label-text">별점 순</span>
-            </label>
-        </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
-            </label>
+        <ul class="cbp_tmtimeline" id="timeline_standard">
+        </ul>
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" id="chat-container">
+        <div class="chat">
+            <div class="chat-header clearfix">
+                <div class="chat-about">
+                    <img id="chat-avatar" src="/img/honey_combo.png" alt="avatar" width="30px" />
+                    <span id="chat-name"></span>
+                </div>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="chat-history">
+                <ul id="chat-message-container">
+                </ul>
+            </div>
+            <div class="chat-message clearfix">
+                <textarea name="message-to-send" id="chat-message-send" placeholder="메세지를 입력하세요." rows="3"></textarea>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <i class="fa fa-file-o" id="chat-send-file"></i> &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-file-image-o" id="chat-send-image"></i>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                        <button id="chat-send-btn" class="btn btn-primary bg-main float-right" type="button">보내기</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <ul class="cbp_tmtimeline" id="timeline_standard">
-    </ul>
-</div>
-<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" id="chat-container">
 </div>
 <div id="loader" class="invisible"></div>
+<div id="dialog" class="dialog">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <img src="img/ready.png" style="max-width: 100%"/>
+    </div>
+</div>
 {{/partial}}
 {{#partial "footer"}}
-<script type="module" src="/js/review/review.js"></script>
-<script src="/vendors/jquery/dist/jquery.min.js"></script>
-<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="module" src="/js/home/home.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/review/rater.js" charset="utf-8"></script>
 {{/partial}}
 {{>base}}

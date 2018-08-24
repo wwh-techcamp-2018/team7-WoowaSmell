@@ -252,6 +252,27 @@ const HtmlGenerator = (function () {
                     `
             ;
             return orderFoodHTML;
+        },
+
+        getChatMessageHTML(messageDto, username) {
+            if(messageDto.username !== username) {
+                return `<li>
+                    <div class="message-data">
+                        <span class="message-data-name"> ${messageDto.username}</span>
+                        <span class="message-data-time">${messageDto.writtenTime}</span>
+                    </div>
+                    <div class="message other-message">${messageDto.contents}</div>
+                </li>`;
+            } else {
+                return `<li class="clearfix">
+                    <div class="message-data align-right">
+                        <span class="message-data-time" >${messageDto.writtenTime}</span> &nbsp; &nbsp;
+                        <span class="message-data-name" >${messageDto.username}</span>
+                    </div>
+                    <div class="message my-message float-right">${messageDto.contents}</div>
+                    </li>
+                <li>`;
+            }
         }
 
 

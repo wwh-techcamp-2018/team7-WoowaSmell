@@ -6,6 +6,7 @@ import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
+import com.woowahan.smell.bazzangee.repository.GoodRepository;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.repository.FoodCategoryRepository;
 import com.woowahan.smell.bazzangee.repository.GoodRepository;

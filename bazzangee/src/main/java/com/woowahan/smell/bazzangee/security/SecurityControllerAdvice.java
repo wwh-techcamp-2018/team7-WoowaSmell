@@ -1,5 +1,6 @@
 package com.woowahan.smell.bazzangee.security;
 
+import com.woowahan.smell.bazzangee.exception.BadRequestException;
 import com.woowahan.smell.bazzangee.exception.ErrorResponse;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
@@ -35,10 +36,17 @@ public class SecurityControllerAdvice {
         return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> badRequest(Exception exception) {
+        log.debug("BadRequestException is happened!");
+        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> IllegalArgument(Exception exception) {
         log.debug("IllegalArgumentException is happened!");
-        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }
