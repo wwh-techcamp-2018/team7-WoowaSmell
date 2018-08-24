@@ -3,15 +3,17 @@ package com.woowahan.smell.bazzangee.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Slf4j
 @Getter
 @Entity
 @NoArgsConstructor
-//@ToString
+@ToString(exclude = "review")
 public class OrderFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,9 +52,11 @@ public class OrderFood {
     }
 
     public boolean hasValidReview() {
-        if (review == null || review.isDeleted() == true) {
+        if (this.review == null || this.review.isDeleted() == true) {
+            log.info("this is false review : {}, {}", this.review, this.toString());
             return false;
         }
+        log.info("this is true review :{}, {}", this.review, this.toString());
         return true;
     }
 }

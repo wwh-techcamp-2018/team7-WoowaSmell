@@ -23,7 +23,7 @@ define(function (require) {
     // FIXME 公用？
     var bisect = function (a, x, lo, hi) {
         while (lo < hi) {
-            var mid = lo + hi >>> 1;
+            var mid = lo +>>> 1;
             if (a[mid][2] < x) {
                 lo = mid + 1;
             }

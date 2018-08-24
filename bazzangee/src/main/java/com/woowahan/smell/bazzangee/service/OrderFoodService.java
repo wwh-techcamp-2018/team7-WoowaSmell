@@ -84,6 +84,7 @@ public class OrderFoodService {
         if (orderFoods.isEmpty()) {
             throw new NotMatchException("there is no OrderFoods!");
         }
+        log.info("orderFoods : {}", orderFoods);
         orderFoods = orderFoods
                 .stream()
                 .filter(orderFood -> orderFood.hasValidReview() && orderFood.getReview().getFoodCategory().equals(foodCategory))

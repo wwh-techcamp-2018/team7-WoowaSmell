@@ -50,6 +50,7 @@ public class FoodCategory {
 
     @Override
     public boolean equals(Object o) {
+        System.out.println("k");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FoodCategory that = (FoodCategory) o;

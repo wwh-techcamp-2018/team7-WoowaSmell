@@ -112,7 +112,6 @@ public class ApiReviewController {
         }
     }
 
-    // 뭐지?
     @GetMapping("/user")
     public ResponseEntity<List> getReviewListOfUser(PageVO pageVO, Long filterId, HttpSession session) {
         Pageable pageable = pageVO.makePageable(Sort.Direction.DESC.ordinal(), "writtenTime");
@@ -139,5 +138,4 @@ public class ApiReviewController {
             throw new UnAuthenticationException("로그인 후 이용 가능합니다.");
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, getUserFromSession(httpSession)));
     }
-
 }
