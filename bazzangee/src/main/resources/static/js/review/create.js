@@ -17,8 +17,11 @@ function onFailLoad(result) {
     alert(result.message);
     document.querySelectorAll('.orderfood-li').forEach( (element) => {
         element.classList.toggle('submitted-li', false);
-        element.querySelector('.card').classList.toggle('add-food-image', false);
-        element.querySelector(".btn-primary").value = "";
+        if(element.querySelector('.card') != null) {
+            element.querySelector('.card').classList.toggle('add-food-image', false);
+            element.querySelector(".btn-primary").value = "";
+        }
+
     });
 }
 
@@ -105,8 +108,8 @@ function onSuccessUpdateForm(result) {
     });
 }
 
-function onFailUpdateForm() {
-    console.log("리뷰 수정폼 읽기 실패");
+function onFailUpdateForm(result) {
+    alert(result.message);
 }
 
 function reviewUpdateFormHandler(evt) {
@@ -130,8 +133,8 @@ function onSuccessDelete(result) {
     });
 }
 
-function onFailDelete() {
-    console.log("리뷰 삭제 실패");
+function onFailDelete(result) {
+    alert(result.message);
 }
 
 function reviewDeleteHandler(evt) {
@@ -155,8 +158,8 @@ function onSuccessUpdateCancel(result) {
         })
     });
 }
-function onFailUpdateCancel() {
-    console.log("수정 취소가 불가합니다.");
+function onFailUpdateCancel(result) {
+    alert(result.message);
 }
 
 function reviewUpdateCancelHandler(evt) {
@@ -237,8 +240,8 @@ function onSuccessUpdateGood(result) {
     })
 }
 
-function onFailUpdateGood() {
-
+function onFailUpdateGood(result) {
+    alert(result.message);
 }
 
 function reviewGoodHandler(evt) {
@@ -252,11 +255,21 @@ function reviewGoodHandler(evt) {
     });
 }
 
+function reviewWriteCancelHandler(evt) {
+    const card = evt.target.closest('li').querySelector('.card');
+    card.classList.toggle('invisible', true);
+    card.parentElement.querySelector(".orderfood-review-write").classList.toggle("invisible", false);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // const reviewScroll = new ReviewScroll();
     document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
         if(evt.target.className === 'orderfood-review-write') {
             reviewWriteHandler(evt);
+        }
+
+        if(evt.target.classList.contains('btn-review-submit-cancel')) {
+            reviewWriteCancelHandler(evt);
         }
         // 수정폼 버튼
         if(evt.target.classList.contains('btn-review-update-form')) {

@@ -106,6 +106,7 @@ const HtmlGenerator = (function () {
                                         <div class="rate" data-rate-value="0"></div>
                                         <button type="button" class="btn btn-danger invisible">삭제</button>
                                         <input type="button" class="btn-review-submit" value="저장">
+                                        <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
                                     </div>
                                 </div>
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
@@ -191,6 +192,7 @@ const HtmlGenerator = (function () {
                                         <div class="rate" data-rate-value="0"></div>
                                         <button type="button" class="btn btn-danger invisible">삭제</button>
                                         <input type="button" class="btn-review-submit" value="저장">
+                                        <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
                                     </div>
                                 </div>
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>

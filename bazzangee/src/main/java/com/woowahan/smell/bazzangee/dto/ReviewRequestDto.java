@@ -28,7 +28,7 @@ public class ReviewRequestDto {
 
     public Review toEntity(OrderFood orderFood, String url, User user) {
         if(this.image == null)
-            return new Review(orderFood, user, contents, this.starPoint);
+            return new Review(orderFood, user, contents, this.starPoint, url, "default_image");
         return new Review(orderFood, user, contents, this.starPoint, url, this.image.getOriginalFilename());
     }
 }

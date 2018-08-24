@@ -43,7 +43,7 @@ public class ApiReviewController {
         log.info("reviewRequestDto : {}", reviewRequestDto);
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session)));
     }
 
@@ -66,7 +66,7 @@ public class ApiReviewController {
             throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
 
         log.info("reviewRequestDto : {}", reviewRequestDto);
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
 
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.update(reviewRequestDto.getOrderFoodId(), url, reviewRequestDto, HttpSessionUtils.getUserFromSession(session)));
     }
@@ -83,7 +83,7 @@ public class ApiReviewController {
 
         // JSONObject 사용
         JSONObject jsonObject = new JSONObject();
-        String url = s3Uploader.upload(multipartFile, String.format("static/tempImage/%s", LocalDate.now().toString().replace("-", "")), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
+        String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
         jsonObject.put("url", url);
         return jsonObject;
     }

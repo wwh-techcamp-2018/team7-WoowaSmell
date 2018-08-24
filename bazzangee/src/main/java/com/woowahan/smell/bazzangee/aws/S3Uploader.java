@@ -32,7 +32,8 @@ public class S3Uploader {
     private ReviewRepository reviewRepository;
 
     public String upload(MultipartFile multipartFile, String dirName, String existImageUrl) throws IOException {
-        if(multipartFile == null && StringUtils.isBlank(existImageUrl)) {
+        log.info("multipartFile : {}, existImageUrl : {}", multipartFile, existImageUrl);
+        if(multipartFile == null && existImageUrl == null) {
             return HONEY_COMBO_IMGURL;
         }
 

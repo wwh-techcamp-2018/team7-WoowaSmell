@@ -89,8 +89,7 @@ public class Review extends BaseTimeEntity {
         this.contents = reviewRequestDto.getContents();
         if (reviewRequestDto.getImage() != null)
             this.imageUrl = reviewRequestDto.getImage().getOriginalFilename();
-        if (reviewRequestDto.getImage() == null)
-            this.imageUrl = null;
+
         this.starPoint = reviewRequestDto.getStarPoint();
         this.imageUrl = imageUrl;
     }
