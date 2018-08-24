@@ -1,24 +1,21 @@
-package com.woowahan.smell.bazzangee.chat;
+package com.woowahan.smell.bazzangee.config;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
+import org.springframework.web.socket.server.HandshakeFailureException;
+import org.springframework.web.socket.server.HandshakeHandler;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.SESSION;
 
-public class SocketHandshakeHandler extends DefaultHandshakeHandler {
+public class SocketHandshakeHandler implements HandshakeHandler {
 
-    public boolean beforeHandshake(
-            ServerHttpRequest request,
-            ServerHttpResponse response,
-            WebSocketHandler wsHandler,
-            Map attributes) throws Exception {
-
+    @Override
+    public boolean doHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map attributes) throws HandshakeFailureException {
         if (request instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
             HttpSession session = servletRequest.getServletRequest().getSession();

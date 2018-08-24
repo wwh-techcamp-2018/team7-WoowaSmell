@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.security;
+package com.woowahan.smell.bazzangee.interceptor;
 
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;

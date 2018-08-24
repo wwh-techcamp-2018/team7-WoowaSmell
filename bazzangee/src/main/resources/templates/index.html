@@ -41,7 +41,7 @@
         <div class="chat">
             <div class="chat-header clearfix">
                 <div class="chat-about">
-                    <img src="/img/honey_combo.png" alt="avatar" width="30px" />
+                    <img id="chat-avatar" src="/img/honey_combo.png" alt="avatar" width="30px" />
                     <span>Chicken 채팅</span>
                 </div>
                 <i class="fa fa-star"></i>
@@ -52,14 +52,26 @@
             </div>
             <div class="chat-message clearfix">
                 <textarea name="message-to-send" id="chat-message-send" placeholder="메세지를 입력하세요." rows="3"></textarea>
-                <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                <i class="fa fa-file-image-o"></i>
-                <button id="chat-send-btn" class="btn btn-primary bg-main" type="button">보내기</button>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <i class="fa fa-file-o" id="chat-send-file"></i> &nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-file-image-o" id="chat-send-image"></i>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                        <button id="chat-send-btn" class="btn btn-primary bg-main float-right" type="button">보내기</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div id="loader" class="invisible"></div>
+<div id="dialog" class="dialog">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <img src="img/ready.png" style="max-width: 100%"/>
+    </div>
+</div>
 {{/partial}}
 {{#partial "footer"}}
 <script type="module" src="/js/home/home.js"></script>

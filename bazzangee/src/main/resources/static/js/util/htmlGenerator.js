@@ -45,8 +45,8 @@ const HtmlGenerator = (function () {
             return orderFoodHTML;
         },
 
-        getChatMessageHTML(messageDto) {
-            if(messageDto.username !== "자바지기") {
+        getChatMessageHTML(messageDto, username) {
+            if(messageDto.username !== username) {
                 return `<li>
                     <div class="message-data">
                         <span class="message-data-name"> ${messageDto.username}</span>

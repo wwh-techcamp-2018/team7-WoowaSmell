@@ -26,6 +26,13 @@ public class ChatMessage {
     @Column
     private LocalDateTime writtenTime;
 
+    public ChatMessage(User user, Chat chat, String contents) {
+        this.user = user;
+        this.chat = chat;
+        this.contents = contents;
+        this.writtenTime = LocalDateTime.now();
+    }
+
     public ChatMessageResponseDto toChatMessageResponseDto() {
         return new ChatMessageResponseDto(
                 id,

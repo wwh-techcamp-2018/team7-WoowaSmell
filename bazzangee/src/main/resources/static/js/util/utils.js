@@ -10,7 +10,7 @@ export function fetchManager({ url, method, body, headers, callback, errCallback
                 return false;
             }
             response.json().then(res => {
-                errCallback(res);
+                errCallback(res, response.status);
             })
         })
 }

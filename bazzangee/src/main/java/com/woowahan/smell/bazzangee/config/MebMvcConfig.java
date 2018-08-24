@@ -2,7 +2,7 @@ package com.woowahan.smell.bazzangee.config;
 
 import com.woowahan.smell.bazzangee.converter.LocalDateConverter;
 import com.woowahan.smell.bazzangee.converter.LocalDateTimeConverter;
-import com.woowahan.smell.bazzangee.security.BasicAuthInterceptor;
+import com.woowahan.smell.bazzangee.interceptor.BasicAuthInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;

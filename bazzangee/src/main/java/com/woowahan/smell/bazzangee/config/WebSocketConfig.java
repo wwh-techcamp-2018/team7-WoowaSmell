@@ -1,6 +1,6 @@
 package com.woowahan.smell.bazzangee.config;
 
-import com.woowahan.smell.bazzangee.chat.SocketHandshakeHandler;
+import com.woowahan.smell.bazzangee.interceptor.HttpHandshakeInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -14,13 +14,18 @@ import static com.woowahan.smell.bazzangee.config.ChatRoomName.*;
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/topic", "/queue");
         registry.setApplicationDestinationPrefixes("/");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint(GENERAL.getRoomName()).setHandshakeHandler(new SocketHandshakeHandler()).withSockJS();
+//        registry.addEndpoint(GENERAL.getRoomName())
+//                .setHandshakeHandler(new SocketHandshakeHandler())
+//                .withSockJS();
+        registry.addEndpoint(GENERAL.getRoomName())
+                .addInterceptors(new HttpHandshakeInterceptor())
+                .withSockJS();
         registry.addEndpoint(CHICKEN.getRoomName()).withSockJS();
         registry.addEndpoint(PIZZA.getRoomName()).withSockJS();
         registry.addEndpoint(WESTERN_FOOD.getRoomName()).withSockJS();
