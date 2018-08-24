@@ -1,7 +1,8 @@
 package com.woowahan.smell.bazzangee.web.api;
 
-import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.domain.User;
+import com.woowahan.smell.bazzangee.domain.UserType;
+import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
@@ -16,8 +17,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.net.URI;
 
-import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.USER_SESSION_KEY;
+import static com.woowahan.smell.bazzangee.utils.HttpSessionUtils.getUserFromSession;
 
 
 @Slf4j
@@ -45,9 +47,12 @@ public class ApiUserController {
         System.out.println("kakaoDto : " + kakaoDto.toString());
         User kakaoUser = kakaoDto.toUser();
         if(!userService.isCreatedUser(kakaoUser)) {
-            userService.createKakaoUser(kakaoUser);
+            log.info("Creating Kakao User.. : {}", kakaoUser);
+            kakaoUser = userService.createKakaoUser(kakaoUser);
+        } else {
+            log.info("Updating Kakao User.. : {}", kakaoUser);
+            userService.updatePassword(kakaoUser);
         }
-//        kakaoUser = userService.getUserByUserId(kakaoDto.getUserId());
         HttpSessionUtils.setUserInSession(session, kakaoUser);
         log.info("session : {}", RequestContextHolder.getRequestAttributes().getSessionId());
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -55,7 +60,11 @@ public class ApiUserController {
 
     @GetMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session) {
+        User loginUser = getUserFromSession(session);
+        if(UserType.KAKAO.equals(loginUser.getType())) {
+            log.info("this is KAKAO User!");
+        }
         HttpSessionUtils.removeUserInSession(session);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
     }
 }

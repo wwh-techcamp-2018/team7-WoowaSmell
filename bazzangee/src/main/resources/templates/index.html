@@ -2,6 +2,7 @@
 <link href="/css/custom/timeline.css" rel="stylesheet">
 <link href="/css/custom/chat.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/rater/rater.css">
 {{/partial}}
 {{#partial "content"}}
 <div id="buttons">
@@ -42,7 +43,7 @@
             <div class="chat-header clearfix">
                 <div class="chat-about">
                     <img id="chat-avatar" src="/img/honey_combo.png" alt="avatar" width="30px" />
-                    <span>Chicken 채팅</span>
+                    <span id="chat-name"></span>
                 </div>
                 <i class="fa fa-star"></i>
             </div>
@@ -77,5 +78,8 @@
 <script type="module" src="/js/home/home.js"></script>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/js/review/rater.js" charset="utf-8"></script>
 {{/partial}}
 {{>base}}

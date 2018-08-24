@@ -12,6 +12,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -42,8 +43,9 @@ public class Review extends BaseTimeEntity {
     private String originName;
     @Column
     private double starPoint;
+
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Good> goods;
+    private List<Good> goods = new ArrayList<>();
     @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private OrderFood orderFood;
@@ -81,16 +83,17 @@ public class Review extends BaseTimeEntity {
         this.isDeleted = true;
     }
 
-    public void update(ReviewRequestDto reviewRequestDto, User loginUser) {
+    public void update(ReviewRequestDto reviewRequestDto, User loginUser, String imageUrl) {
         if (!loginUser.equals(this.user))
             throw new NotMatchException("타인의 리뷰는 수정할 수 없습니다.");
         this.contents = reviewRequestDto.getContents();
         if (reviewRequestDto.getImage() != null)
             this.imageUrl = reviewRequestDto.getImage().getOriginalFilename();
-        if (reviewRequestDto.getImage() == null)
-            this.imageUrl = null;
+
         this.starPoint = reviewRequestDto.getStarPoint();
+        this.imageUrl = imageUrl;
     }
+
     public ReviewResponseDto toReviewDto () {
         return new ReviewResponseDto(this,
                 this.orderFood.getOrderedUser().getName(),

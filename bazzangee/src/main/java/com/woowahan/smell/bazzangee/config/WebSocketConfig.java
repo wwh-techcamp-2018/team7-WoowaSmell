@@ -23,16 +23,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 //        registry.addEndpoint(GENERAL.getRoomName())
 //                .setHandshakeHandler(new SocketHandshakeHandler())
 //                .withSockJS();
-        registry.addEndpoint(GENERAL.getRoomName())
-                .addInterceptors(new HttpHandshakeInterceptor())
-                .withSockJS();
-        registry.addEndpoint(CHICKEN.getRoomName()).withSockJS();
-        registry.addEndpoint(PIZZA.getRoomName()).withSockJS();
-        registry.addEndpoint(WESTERN_FOOD.getRoomName()).withSockJS();
-        registry.addEndpoint(KOREAN_FOOD.getRoomName()).withSockJS();
-        registry.addEndpoint(CHINESE_FOOD.getRoomName()).withSockJS();
-        registry.addEndpoint(JAPANESE_FOOD.getRoomName()).withSockJS();
-        registry.addEndpoint(SNACK_BAR.getRoomName()).withSockJS();
-        registry.addEndpoint(HAMBURGER.getRoomName()).withSockJS();
+        registry.addEndpoint(GENERAL.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(CHICKEN.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(PIZZA.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(WESTERN_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(KOREAN_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(CHINESE_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(JAPANESE_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(SNACK_BAR.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        registry.addEndpoint(HAMBURGER.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
     }
 }

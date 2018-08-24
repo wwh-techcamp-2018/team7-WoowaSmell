@@ -57,7 +57,7 @@ public class ChatController {
     }
 
     private User getSessionUser(Map<String, Object> sessionAttributes) {
-        if(sessionAttributes == null) return null;
+        if(sessionAttributes == null || sessionAttributes.get(SESSION) == null) return null;
         return getUserFromSession((HttpSession) sessionAttributes.get(SESSION));
     }
 }

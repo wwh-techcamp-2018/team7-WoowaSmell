@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 public class ChatMessageResponseDto {
     private Long id;
+    private Long userId;
     private String username;
     private String contents;
     private LocalDateTime writtenTime;

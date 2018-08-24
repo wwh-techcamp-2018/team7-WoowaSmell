@@ -24,3 +24,15 @@ export function throttle(callback, wait) {
         }
     }
 }
+
+export function addDropdownListener() {
+    $(".menubar").addEventListener("click", (event) => {
+        const display = $(".menuitem").style.display;
+        if(display == "none") {
+            $(".menuitem").style.display = "block";
+            return;
+        }
+        $(".menuitem").style.display = "none";
+        return;
+    })
+}

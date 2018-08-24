@@ -36,6 +36,7 @@ public class ChatMessage {
     public ChatMessageResponseDto toChatMessageResponseDto() {
         return new ChatMessageResponseDto(
                 id,
+                user.getId(),
                 user.getName(),
                 contents,
                 writtenTime

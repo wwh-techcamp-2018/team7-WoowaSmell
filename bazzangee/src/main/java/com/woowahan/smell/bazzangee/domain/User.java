@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
 @Getter
 @Entity
 @NoArgsConstructor
@@ -45,13 +44,16 @@ public class User extends BaseTimeEntity {
         this.type = UserType.NORMAL;
     }
 
-    public User(String userId, String name, UserType type) {
+    public User(String userId, String password, String name, String imageUrl, UserType type) {
         this.userId = userId;
+        this.password = password;
         this.name = name;
         this.type = type;
+        this.imageUrl = imageUrl;
     }
 
-    public User(String userId, String name, String imageUrl) {
+    public User(Long id, String userId, String name, String imageUrl) {
+        this.id = id;
         this.userId = userId;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -66,6 +68,7 @@ public class User extends BaseTimeEntity {
 
     public User toLimitInfoUser() {
         return new User(
+                this.id,
                 this.userId,
                 this.name,
                 this.imageUrl
@@ -85,5 +88,9 @@ public class User extends BaseTimeEntity {
     public int hashCode() {
 
         return Objects.hash(userId, password);
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
     }
 }

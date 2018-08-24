@@ -7,10 +7,9 @@ const CHAT_ROOM_START_INDEX = 9;
 export class Chat{
     constructor() {
         this.me = null;
-        this.chatRoomid = CHAT_ROOM_START_INDEX;
+        this.chatRoomId = CHAT_ROOM_START_INDEX;
         this.socketManager = new SocketManager();
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
-        this.loadChat();
     }
 
     onLoadDocument() {
@@ -49,23 +48,25 @@ export class Chat{
             location.href = "/login";
             return;
         }
-        this.socketManager.sendMessage("/chat", {}, { message: target.value });
+        this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
         target.value = null;
     }
 
     loadChat() {
-        this.socketManager.createSocket(CHAT_ROOM[this.chatRoomid]);
+        this.socketManager.createSocket(CHAT_ROOM[this.chatRoomId].url);
         this.socketManager.connect(this.onConnect.bind(this));
     }
 
     onConnect(frame) {
         this.subscribes();
-        this.socketManager.sendMessage("/info", {}, { roomId: this.chatRoomid });
+        $("#chat-message-container").innerHTML = null;
+        $("#chat-name").innerText = CHAT_ROOM[this.chatRoomId].name + " 채팅";
+        this.socketManager.sendMessage("/info", {}, { roomId: this.chatRoomId });
     }
 
     onKeyDownChatTextArea({keyCode, target}) {
         if(keyCode === 13) {
-            this.socketManager.sendMessage("/chat", {}, { message: target.value });
+            this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
             target.value = null;
         }
     }
@@ -94,7 +95,7 @@ export class Chat{
     }
 
     changeChatRoom(newRoomId) {
-        this.chatRoomId = newRoomId;
+        this.chatRoomId = (newRoomId == 0 ? CHAT_ROOM_START_INDEX : newRoomId);
         this.socketManager.disconnect(this.sendBye.bind(this), this.loadChat.bind(this));
     }
 
@@ -111,13 +112,13 @@ export class Chat{
 
     updateUI() {
         const isLogin = (this.me != null);
-        $("#chat-message-send").disabled = isLogin;
+        $("#chat-message-send").disabled = !isLogin;
         if(isLogin) {
-            $("#chat-avatar").setAttribute("src", this.me.imageUrl);
-            $("#chat-message-send").classList.add("disabled-ui");
+            $("#chat-avatar").setAttribute("src", this.me.imageUrl || "/img/avatar.png");
+            $("#chat-message-send").classList.remove("disabled-ui");
         } else {
             $("#chat-avatar").setAttribute("src", "/img/avatar.png");
-            $("#chat-message-send").classList.remove("disabled-ui");
+            $("#chat-message-send").classList.add("disabled-ui");
         }
         $("#chat-send-btn").innerText = (isLogin ? "보내기" : "로그인하기");
     }

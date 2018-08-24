@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ChatMessageRequestDto {
+    private Long roomId;
     private String message;
 
     public ChatMessage toChatMessage(User talker, Chat chat) {

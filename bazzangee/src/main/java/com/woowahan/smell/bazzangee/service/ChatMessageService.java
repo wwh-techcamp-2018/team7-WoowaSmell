@@ -33,11 +33,11 @@ public class ChatMessageService {
     }
 
     public ChatMessageResponseDto create(ChatMessageRequestDto chatMessageRequestDto, User talker) {
-        return chatMessageRepository.save(chatMessageRequestDto.toChatMessage(talker, findChatById(1L)))
+        return chatMessageRepository.save(chatMessageRequestDto.toChatMessage(talker, findChatById(chatMessageRequestDto.getRoomId())))
                 .toChatMessageResponseDto();
     }
 
-    public Chat findChatById(Long id) {
+    private Chat findChatById(Long id) {
         return chatRepository.findById(id).orElseThrow(() -> new NotMatchException("일치하는 채팅방이 존재하지 않습니다."));
     }
 }

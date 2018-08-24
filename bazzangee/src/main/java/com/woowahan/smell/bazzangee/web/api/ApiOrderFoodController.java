@@ -25,7 +25,7 @@ public class ApiOrderFoodController {
     private OrderFoodService orderFoodService;
 
     @GetMapping("")
-    public ResponseEntity<List> getReviewListOfUser(Long filterId, HttpSession session) {
+    public ResponseEntity<Object> getReviewListOfUser(Long filterId, HttpSession session) {
         User user = getUserFromSession(session);
         log.info("getOrderFoodList : {}", user);
         if(user == null) {
@@ -33,18 +33,23 @@ public class ApiOrderFoodController {
         }
         if(filterId == 0) {
             return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsOrderByOrderTime(user));
+        } else if (filterId == 1) {
+             return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsOrderByStarPoint(user));
+      } else {
+           return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsOrderByGoodsCount(user));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsOrderByStarPoint(user));
     }
 
     @GetMapping("/categories")
     public ResponseEntity<List> getReviewListOfUserByCategory(Long categoryId, Long filterId, HttpSession session) {
         User user = getUserFromSession(session);
         log.info("getOrderFoodList : {}", user);
-        if(filterId == 0) {
+        if (filterId == 0) {
             return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsByCategoryOrderByOrderTime(user, categoryId));
+        } else if (filterId == 1) {
+            return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsByCategoryOrderByStarPoint(user, categoryId));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsByCategoryOrderByGoodsCount(user, categoryId));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(orderFoodService.getListsByCategoryOrderByStarPoint(user, categoryId));
     }
-
 }

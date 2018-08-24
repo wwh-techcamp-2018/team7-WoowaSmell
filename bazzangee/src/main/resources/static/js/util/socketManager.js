@@ -21,6 +21,7 @@ export class SocketManager {
     }
 
     sendMessage(url, contentType, dataObject) {
+        if(this.stompClient == null) return;
         this.stompClient.send(url, contentType, JSON.stringify(dataObject));
     }
 
