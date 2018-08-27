@@ -52,12 +52,8 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
 
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://baezzangee-dev.cgemfjqbmqzy.ap-northeast-2.rds.amazonaws.com:3306/baezzangee-dev?serverTimeZone=UTC&verifyServerCertificate=false&useSSL=false&requireSSL=false
-    username: ${DB_USER_NAME}
-    password: ${DB_PASSWORD}
+spring.profiles.include: db-info
