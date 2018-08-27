@@ -98,14 +98,14 @@ const HtmlGenerator = (function () {
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
-                                <div class="card invisible" style="width:400px ">
+                                <div class="card card-position invisible">
                                     <img class="card-img-top" src="" style="width:200px">
+                                    <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
                                     <div class="card-body">
-                                        <input type="text" name="contents" class="card-text"> <br/><br/>
+                                        <textarea rows="4" cols="50" name="contents" class="card-text"></textarea>
                                         <input type="file" name="image" class="btn btn-primary" >
                                         <div class="rate" data-rate-value="0"></div>
-                                        <button type="button" class="btn btn-danger invisible">삭제</button>
-                                        <input type="button" class="btn-review-submit" value="저장">
+                                        <input type="button" class="btn-review-submit btn btn-danger" value="저장">
                                         <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
                                     </div>
                                 </div>
@@ -184,14 +184,14 @@ const HtmlGenerator = (function () {
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
-                                <div class="card invisible" style="width:400px ">
+                                <div class="card card-position invisible">
                                     <img class="card-img-top" src="" style="width:200px">
+                                    <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
                                     <div class="card-body">
-                                        <input type="text" name="contents" class="card-text"> <br/><br/>
+                                        <textarea rows="4" cols="50" name="contents" class="card-text"></textarea>
                                         <input type="file" name="image" class="btn btn-primary" >
                                         <div class="rate" data-rate-value="0"></div>
-                                        <button type="button" class="btn btn-danger invisible">삭제</button>
-                                        <input type="button" class="btn-review-submit" value="저장">
+                                        <input type="button" class="btn-review-submit btn btn-danger" value="저장">
                                         <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@ const HtmlGenerator = (function () {
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 card">
                                     <div class="rate" data-rate-value="${review.starPoint}"></div>
-                                    <p><input type="text" name="contents" class="card-text" value="${orderFood.review.contents}"> <br/><br/></p>
+                                    <p><textarea rows="4" cols="50" name="contents" class="card-text">${orderFood.review.contents}</textarea></p>
                                      <input type="file" name="image" class="btn-image-update-upload btn btn-primary" >
                                     <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">

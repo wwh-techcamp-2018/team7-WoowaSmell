@@ -110,3 +110,20 @@
     transition:800ms ease all;
     outline:none;
 }
+
+.card-position {
+    width:450px;
+    position: relative;
+    left: -78px;
+}
+
+.card-text {
+    width: 330px;
+}
+
+.btn-remove-image {
+    width: 38px;
+    position: absolute;
+    height: 44px;
+    right: 248px;
+}

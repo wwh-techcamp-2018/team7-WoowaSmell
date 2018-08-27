@@ -9,6 +9,7 @@ import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.ReviewService;
 import com.woowahan.smell.bazzangee.utils.FileUtils;
 import com.woowahan.smell.bazzangee.utils.HttpSessionUtils;
+import com.woowahan.smell.bazzangee.utils.StringUtils;
 import com.woowahan.smell.bazzangee.vo.PageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,9 @@ public class ApiReviewController {
         log.info("reviewRequestDto : {}", reviewRequestDto);
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 등록 가능합니다.");
+        if(!StringUtils.isValidTextLength(reviewRequestDto.getContents())) {
+            throw new ValidationException("입력가능한 최대 글자 수는 200자 입니다.");
+        }
         String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session)));
     }
@@ -65,6 +69,9 @@ public class ApiReviewController {
         if (!HttpSessionUtils.isLoginUser(session))
             throw new UnAuthenticationException("로그인 사용자만 수정 가능합니다.");
 
+        if(!StringUtils.isValidTextLength(reviewRequestDto.getContents())) {
+            throw new ValidationException("입력가능한 최대 글자 수는 200자 입니다.");
+        }
         log.info("reviewRequestDto : {}", reviewRequestDto);
         String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
 
