@@ -73,13 +73,22 @@
         <img src="img/ready.png" style="max-width: 100%"/>
     </div>
 </div>
+<div id="chart_div" class="dialog">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <canvas id="mychart" class="chart"></canvas>
+    </div>
+</div>
 {{/partial}}
 {{#partial "footer"}}
 <script type="module" src="/js/home/home.js"></script>
+<script type="module" src="/js/chartjs/chartjs.js"></script>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 <script src="/jquery/dist/jquery.min.js"></script>
 <script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/review/rater.js" charset="utf-8"></script>
+<script src="/js/chartjs/Chart.js"></script>
+<script src="/js/chartjs/Chart.min.js"></script>
 {{/partial}}
 {{>base}}

@@ -29,6 +29,7 @@ const HtmlGenerator = (function () {
                                         <p class="t-right">
                                             <a href="#" style="font-weight: 600; color: aliceblue">
                                                 <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
+                                                <button class="statistics" value="${reviewDto.restaurant.id}">(통계)</button>
                                             </a>
                                         </p>
                                     </div>

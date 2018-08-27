@@ -38,6 +38,12 @@ insert into food (name, restaurant_id) values ('떡볶이', 7);
 insert into food (name, restaurant_id) values ('소바', 6);
 insert into food (name, restaurant_id) values ('김밥', 4);
 insert into food (name, restaurant_id) values ('파스타', 3);
+insert into food (name, restaurant_id) values ('양념치킨', 1);
+insert into food (name, restaurant_id) values ('간장치킨', 1);
+insert into food (name, restaurant_id) values ('크롱치킨', 1);
+insert into food (name, restaurant_id) values ('와퍼주니어', 8);
+insert into food (name, restaurant_id) values ('스파이시와퍼', 8);
+insert into food (name, restaurant_id) values ('너겟4조각', 8);
 
 insert into order_food (food_id, quantity, ordered_user_id, order_time) values (1, 7, 1, '2018-05-12 20:00:00');
 insert into order_food (food_id, quantity, ordered_user_id, order_time) values (2, 2, 1, '2018-05-22 20:00:00');
@@ -53,6 +59,18 @@ insert into order_food (food_id, quantity, ordered_user_id, order_time) values (
 insert into order_food (food_id, quantity, ordered_user_id, order_time) values (12, 2, 2, '2018-09-02 20:00:00');
 insert into order_food (food_id, quantity, ordered_user_id, order_time) values (13, 1, 2, '2018-10-05 20:00:00');
 insert into order_food (food_id, quantity, ordered_user_id, order_time) values (14, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (15, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (16, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (17, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (15, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (16, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (17, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (18, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (18, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (19, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (19, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (20, 1, 2, '2018-10-05 20:00:00');
+insert into order_food (food_id, quantity, ordered_user_id, order_time) values (20, 1, 2, '2018-10-05 20:00:00');
 
 insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('교촌치킨', 8, '치킨하면 허니콤보!!!진짜 맛있어요ㅠㅠㅠ내일 또 먹어야지', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png', 4, '2018-05-30 20:00:00', '2018-05-30 20:00:00', 1, 2);
 insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('네네치킨', 1, '치킨하면 네네치킨!!!진짜 맛있어요ㅠㅠㅠ내일 또 먹어야지', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png', 4, '2018-06-20 20:00:00', '2018-06-20 20:00:00', 2, 2);
@@ -67,6 +85,18 @@ insert into review (title, food_category_id, contents, image_url, star_point, wr
 insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하버거', 7, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png', 4.5, '2018-02-02 20:00:00', '2018-02-02 20:00:00', 11, 2);
 insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('교촌피자', 6, '허니콤보 맛잇어요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png', 4, '2018-05-03 20:00:00', '2018-05-03 20:00:00', 12, 2);
 insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 4, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',4.5, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 13, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',4.5, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 15, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',4, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 16, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',3.5, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 17, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',3, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 18, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',2.5, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 19, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 1, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',2, '2019-02-12 20:00:00', '2018-02-12 20:00:00', 20, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',5, '2019-02-12 20:00:00', '2018-02-12 20:00:00', 21, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',4, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 22, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',1.5, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 23, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',3, '2018-02-12 20:00:00', '2018-02-12 20:00:00', 24, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',4, '2019-02-12 20:00:00', '2018-02-12 20:00:00', 25, 2);
+insert into review (title, food_category_id, contents, image_url, star_point, written_time, updated_time, order_food_id, user_id) values ('주하피자', 8, '또먹을래요', 'https://s3.ap-northeast-2.amazonaws.com/baezzangee/static/default/default_chicken.png',3.5, '2019-02-12 20:00:00', '2018-02-12 20:00:00', 26, 2);
 
 insert into good (user_id, review_id) values (1, 2);
 insert into good (user_id, review_id) values (2, 3);
