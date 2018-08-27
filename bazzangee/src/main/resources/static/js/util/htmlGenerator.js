@@ -29,8 +29,8 @@ const HtmlGenerator = (function () {
                                         <p class="t-right">
                                             <a href="#" style="font-weight: 600; color: aliceblue">
                                                 <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
-                                                <button class="statistics" value="${reviewDto.restaurant.id}">(통계)</button>
                                             </a>
+                                            <button class="statistics" value="${reviewDto.restaurant.id}">(통계)</button>
                                         </p>
                                     </div>
                                 </div>
@@ -73,6 +73,7 @@ const HtmlGenerator = (function () {
                                         <a href="#" style="font-weight: 600; color: aliceblue">
                                             <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
                                         </a>
+                                        <button class="statistics" value="${orderFood.food.restaurant.id}">(통계)</button>
                                     </p>
                                     <div class="update-delete-btn">
                                         <input type="button" class="btn-review-update-form btn btn-danger" value="수정">
@@ -115,6 +116,7 @@ const HtmlGenerator = (function () {
                                     <a href="#" style="font-weight: 600; color: aliceblue">
                                         <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
                                     </a>
+                                    <button class="statistics" value="${orderFood.food.restaurant.id}">(통계)</button>
                                 </p>
                             </div>
                         </div>
@@ -155,6 +157,7 @@ const HtmlGenerator = (function () {
                                <a href="#" style="font-weight: 600; color: aliceblue">
                                    <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
                                </a>
+                               <button class="statistics" value="${reviewDto.restaurant.id}">(통계)</button>
                            </p>
                             <div class="update-delete-btn">
                               <input type="button" class="btn-review-update-form btn btn-danger" value="수정">
@@ -201,6 +204,7 @@ const HtmlGenerator = (function () {
                                     <a href="#" style="font-weight: 600; color: aliceblue">
                                         <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
                                     </a>
+
                                 </p>
                             </div>
                         </div>
@@ -242,6 +246,7 @@ const HtmlGenerator = (function () {
                                         <a href="#" style="font-weight: 600; color: aliceblue">
                                             <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
                                         </a>
+                                        <button class="statistics" value="${orderFood.food.restaurant.id}">(통계)</button>
                                     </p>
                                     <div class="update-delete-btn">
                                         <input type="button" class="btn-review-update btn btn-danger" value="수정">
@@ -275,8 +280,5 @@ const HtmlGenerator = (function () {
                 <li>`;
             }
         }
-
-
-
     }
 })();
