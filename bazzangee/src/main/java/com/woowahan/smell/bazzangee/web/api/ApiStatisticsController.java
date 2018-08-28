@@ -1,5 +1,6 @@
 package com.woowahan.smell.bazzangee.web.api;
 
+import com.woowahan.smell.bazzangee.dto.RestaurantStatisticsDto;
 import com.woowahan.smell.bazzangee.service.StatisticsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,10 @@ public class ApiStatisticsController {
 //    }
 
     @GetMapping("/restaurants/{id}")
-    public List<Map<String, String>> getRestaurantPointAvg(@PathVariable long id) {
-        List<Map<String, String>> result = statisticsService.getRestaurantInfo(id);
-        result.stream().forEach((v) -> { log.info("object is first : {}, second : {}", v.values().toArray()[0], v.values().toArray()[1]); });
+    public RestaurantStatisticsDto getRestaurantPointAvg(@PathVariable long id) {
+        RestaurantStatisticsDto result = statisticsService.getRestaurantInfo(id);
+        log.info("here : ");
+//        result.stream().forEach((v) -> { log.info("object is first : {}, second : {}", v.values().toArray()[0], v.values().toArray()[1]); });
         return result;
     }
 //
