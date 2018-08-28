@@ -50,17 +50,4 @@ public class ApiReviewControllerTest extends AcceptanceTest {
         assertThat(HttpStatus.OK).isEqualTo(apiReviewController.create(reviewRequestDto, session).getStatusCode());
         log.info("리뷰_등록 결과 : {} ", apiReviewController.create(reviewRequestDto, session).getBody());
     }
-
-    @Test
-    public void 리뷰_좋아요() {
-        ResponseEntity<ReviewResponseDto> response = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
-
-    @Test
-    public void 리뷰_좋아요_재시도() {
-        ResponseEntity<ReviewResponseDto> firstResponse = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
-        ResponseEntity<ReviewResponseDto> secondResponse = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
-        assertThat(secondResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
 }
