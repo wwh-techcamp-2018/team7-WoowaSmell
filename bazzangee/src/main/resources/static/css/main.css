@@ -101,3 +101,11 @@
     transition:800ms ease all;
     outline:none;
 }
+#tabbar{
+    box-shadow: 10px 5px 15px lightgrey;
+    background: url(/img/menu_image/category-background.jpeg);
+    background-size: 110px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}

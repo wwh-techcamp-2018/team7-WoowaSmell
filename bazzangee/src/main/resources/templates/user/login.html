@@ -1,39 +1,35 @@
 <html>
 <head>
-  <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
 </head>
 <body id="LoginForm">
 <div class="container">
-  <h1 class="form-heading">로그인</h1>
   <div class="login-form">
     <div class="main-div">
       <div class="panel">
-        <h2>Admin Login</h2>
-        <p>Please enter your email and password</p>
+        <h2>배짱이 로그인</h2>
+        <p>배짱이 생활 서비스 이용을 위해 로그인이 필요합니다.</p>
       </div>
       <form id="Login">
         <div class="form-group">
-          <input type="email" class="form-control" id="userId" value="serverwizard2@naver.com" placeholder="Email Address">
+          <input type="email" class="form-control" id="userId" value="serverwizard2@naver.com" placeholder="이메일을 입력해주세요.">
         </div>
-
         <div class="form-group">
-          <input type="password" class="form-control" id="password" value="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" value="password" placeholder="비밀번호를 입력해주세요.">
         </div>
         <div class="forgot">
-          <a href="reset.html">Forgot password?</a>
+          <a href="#">Forgot password?</a>
         </div>
         <button type="submit" id="btnLogin" class="btn btn-primary">Login</button>
+        <a id="kakao-login-btn"></a>
       </form>
     </div>
   </div>
-  <a id="kakao-login-btn"></a>
-  <a href="http://developers.kakao.com/logout"></a>
 </div>
-<script type="module" src="/js/user/login.js"></script>
-<script type="module" src="/js/user/kakaologin.js"></script>
+  <script type="module" src="/js/user/login.js"></script>
+  <script type="module" src="/js/user/kakaologin.js"></script>
 </body>
 </html>
