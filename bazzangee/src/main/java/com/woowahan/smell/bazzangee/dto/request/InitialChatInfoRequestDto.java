@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.dto;
+package com.woowahan.smell.bazzangee.dto.request;
 
 import lombok.Data;
 
