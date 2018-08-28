@@ -17,7 +17,7 @@ textarea {
 .chat {
     width: 490px;
     float: left;
-    background: #ebeef1;
+    background: #fcfcfc;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom: 2px solid white;
