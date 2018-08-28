@@ -303,3 +303,40 @@ input[type="radio"]:disabled + .label-text:before{
 	75%{transform: scale(1.4);}
 	100%{transform: scale(1);}
 }
+
+
+.dialog {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.dialog-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.x_title {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+}
+
+.statistics {
+    background-image: url(/img/graph.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 18px;
+}

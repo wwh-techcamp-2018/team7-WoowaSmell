@@ -64,7 +64,13 @@
         <img src="img/ready.png" style="max-width: 100%"/>
     </div>
 </div>
-
+<div id="chart_div" class="dialog">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <div class="x_title">
+        </div>
+        <canvas id="foodChart" class="chart"></canvas>
+    </div>
+</div>
 {{/partial}}
 {{#partial "footer"}}
 <script type="module" src="/js/home/home.js"></script>
@@ -73,5 +79,7 @@
 <script src="/jquery/dist/jquery.min.js"></script>
 <script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/review/rater.js" charset="utf-8"></script>
+<script src="/js/chartjs/Chart.js"></script>
+<script src="/js/chartjs/Chart.min.js"></script>
 {{/partial}}
 {{>base}}
