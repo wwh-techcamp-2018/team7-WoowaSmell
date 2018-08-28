@@ -55,16 +55,12 @@ public class ApiReviewControllerTest extends AcceptanceTest {
     public void 리뷰_좋아요() {
         ResponseEntity<ReviewResponseDto> response = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        log.debug("리뷰 좋아요 : {}", reviewRepository.findById(1L).get());
     }
 
     @Test
     public void 리뷰_좋아요_재시도() {
-        log.debug("리뷰 좋아요1 : {}", reviewRepository.findById(1L).get());
         ResponseEntity<ReviewResponseDto> firstResponse = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
-        log.debug("리뷰 좋아요2 : {}", reviewRepository.findById(1L).get());
         ResponseEntity<ReviewResponseDto> secondResponse = basicAuthTemplate().getForEntity(String.format("/api/reviews/%d/good", 1), ReviewResponseDto.class);
         assertThat(secondResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-        log.debug("리뷰 좋아요3 : {}", reviewRepository.findById(1L).get());
     }
 }
