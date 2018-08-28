@@ -4,6 +4,10 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+  jpa:
+      properties:
+        hibernate:
+          hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
 
 handlebars:
   suffix: .html

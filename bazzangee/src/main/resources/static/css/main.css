@@ -63,20 +63,17 @@
 }
 
 .category_button{
-  background:#1AAB8A;
-  color:#fff;
+  background: url(/img/menu_image/category-background.jpeg);
   border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
+  padding:0px;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
-}
-.category_button:hover{
-  background:#fff;
-  color:#1AAB8A;
+
+  width: 110px;
+  height: 110px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .category_button:before,category_button:after{
   content:'';
@@ -99,13 +96,7 @@
   transition:800ms ease all;
 }
 .clicked{
-  background:#fff;
-    color:#1AAB8A;
     border:none;
-    position:relative;
-    height:60px;
-    font-size:1.6em;
-    padding:0 2em;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
