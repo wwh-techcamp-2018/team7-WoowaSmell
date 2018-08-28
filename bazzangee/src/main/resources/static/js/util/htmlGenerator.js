@@ -28,7 +28,7 @@ const HtmlGenerator = (function () {
                                         <p class="t-right fs07em">${reviewDto.userName}</p>
                                         <p class="t-right">
                                             <a href="#" style="font-weight: 600; color: aliceblue">
-                                                <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
+                                                <i class="fa fa-map-marker"> ${reviewDto.restaurant.address}</i>
                                             </a>
                                         </p>
                                     </div>
@@ -70,7 +70,7 @@ const HtmlGenerator = (function () {
                                     <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
-                                            <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                            <i class="fa fa-map-marker"> ${orderFood.food.restaurant.address}</i>
                                         </a>
                                     </p>
                                     <div class="update-delete-btn">
@@ -112,7 +112,7 @@ const HtmlGenerator = (function () {
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
-                                        <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                        <i class="fa fa-map-marker"> ${orderFood.food.restaurant.address}</i>
                                     </a>
                                 </p>
                             </div>
@@ -152,7 +152,7 @@ const HtmlGenerator = (function () {
                            <p class="t-right fs07em">${reviewDto.userName}</p>
                            <p class="t-right">
                                <a href="#" style="font-weight: 600; color: aliceblue">
-                                   <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
+                                   <i class="fa fa-map-marker"> ${reviewDto.restaurant.address}</i>
                                </a>
                            </p>
                             <div class="update-delete-btn">
@@ -198,7 +198,7 @@ const HtmlGenerator = (function () {
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
-                                        <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                        <i class="fa fa-map-marker"> ${orderFood.food.restaurant.address}</i>
                                     </a>
                                 </p>
                             </div>
@@ -239,7 +239,7 @@ const HtmlGenerator = (function () {
                                     <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
-                                            <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                            <i class="fa fa-map-marker"> ${orderFood.food.restaurant.address}</i>
                                         </a>
                                     </p>
                                     <div class="update-delete-btn">

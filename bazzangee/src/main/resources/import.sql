@@ -1,17 +1,31 @@
-insert into user (user_id, password, name, phone_number) values ('serverwizard@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기', '012-1233-1233');
-insert into user (user_id, password, name, phone_number) values ('serverwizard2@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기2', '013-1233-1233');
-insert into user (user_id, password, name, phone_number) values ('kwonhyeona@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '권현아', '010-1234-1234');
-insert into user (user_id, password, name, phone_number) values ('songminseok@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '송민석', '010-4321-4321');
-insert into user (user_id, password, name, phone_number) values ('parkjuha@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '박주하', '010-1111-2222');
+insert into user (user_id, password, name, phone_number) values
+('serverwizard@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기', '012-1233-1233'),
+('serverwizard2@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기2', '013-1233-1233'),
+('kwonhyeona@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '권현아', '010-1234-1234'),
+('songminseok@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '송민석', '010-4321-4321'),
+('parkjuha@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '박주하', '010-1111-2222');
 
-insert into food_category (name, priority) values ('치킨', 1);
-insert into food_category (name, priority) values ('피자', 2);
-insert into food_category (name, priority) values ('양식', 3);
-insert into food_category (name, priority) values ('한식', 4);
-insert into food_category (name, priority) values ('중식', 5);
-insert into food_category (name, priority) values ('일식', 6);
-insert into food_category (name, priority) values ('분식', 7);
-insert into food_category (name, priority) values ('햄버거', 8);
+insert into food_category (name, priority) values
+('치킨', 1),
+('피자', 2),
+('한식', 3),
+('중국집', 4),
+('분식', 5),
+('족발.보쌈', 6),
+('돈까스.회.일식', 7),
+('야식', 8);
+
+insert into chat (name) values
+('치킨'),
+('피자'),
+('한식'),
+('중국집'),
+('분식'),
+('족발.보쌈'),
+('돈까스.회.일식'),
+('야식'),
+('전체');
+
 
 insert into restaurant (address, food_category_id, name) values ('잠실 송파점', 1, '굽네치킨');
 insert into restaurant (address, food_category_id, name) values ('잠실 방이점', 2, '네네피자');
@@ -80,15 +94,7 @@ insert into good (user_id, review_id) values (2, 9);
 insert into good (user_id, review_id) values (1, 10);
 insert into good (user_id, review_id) values (1, 11);
 
-insert into chat (name) values ('치킨');
-insert into chat (name) values ('피자');
-insert into chat (name) values ('양식');
-insert into chat (name) values ('한식');
-insert into chat (name) values ('중식');
-insert into chat (name) values ('일식');
-insert into chat (name) values ('분식');
-insert into chat (name) values ('햄버거');
-insert into chat (name) values ('전체');
+
 
 insert into chat_message (user_id, chat_id, contents, written_time) values (1, 9, '자바지기 채팅!!!', '2018-02-12 20:00:00');
 insert into chat_message (user_id, chat_id, contents, written_time) values (3, 9, '권현아 채팅!!!', '2018-02-12 20:00:00');
