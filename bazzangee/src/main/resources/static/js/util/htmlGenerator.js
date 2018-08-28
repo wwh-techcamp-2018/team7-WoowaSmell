@@ -275,7 +275,5 @@ const HtmlGenerator = (function () {
             }
         }
 
-
-
     }
 })();
