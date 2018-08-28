@@ -63,14 +63,8 @@
 }
 
 .category_button{
-  1background:#1AAB8A;
-  1background: url(/img/menu_image/category-background.jpeg);
-  1color:#fff;
+  background: url(/img/menu_image/category-background.jpeg);
   border:none;
-  1position:relative;
-  1height:60px;
-  1font-size:1.6em;
-  1padding:0 2em;
   padding:0px;
   cursor:pointer;
   transition:800ms ease all;
@@ -80,10 +74,6 @@
   height: 110px;
   background-size: contain;
   background-repeat: no-repeat;
-}
-.category_button:hover{
-  1background:#fff;
-  1color:#1AAB8A;
 }
 .category_button:before,category_button:after{
   content:'';
@@ -106,13 +96,7 @@
   transition:800ms ease all;
 }
 .clicked{
-  1background:#fff;
-    1color:#1AAB8A;
     border:none;
-    1position:relative;
-    1height:60px;
-    1font-size:1.6em;
-    1padding:0 2em;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
