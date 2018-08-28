@@ -8,9 +8,8 @@ timeline.css
 } /* Made with http://icomoon.io/ */
 
 #buttons{
+    width: 1000px;
 	margin-top: 100px;
-	background: url(/img/menu_image/category-background.jpeg);
-    background-size: 110px;
 }
 
 #chat-container{
