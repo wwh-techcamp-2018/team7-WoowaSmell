@@ -1,4 +1,4 @@
-import {fetchManager, addDropdownListener} from "/js/util/utils.js";
+import {fetchManager} from "/js/util/utils.js";
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -11,7 +11,6 @@ export class ClosetReviewScroll{
         this.filterId = 0;
         $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
-        addDropdownListener();
         this.loadReviews();
     }
 
