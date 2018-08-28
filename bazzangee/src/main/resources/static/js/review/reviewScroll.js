@@ -6,8 +6,9 @@ function $_(selector) {
 }
 
 export class ReviewScroll{
-    constructor(id) {
-        this.foodCategoryId = id;
+    constructor({foodCategoryId, chatobj}) {
+        this.foodCategoryId = foodCategoryId;
+        this.chat = chatobj;
         this.filterId = 0;
         this.currentPage = 0;
         this.canLoad = true;
@@ -97,6 +98,7 @@ export class ReviewScroll{
 
     onSuccessLoad(response) {
         response.json().then((reviews) => {
+            this.chat.changeChatRoom(this.foodCategoryId);
             if(reviews.length === 0) {
                 this.canLoad = false;
                 document.removeEventListener('scroll', this.onScrollDown.bind(this));
@@ -128,6 +130,10 @@ export class ReviewScroll{
             var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
             $_("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
         }
+    }
+
+    onFailUpdateGood(error) {
+        alert(error.message);
     }
 
     onFailUpdateGood(error) {

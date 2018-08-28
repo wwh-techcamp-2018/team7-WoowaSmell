@@ -11,6 +11,11 @@ timeline.css
 	margin-top: 150px;
 }
 
+#chat-container{
+	position: fixed;
+	right: 0;
+}
+
 #timeline-align-container{
 	display: flex;
 	text-align: right;

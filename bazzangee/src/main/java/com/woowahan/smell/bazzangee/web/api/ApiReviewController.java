@@ -87,7 +87,6 @@ public class ApiReviewController {
             throw new ValidationException("유효하지 않은 확장자입니다.");
         }
 
-
         // JSONObject 사용
         JSONObject jsonObject = new JSONObject();
         String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));

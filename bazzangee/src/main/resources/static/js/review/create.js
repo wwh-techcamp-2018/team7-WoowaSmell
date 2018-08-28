@@ -61,7 +61,6 @@ function reviewSubmitHandler(evt) {
     const orderFood = evt.target.closest('li');
     orderFood.classList.toggle('submitted-li', true);
     const card = evt.target.closest(".card");
-
     var formData = new FormData();
     formData.append('orderFoodId', orderFood.getAttribute('data-id'));
     formData.append('contents', card.querySelector('.card-text').value);

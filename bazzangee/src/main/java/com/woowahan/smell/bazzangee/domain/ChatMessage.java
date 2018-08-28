@@ -1,9 +1,15 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.woowahan.smell.bazzangee.dto.ChatMessageResponseDto;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@ToString
+@NoArgsConstructor
 public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +25,27 @@ public class ChatMessage {
     private String contents;
     @Column
     private LocalDateTime writtenTime;
+
+    @Column
+    private String imageURL;
+
+    public ChatMessage(User user, Chat chat, String contents, String imageURL) {
+        this.user = user;
+        this.chat = chat;
+        this.contents = contents;
+        this.writtenTime = LocalDateTime.now();
+        this.imageURL = imageURL;
+    }
+
+    public ChatMessageResponseDto toChatMessageResponseDto() {
+        return new ChatMessageResponseDto(
+                id,
+                user.getId(),
+                user.getName(),
+                contents,
+                user.getImageUrl(),
+                imageURL,
+                writtenTime
+        );
+    }
 }

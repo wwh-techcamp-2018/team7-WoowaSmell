@@ -2,10 +2,7 @@ package com.woowahan.smell.bazzangee.domain;
 
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -55,11 +52,27 @@ public class User extends BaseTimeEntity {
         this.imageUrl = imageUrl;
     }
 
+    public User(Long id, String userId, String name, String imageUrl) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
     public boolean matchPasswordBy(UserLoginDto userLoginDto, PasswordEncoder passwordEncoder) {
         if (!passwordEncoder.matches(userLoginDto.getPassword(), this.password)) {
             throw new NotMatchException("패스워드가 일치하지 않습니다.");
         }
         return true;
+    }
+
+    public User toLimitInfoUser() {
+        return new User(
+                this.id,
+                this.userId,
+                this.name,
+                this.imageUrl
+        );
     }
 
     @Override
