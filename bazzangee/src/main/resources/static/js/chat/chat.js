@@ -2,7 +2,7 @@ import { SocketManager } from '/js/util/socketManager.js';
 import { CHAT_ROOM } from '/js/util/enum.js';
 import { $, fetchManager } from '/js/util/utils.js';
 
-const CHAT_ROOM_START_INDEX = 9; // 전체 카테고리 인덱스
+const CHAT_ROOM_START_INDEX = Object.keys(CHAT_ROOM).length; // 전체 카테고리 인덱스
 
 export class Chat{
     constructor() {
