@@ -22,7 +22,6 @@ public class StatisticsService {
         }
         return RestaurantStatisticsDto.builder()
                 .restaurantName(restaurant.getName())
-                .restaurantAddress(restaurant.getAddress())
                 .starPoint(starPoint)
                 .foodPoints(restaurantRepository.getRestaurantFoodStarPoint(id))
                 .build();

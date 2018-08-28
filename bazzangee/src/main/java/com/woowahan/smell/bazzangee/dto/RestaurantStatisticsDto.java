@@ -13,7 +13,6 @@ import java.util.Map;
 public class RestaurantStatisticsDto {
 
     private String restaurantName;
-    private String restaurantAddress;
     private double starPoint;
     private List<Map<String, String>> foodPoints;
 }
