@@ -8,7 +8,8 @@ timeline.css
 } /* Made with http://icomoon.io/ */
 
 #buttons{
-	margin-top: 150px;
+    width: 1000px;
+	margin-top: 100px;
 }
 
 #chat-container{
@@ -35,7 +36,7 @@ timeline.css
 	top: 0;
 	bottom: 0;
 	width: 10px;
-	background: #3d4b594a;
+	background: #36bfb84a;
 	left: 20%;
 	margin-left: -10px;
 }
@@ -62,18 +63,18 @@ timeline.css
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:last-child {
-	font-size: 2.9em;
-	color: #164C49;
+	font-size: 2.0em;
+	color: #288C87;
 }
 
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmtime span:last-child {
-	color: #3D4B59;
+	color: #36bfb8;
 }
 
 /* Right content */
 .cbp_tmtimeline > li .cbp_tmlabel {
 	margin: 0 0 15px 25%;
-	background: #164C49;
+	background: #288C87;
 	color: #fff;
 	padding: 2em;
 	font-weight: 300;
@@ -83,7 +84,7 @@ timeline.css
 }
 
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-	background: #3D4B59;
+	background: #36bfb8;
 }
 
 .cbp_tmtimeline > li .cbp_tmlabel h4 {
@@ -101,13 +102,13 @@ timeline.css
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-right-color: #164C49;
+	border-right-color: #288C87;
 	border-width: 10px;
 	top: 10px;
 }
 
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
-	border-right-color: #3D4B59;
+	border-right-color: #36bfb8;
 }
 
 /* The icons */
@@ -125,9 +126,9 @@ timeline.css
 	-webkit-font-smoothing: antialiased;
 	position: absolute;
 	color: #fff;
-	background: #3D4B59;
+	background: #36bfb8;
 	border-radius: 50%;
-	box-shadow: 0 0 0 8px #3d4b594a;
+	box-shadow: 0 0 0 8px #36bfb84a;
 	text-align: center;
 	left: 20%;
 	top: 0;
@@ -204,13 +205,13 @@ timeline.css
 		right: auto;
 		left: 20px;
 		border-right-color: transparent;
-		border-bottom-color: #164C49;
+		border-bottom-color: #288C87;
 		top: -20px;
 	}
 
 	.cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
 		border-right-color: transparent;
-		border-bottom-color: #3D4B59;
+		border-bottom-color: #36bfb8;
 	}
 
 	.cbp_tmtimeline > li .cbp_tmicon {

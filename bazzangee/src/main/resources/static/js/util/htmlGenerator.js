@@ -279,6 +279,12 @@ const HtmlGenerator = (function () {
                     </li>
                 <li>`;
             }
+        },
+
+        getMyAlarmHTML(goodResponseDto) {
+            return `<a class="dropdown-item" href="#">
+                ${goodResponseDto.userName} 님이 ${goodResponseDto.reviewTitle} 에 부러워요를 눌렀습니다.
+            </a>`;
         }
     }
 })();

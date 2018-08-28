@@ -24,9 +24,7 @@ before_deploy:
 
 # CI 실행 완료시 메일로 알람
 notifications:
-  email:
-    recipients:
-      slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
+    slack: woowahan-techcamp:lcZvo31NIyp6sAgGAyRHSwtP
 
 deploy:
   - provider: s3

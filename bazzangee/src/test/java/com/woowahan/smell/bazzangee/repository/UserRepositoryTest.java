@@ -1,5 +1,6 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.repository;
 
+import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
