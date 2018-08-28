@@ -24,4 +24,5 @@ public class Restaurant {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_food_category"))
     private FoodCategory foodCategory;
+
 }
