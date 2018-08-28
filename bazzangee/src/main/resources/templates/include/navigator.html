@@ -1,23 +1,27 @@
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-main">
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" style="padding: 0px 300px">
     <a class="navbar-brand" href="/"><img src="/img/logo.png" height="70px" /></a>
     <ul class="navbar-nav ml-auto navbar-left">
-        <li class="nav-item" id="chart">
-            <a class="nav-link" href="#">
-                <i class="fa fa-bullhorn">
-                    <span class="badge badge-danger">11</span>
-                </i>
-                쪽지
-            </a>
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a id="my-alarm" class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-envelope-o">
+                        <span id="my-alarm-badge" class="badge badge-danger">0</span>
+                    </i>
+                    알림
+                </a>
+                <div id="my-alarm-list" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                </div>
+            </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/closet">
+            <a class="nav-link" style="color: gray; font-weight: bold;" href="/closet">
                 <i class="fa fa-bullhorn"> </i>내 옷장
             </a>
         </li>
         {{#loginUser}}
-        <div class="menubar">
-            <li class="">
-                <a href="#" class="user-profile dropdown-toggle">
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{#loginUser.imageUrl}}
                     <img src="{{loginUser.imageUrl}}" style="width: 29px; height: 29px"> {{loginUser.name}}
                     {{/loginUser.imageUrl}}
@@ -25,24 +29,36 @@
                     <img src="/img/avatar.png" style="width: 29px; height: 29px"> {{loginUser.name}}
                     {{/loginUser.imageUrl}}
                 </a>
-                <ul class="menuitem" style="display:none">
-                    <li><a href="/api/users/logout" id="logout">Logout</a></li>
-                </ul>
-            </li>
-        </div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="/api/users/logout" id="logout">Logout</a>
+                </div>
+            </div>
+        </li>
         {{/loginUser}}
         {{^loginUser}}
-        <div class="menubar">
-            <li class="">
-                <a href="#" class="user-profile dropdown-toggle">
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="/img/no_profile.png" style="width: 29px; height: 29px"> Welcome, Guest!
                 </a>
-                <ul class="menuitem" style="display:none">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/join">Join</a></li>
-                </ul>
-            </li>
-        </div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="/login">Login</a>
+                    <a class="dropdown-item" href="/join">Join</a>
+                </div>
+            </div>
+        </li>
         {{/loginUser}}
     </ul>
 </nav>
+<div id="tabbar" align="center">
+    <div id="buttons">
+        <button value="0" class="category_button clicked" style="background-image: url(/img/menu_image/ride.jpeg);"></button>
+        <button value="1" class="category_button" style="background-image: url(/img/menu_image/chicken.jpeg);"></button>
+        <button value="2" class="category_button" style="background-image: url(/img/menu_image/pizza.jpeg);"></button>
+        <button value="3" class="category_button" style="background-image: url(/img/menu_image/hansik.jpeg);"></button>
+        <button value="4" class="category_button" style="background-image: url(/img/menu_image/jungsik.jpeg);"></button>
+        <button value="6" class="category_button" style="background-image: url(/img/menu_image/jokbal.jpeg);"></button>
+        <button value="7" class="category_button" style="background-image: url(/img/menu_image/ilsik.jpeg);"></button>
+        <button value="8" class="category_button" style="background-image: url(/img/menu_image/yasik.jpeg);"></button>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 package com.woowahan.smell.bazzangee.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
-import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
+import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
+import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

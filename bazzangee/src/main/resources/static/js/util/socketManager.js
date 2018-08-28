@@ -25,8 +25,7 @@ export class SocketManager {
         this.stompClient.send(url, contentType, JSON.stringify(dataObject));
     }
 
-    disconnect(preFunction, callback) {
-        if(preFunction != null) preFunction();
+    disconnect(callback) {
         if (this.stompClient != null) {
             this.stompClient.disconnect();
             this.socket = null;

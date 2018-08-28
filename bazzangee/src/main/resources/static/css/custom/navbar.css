@@ -116,10 +116,12 @@
 .bg-main {
     background: #36bfb8 !important;
 }
+.color-main {
+    color: #36bfb8 !important;
+}
 .navbar-nav > li > a{
     font-weight:500;
     line-height:32px;
-    color:white !important;
     padding: 13px 15px 12px;
     position: relative;
     display: block;
@@ -129,6 +131,7 @@
     top: 0;
     width: 100%;
     z-index: 2;
+    background: white;
 }
 
 .menubar {
@@ -151,6 +154,10 @@
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba~(0,0,0,.15);
+    border: 1px solid rgba(0,0,0,.15);
     border-radius: .25rem;
+}
+.navbar-header{
+    text-align: center;
+    width: 100%;
 }

@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.dto;
+package com.woowahan.smell.bazzangee.dto.request;
 
 import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.Review;
