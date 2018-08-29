@@ -4,6 +4,8 @@
 <link href="/css/custom/login.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/rater/rater.css">
+<link href="/css/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<link href="/css/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 {{/partial}}
 {{#partial "content"}}
 
@@ -65,7 +67,7 @@
         <img src="img/ready.png" style="max-width: 100%"/>
     </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form role="form">
@@ -86,13 +88,96 @@
                 </div> <!-- /.modal-body -->
 
                 <div class="modal-footer">
+                    <p id="login-validate-span"></p>
                     <button type="submit" id="btnLogin" class="form-control btn btn-primary bg-main" style="border-color: #36bfb8;">로그인</button>
-                    <div id="kakao-login-btn" class="form-control btn width100"></div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
-                            <span class="sr-only">progress</span>
+                    <img id="kakao-login-btn" width="100%">
+                </div> <!-- /.modal-footer -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="join-modal-dialog">
+        <div class="modal-content">
+            <form role="form">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-align: right">×</button>
+                    <img src="/img/join_logo.png" width="100%">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="email">아이디</label>
+                                <div class="input-group">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="baezzangee@woowahan.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="name">이름</label>
+                                <div class="input-group">
+                                    <input id="name" class="form-control" name="name" placeholder="이름을 입력해주세요." type="text">
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="joinpassword">비밀번호</label>
+                                <div class="input-group">
+                                    <input id="joinpassword" type="password" name="joinpassword" class="form-control" placeholder="8-16자리 영문,숫자,특수문자로 조합">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="repassword">비밀번호 확인</label>
+                                <div class="input-group">
+                                    <input id="repassword" type="password" name="repassword" class="form-control" placeholder="8-16자리 영문,숫자,특수문자로 조합">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="name">전화번호</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="phone" placeholder="- 없이 입력해주세요.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label" for="birth">생년월일</label>
+                                <div class="form-group input-group date" id="birth-container" style="position: relative">
+                                    <span class="input-group-addon"><span class="fa fa-calendar" style="position: absolute; right: 13px; top: 11px; font-size: 18px; z-index: 4"></span></span>
+                                    <input type="text" class="form-control" id="birth" placeholder="2018-01-01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.modal-body -->
+                <div class="modal-footer">
+                    <span id="join-validation-span"></span>
+                    <button type="button" id="join-form-send-btn" class="form-control btn btn-primary bg-main" style="border-color: #36bfb8; margin: 0px; width: 49%;">회원가입</button>
+                    <button type="button" data-dismiss="modal" class="form-control btn btn-danger" style="margin: 0px; margin-left: 1%; width: 49%;">취소</button>
+                </div> <!-- /.modal-footer -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="joinSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-align: right">×</button>
+                    <img src="/img/join_success.png" width="100%">
+                </div> <!-- /.modal-body -->
+                <div class="modal-footer">
+                    <button type="submit" data-dismiss="modal" class="form-control btn btn-primary bg-main" style="border-color: #36bfb8;">로그인해주세요.</button>
                 </div> <!-- /.modal-footer -->
             </form>
         </div><!-- /.modal-content -->
@@ -100,10 +185,13 @@
 </div><!-- /.modal -->
 {{/partial}}
 {{#partial "footer"}}
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/js/moment/moment.min.js"></script>
+<script src="/css/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/css/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script type="module" src="/js/home/home.js"></script>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<script src="/jquery/dist/jquery.min.js"></script>
 <script src="/js/review/rater.js" charset="utf-8"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="module" src="/js/user/login.js"></script>

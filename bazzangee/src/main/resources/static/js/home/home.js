@@ -1,53 +1,29 @@
 import { ReviewScroll } from "/js/review/reviewScroll.js";
 import { Chat } from "/js/chat/chat.js";
+import { JoinValidator } from "/js/user/joinValidator.js";
 
-const chat = new Chat();
+$(document).ready(function(){
+    $('#birth-container').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+});
+
+function hideModal(modalId) {
+    $("#" + modalId).modal('hide');
+}
+
+function showModal(modalId) {
+    $("#" + modalId).modal('show');
+}
+
+const chat = new Chat({
+    showModalFunc: showModal
+});
 const reviewScroll = new ReviewScroll({
     foodCategoryId : 0,
     chatobj : chat
 });
-
-$(document).ready(function(){
-    $('.modal-footer button').click(function(){
-        var button = $(this);
-
-        if ( button.attr("data-dismiss") != "modal" ){
-            var inputs = $('form input');
-            var title = $('.modal-title');
-            var progress = $('.progress');
-            var progressBar = $('.progress-bar');
-
-            inputs.attr("disabled", "disabled");
-            button.hide();
-            progress.show();
-            progressBar.animate({width : "100%"}, 100);
-            progress.delay(1000)
-                .fadeOut(600);
-
-            button.text("Close")
-                .removeClass("btn-primary")
-                .addClass("btn-success")
-                .blur()
-                .delay(1600)
-                .fadeIn(function(){
-                    title.text("Log in is successful");
-                    button.attr("data-dismiss", "modal");
-                });
-        }
-    });
-
-    $('#myModal').on('hidden.bs.modal', function (e) {
-        const inputs = $('form input');
-        const title = $('.modal-title');
-        const progressBar = $('.progress-bar');
-        const button = $('.modal-footer button');
-
-        inputs.removeAttr("disabled");
-        title.text("Log in");
-        progressBar.css({ "width" : "0%" });
-        button.removeClass("btn-success")
-            .addClass("btn-primary")
-            .text("Ok")
-            .removeAttr("data-dismiss");
-    });
+const joinValidator = new JoinValidator({
+    hideModalFunc: hideModal,
+    showModalFunc: showModal
 });
