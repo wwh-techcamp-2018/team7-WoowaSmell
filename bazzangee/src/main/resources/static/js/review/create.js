@@ -84,20 +84,31 @@ function reviewSubmitHandler(evt) {
 }
 
 function reviewWriteHandler(evt) {
-    document.querySelectorAll('.card').forEach( (element) => {
-        element.classList.toggle('invisible', true);
-        element.parentElement.querySelector(".orderfood-review-write").classList.toggle('invisible', false);
+//    document.querySelectorAll('.card').forEach( (element) => {
+//        element.classList.toggle('invisible', true);
+//        element.parentElement.querySelector(".orderfood-review-write").classList.toggle('invisible', false);
+//    });
+//
+//    const card = evt.target.closest('li').querySelector('.card');
+//    card.classList.toggle('invisible', false);
+//    card.classList.toggle('card-selected', true);
+//    evt.target.classList.toggle('invisible', true);
+//    $(".rate").rate();
+//
+//    card.querySelector('.btn-primary').addEventListener("change", imageUploadHandler);
+//    card.querySelector('.btn-danger').addEventListener("click", imageDeleteHandler);
+//    card.querySelector('.btn-review-submit').addEventListener("click", reviewSubmitHandler);
+
+
+    const review_box = evt.target.closest('li');
+    const review_container = $_('.review-write-container');
+    review_container.innerHTML = review_box.innerHTML;
+    $_("#review_write_div").classList.toggle('visible', true);
+    $_("#review-close-btn").addEventListener("click", () => {
+        $_("#review_write_div").classList.toggle('visible', false);
     });
 
-    const card = evt.target.closest('li').querySelector('.card');
-    card.classList.toggle('invisible', false);
-    card.classList.toggle('card-selected', true);
-    evt.target.classList.toggle('invisible', true);
-    $(".rate").rate();
 
-    card.querySelector('.btn-primary').addEventListener("change", imageUploadHandler);
-    card.querySelector('.btn-danger').addEventListener("click", imageDeleteHandler);
-    card.querySelector('.btn-review-submit').addEventListener("click", reviewSubmitHandler);
 }
 
 function onSuccessUpdateForm(result) {
@@ -269,6 +280,7 @@ function reviewWriteCancelHandler(evt) {
 document.addEventListener("DOMContentLoaded", function() {
     // const reviewScroll = new ReviewScroll();
     document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
+        evt.preventDefault();
         if(evt.target.className === 'orderfood-review-write') {
             reviewWriteHandler(evt);
         }
