@@ -5,27 +5,102 @@
 <link rel="stylesheet" href="/css/rater/rater.css">
 {{/partial}}
 {{#partial "content"}}
-<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="timeline-container">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="0" checked> <span class="label-text">주문시간순</span>
-            </label>
+
+<div class="row" style="padding-top: 250px;">
+    <div class="offset-lg-1 offset-md-1 col-lg-5 col-md-5" id="timeline-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="timeline-align-container">
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="0" checked> <span class="label-text">최신 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="1"> <span class="label-text">별점 순</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
+                </label>
+            </div>
         </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="1"> <span class="label-text">별점순</span>
-            </label>
-        </div>
-        <div class="form-check">
-            <label>
-                <input type="radio" name="chk_info" value="2"> <span class="label-text">부러워요 순</span>
-            </label>
-        </div>
+        <ul class="cbp_tmtimeline" id="timeline_standard">
+        </ul>
     </div>
-    <ul class="cbp_tmtimeline" id="timeline_standard">
-    </ul>
+    <div class="col-lg-5 col-md-5" id="receipt-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="receipt-align-container"></div>
+        <ul class="cbp_tmtimeline_right" id="receipt_standard">
+            <li>
+                <time class="cbp_tmtime" datetime="2018-08-29T02:21:56"><span>2018-08-29</span> <span>02:21</span></time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel" style="display: flex">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <img src="/img/category_image/jokbal.png" width="100%">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-top: 10px">
+                            <button class="btn btn-warning width100 good-btn" style="text-align: center" data-value="591">
+                                <span style="color: whitesmoke; font-size: 1vw" data-value="591"><i class="fa fa-thumbs-up" data-value="591"></i>부러워요</span>
+                                <span style="color: #6b0f24; font-size: 1.2vw" data-value="591">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 card-contents" style="padding: 0px">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h4>해물부추전</h4>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="rate" data-rate-value="5" style="pointer-events: none; width: 69px; height: 24px; position: relative; cursor: default; user-select: none;"><div class="rate-base-layer" style="width: 100%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><div class="rate-select-layer" style="width: 100%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="rate-hover-layer" style="width: 0%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: none; white-space: nowrap;"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+                            <p>진짜 존맛탱이에요!!!!!</p>
+                            <p class="t-right fs07em">박좋아</p>
+                            <p class="t-right">
+                                <a href="#" style="font-weight: 600; color: aliceblue">
+                                    <i class="fa fa-map-marker"> 진배족발</i>
+                                </a>
+                                <button class="statistics" value="66"></button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="orderfood-li" data-id="520">
+                <time class="cbp_tmtime" datetime="2018-08-27T05:03:21"><span>2018-08-27</span> <span>05:03</span></time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel" style="display: flex">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <img src="/img/category_image/jungsik.png" width="100%">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-top: 10px">
+                            <button class="btn btn-warning width100 good-btn" style="text-align: center" data-value="520">
+                                <span style="color: whitesmoke; font-size: 1vw" data-value="520"><i class="fa fa-thumbs-up" data-value="520"></i>부러워요</span>
+                                <span style="color: #6b0f24; font-size: 1.2vw" data-value="520">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 card-contents" style="padding: 0px">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h4>서리태검은콩국수</h4>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="rate" data-rate-value="2" style="pointer-events: none; width: 69px; height: 24px; position: relative; cursor: default; user-select: none;"><div class="rate-base-layer" style="width: 100%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div><div class="rate-select-layer" style="width: 40%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="rate-hover-layer" style="width: 0%; height: 24px; overflow: hidden; position: absolute; top: 0px; display: none; white-space: nowrap;"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>
+                            <p>처음시켰는데 존맛탱이에요!!!!!</p>
+                            <p class="t-right fs07em">자바지기2</p>
+                            <p class="t-right">
+                                <a href="#" style="font-weight: 600; color: aliceblue">
+                                    <i class="fa fa-map-marker"> 중국관</i>
+                                </a>
+                                <button class="statistics" value="52"></button>
+                            </p>
+                            <div class="update-delete-btn">
+                                <input type="button" class="btn-review-update-form btn btn-danger" value="수정">
+                                <input type="button" class="btn-review-delete btn btn-danger" value="삭제">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
+<div id="loader" class="invisible"></div>
 <div id="chart_div" class="dialog">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
         <div class="x_title">
@@ -33,8 +108,6 @@
         <canvas id="foodChart" class="chart"></canvas>
     </div>
 </div>
-<div id="loader" class="invisible"></div>
-
 {{/partial}}
 {{#partial "footer"}}
 <script src="/jquery/dist/jquery.min.js"></script>

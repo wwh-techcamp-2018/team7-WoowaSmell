@@ -22,6 +22,12 @@ timeline.css
 	text-align: right;
 }
 
+#receipt-align-container{
+	display: flex;
+	text-align: right;
+	margin-top: 30px;
+}
+
 .cbp_tmtimeline {
 	margin: 20px 0 0 0;
 	padding: 0;
@@ -71,9 +77,70 @@ timeline.css
 	color: #36bfb8;
 }
 
+.cbp_tmtimeline_right {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+}
+
+/* The line */
+.cbp_tmtimeline_right:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 10px;
+	background: #36bfb84a;
+	right: 20%;
+	margin-right: -10px;
+}
+
+.cbp_tmtimeline_right > li {
+	position: relative;
+}
+
+/* The date/time */
+.cbp_tmtimeline_right > li .cbp_tmtime {
+    right: 0%;
+	display: block;
+	width: 25%;
+	padding-left: 100px;
+	position: absolute;
+}
+
+.cbp_tmtimeline_right > li .cbp_tmtime span {
+	text-align: left;
+}
+
+.cbp_tmtimeline_right > li .cbp_tmtime span:first-child {
+	font-size: 0.9em;
+	color: #bdd0db;
+}
+
+.cbp_tmtimeline_right > li .cbp_tmtime span:last-child {
+	font-size: 2.0em;
+	color: #288C87;
+}
+
+.cbp_tmtimeline_right > li:nth-child(odd) .cbp_tmtime span:last-child {
+	color: #36bfb8;
+}
+
 /* Right content */
 .cbp_tmtimeline > li .cbp_tmlabel {
 	margin: 0 0 15px 25%;
+	background: #288C87;
+	color: #fff;
+	padding: 2em;
+	font-weight: 300;
+	line-height: 1.4;
+	position: relative;
+	border-radius: 5px;
+}
+
+.cbp_tmtimeline_right > li .cbp_tmlabel {
+	margin: 0 25% 15px 0;
 	background: #288C87;
 	color: #fff;
 	padding: 2em;
@@ -133,6 +200,29 @@ timeline.css
 	left: 20%;
 	top: 0;
 	margin: 0 0 0 -25px;
+}
+
+.cbp_tmtimeline_right > li .cbp_tmicon {
+	width: 40px;
+	height: 40px;
+	font-family: 'ecoico';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	font-size: 1.4em;
+	line-height: 40px;
+	-webkit-font-smoothing: antialiased;
+	position: absolute;
+	color: #fff;
+	background: #36bfb8;
+	border-radius: 50%;
+	box-shadow: 0 0 0 8px #36bfb84a;
+	text-align: center;
+	right: 20%;
+	top: 0;
+	margin: 0 -25px 0 0;
 }
 
 .cbp_tmicon-phone:before {
