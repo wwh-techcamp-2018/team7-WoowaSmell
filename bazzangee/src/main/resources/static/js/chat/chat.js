@@ -182,6 +182,7 @@ export class Chat {
         let alarms = localStorage.getItem("myAlarm");
         alarms = alarms ? JSON.parse(alarms) : [];
 
+        console.log(alarms);
         $("#my-alarm-badge").innerText = alarms.length;
         $("#my-alarm-list").innerHTML = null;
 
