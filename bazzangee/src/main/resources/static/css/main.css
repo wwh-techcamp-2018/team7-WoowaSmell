@@ -102,21 +102,27 @@
     outline:none;
 }
 
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.card-body {
+    padding: 0;
+}
+
 .card-position {
-    width:450px;
     position: relative;
-    left: -78px;
 }
 
 .card-text {
-    width: 330px;
+    height: 100px;
 }
 
 .btn-remove-image {
-    width: 38px;
-    position: absolute;
-    height: 44px;
-    right: 248px;
+    float: right;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 #tabbar{
@@ -130,4 +136,31 @@
 
 .card-contents {
     word-break: break-all;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border-color: transparent;
+    width: 250px;
+}
+
+.update-delete-btn, .submit-cancel-btn, .update-cancel-btn{
+    margin-top: 5px;
+    float: right;
+}
+
+.btn-review-update-form, .btn-review-update, .btn-review-delete, .btn-review-submit, .btn-review-submit-cancel, .btn-review-update-cancel {
+    color: white;
+    background-color: transparent;
+    border: 1px solid;
+    font-size: 10px;
+}
+
+.review-create-btn {
+    margin: 20px 0;
+}
+
+.review-create-btn-image {
+    width: 40px;
+    height: 40px;
 }
