@@ -31,7 +31,6 @@ export class Chartjs {
 
             $_(".x_title").innerHTML = `<button id="chart-exit" style="float:right" class="btn btn-danger">X</button><span><h2>${response.restaurantName}</h2></span>
                 <div><div class="rate" data-rate-value="${response.starPoint}" style="float:left; pointer-events:none;"></div><div style="padding-left:75px"> ${response.starPoint}</div style="float:left; padding-left:5px;"></div>`
-            console.log("success response : ", response);
             $(".rate").rate();
 
             this.makeRestaurantFoodsChart(response.foodPoints);
@@ -88,9 +87,8 @@ export class Chartjs {
         data.datasets[0].data = [];
 
         for (var i = 0; i < foodPoints.length; i++) {
-            console.log(i+1 + " is " + foodPoints[i].NAME + " and " + foodPoints[i].AVG_POINT);
-            data.labels[i] = foodPoints[i].NAME;
-            data.datasets[0].data[i] = foodPoints[i].AVG_POINT;
+            data.labels[i] = foodPoints[i].name;
+            data.datasets[0].data[i] = foodPoints[i].avg_point;
         }
 
         var ctx = document.getElementById("foodChart");
@@ -118,7 +116,6 @@ export class Chartjs {
 //        response.json().then(response => {
             $_(".x_title").innerHTML = `<button id="chart-exit" style="float:right" class="btn btn-danger">X</button><span><h2>데이터가 없습니다. T.T<small></small></h2></span>`
             this.showChart(true);
-            console.log("fail response : ", response);
             document.addEventListener("click", this.onClickChartExitListener.bind(this));
 //        })
     }

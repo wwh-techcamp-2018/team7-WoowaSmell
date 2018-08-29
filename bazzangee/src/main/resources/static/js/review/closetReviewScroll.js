@@ -61,7 +61,19 @@ export class ClosetReviewScroll{
 
     onSuccessLoad(response) {
         response.json().then((orderFoods) => {
-            orderFoods.forEach(this.appendOrderFoodHTML);
+        var orderFoodsWithReview = [];
+        var orderFoodsWithoutReview = [];
+        orderFoods.forEach((orderfood) => {
+            if(orderfood.review) {
+                orderFoodsWithReview.push(orderfood);
+            } else {
+                orderFoodsWithoutReview.push(orderfood);
+            }
+        })
+//            console.log("WithReviews : ", orderFoodsWithReview)
+//            console.log("WithoutReviews : ", orderFoodsWithoutReview)
+            orderFoodsWithReview.forEach(this.appendOrderFoodsWithReviewHTML);
+            orderFoodsWithoutReview.forEach(this.appendOrderFoodsWithoutReviewHTML);
             $_("#loader").classList.toggle("invisible");
             $(".rate").rate();
             this.chart.addChartListener();
@@ -69,9 +81,18 @@ export class ClosetReviewScroll{
     }
 
     // 옷장 첫 로딩시 호출
-    appendOrderFoodHTML(orderFood) {
-        var orderFoodHTML = HtmlGenerator.getOrderFoodHTML(orderFood);
-       $_("#timeline_standard").insertAdjacentHTML("beforeend", orderFoodHTML);
+    appendOrderFoodsWithReviewHTML(orderFood) {
+//    console.log(orderFood)
+
+        var OrderFoodWithReviewHTML = HtmlGenerator.getOrderFoodWithReviewHTML(orderFood);
+       $_("#timeline_standard").insertAdjacentHTML("beforeend", OrderFoodWithReviewHTML);
+    }
+
+    appendOrderFoodsWithoutReviewHTML(orderFood) {
+//    console.log(orderFood)
+
+        var OrderFoodWithoutReviewHTML = HtmlGenerator.getOrderFoodWithoutReviewHTML(orderFood);
+       $_("#receipt_standard").insertAdjacentHTML("beforeend", OrderFoodWithoutReviewHTML);
     }
 
     onFailLoad(msg) {

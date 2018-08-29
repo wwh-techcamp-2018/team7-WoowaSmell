@@ -21,10 +21,6 @@ const chartjs = new Chartjs();
 const chat = new Chat({
     showModalFunc: showModal
 });
-const reviewScroll = new ReviewScroll({
-    foodCategoryId : 0,
-    chatobj : chat
-});
 const joinValidator = new JoinValidator({
     hideModalFunc: hideModal,
     showModalFunc: showModal
