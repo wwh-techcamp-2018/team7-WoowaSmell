@@ -92,6 +92,8 @@ const HtmlGenerator = (function () {
                     <div class="cbp_tmicon cbp_tmicon-phone"></div>
                     <div class="cbp_tmlabel" style="display: flex">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
+                            <img class="review_upload_image" src="" width="100%">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-top: 10px">
                             </div>
                         </div>
@@ -100,16 +102,18 @@ const HtmlGenerator = (function () {
                             <h4>${orderFood.food.name}</h4>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
+                                <div class="review-create-btn" align="center">
+                                    <button type="button" class="orderfood-review-write btn">리뷰 <img class="review-create-btn-image" src="/img/review_icon.png" > 쓰기</button>
+                                </div>
                                 <div class="card card-position invisible">
-                                    <img class="card-img-top" src="" style="width:200px">
-                                    <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
                                     <div class="card-body">
-                                        <textarea rows="4" cols="50" name="contents" class="card-text"></textarea>
-                                        <input type="file" name="image" class="btn btn-primary" accept="image/*">
                                         <div class="rate" data-rate-value="0"></div>
-                                        <input type="button" class="btn-review-submit btn btn-danger" value="저장">
-                                        <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
+                                        <textarea rows="4" cols="50" name="contents" class="card-text" placeholder="리뷰를 작성해주세요."></textarea>
+                                        <input type="file" name="image" class="btn btn-primary" accept="image/*">
+                                        <div class="submit-cancel-btn">
+                                            <input type="button" class="btn-review-submit btn btn-danger" value="저장">
+                                            <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
@@ -134,7 +138,6 @@ const HtmlGenerator = (function () {
             let orderedTime = orderTime.slice(11, 16);
             let reviewId = reviewDto.review.id;
             let contents = reviewDto.review.contents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-            console.log(contents);
             const reviewDtoHTML = `
                <time class="cbp_tmtime" datetime="${orderTime}"><span>${orderedDate}</span> <span>${orderedTime}</span></time>
                <div class="cbp_tmicon cbp_tmicon-phone"></div>
@@ -182,6 +185,8 @@ const HtmlGenerator = (function () {
                     <div class="cbp_tmicon cbp_tmicon-phone"></div>
                     <div class="cbp_tmlabel" style="display: flex">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
+                            <img class="review_upload_image" src="" width="100%">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-top: 10px">
                             </div>
                         </div>
@@ -190,16 +195,18 @@ const HtmlGenerator = (function () {
                             <h4>${orderFood.food.name}</h4>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
+                                <div class="review-create-btn" align="center">
+                                    <button type="button" class="orderfood-review-write btn">리뷰 <img class="review-create-btn-image" src="/img/review_icon.png" > 쓰기</button>
+                                </div>
                                 <div class="card card-position invisible">
-                                    <img class="card-img-top" src="" style="width:200px">
-                                    <button type="button" class="btn btn-danger btn-remove-image invisible">X</button>
                                     <div class="card-body">
-                                        <textarea rows="4" cols="50" name="contents" class="card-text"></textarea>
-                                        <input type="file" name="image" class="btn btn-primary" accept="image/*">
                                         <div class="rate" data-rate-value="0"></div>
-                                        <input type="button" class="btn-review-submit btn btn-danger" value="저장">
-                                        <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
+                                        <textarea rows="4" cols="50" name="contents" class="card-text" ></textarea>
+                                        <input type="file" name="image" class="btn btn-primary" accept="image/*">
+                                        <div class="submit-cancel-btn">
+                                            <input type="button" class="btn-review-submit btn btn-danger" value="저장">
+                                            <input type="button" class="btn-review-submit-cancel btn btn-danger" value="취소">
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
@@ -252,9 +259,11 @@ const HtmlGenerator = (function () {
                                         </a>
                                         <button class="statistics" value="${orderFood.food.restaurant.id}"></button>
                                     </p>
-                                    <div class="update-delete-btn">
-                                        <input type="button" class="btn-review-update btn btn-danger" value="수정">
-                                        <input type="button" class="btn-review-update-cancel btn btn-danger" value="취소">
+                                    <div>
+                                        <div class="update-cancel-btn">
+                                            <input type="button" class="btn-review-update btn btn-danger" value="수정">
+                                            <input type="button" class="btn-review-update-cancel btn btn-danger" value="취소">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -1,7 +1,6 @@
 function mapSearchHandler(evt) {
     evt.preventDefault();
     const searchText = evt.target.innerText;
-    console.log(searchText);
     $("#daum-map-search").classList.toggle('visible', true);
     $("#daum-map-search .map-restaurant").innerText = searchText;
     $("#map-close-btn").addEventListener("click", () => {
