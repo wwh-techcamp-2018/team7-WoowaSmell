@@ -21,7 +21,7 @@ export class Chat {
 
     addEventListeners() {
         $("#chat-message-send").addEventListener("keyup", this.onKeyUpChatTextArea.bind(this));
-        $("#chat-send-image").addEventListener("click", this.changeImage.bind(this));
+        $("#chat-send-image").addEventListener("change", this.changeImage.bind(this));
         $("#chat-send-btn").addEventListener("click", this.onClickSendingButton.bind(this));
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
     }
@@ -182,7 +182,6 @@ export class Chat {
         let alarms = localStorage.getItem("myAlarm");
         alarms = alarms ? JSON.parse(alarms) : [];
 
-        console.log(alarms);
         $("#my-alarm-badge").innerText = alarms.length;
         $("#my-alarm-list").innerHTML = null;
 
