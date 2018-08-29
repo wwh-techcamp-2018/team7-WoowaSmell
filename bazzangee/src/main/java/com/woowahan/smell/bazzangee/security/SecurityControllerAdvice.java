@@ -49,4 +49,5 @@ public class SecurityControllerAdvice {
         log.debug("IllegalArgumentException is happened!");
         return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
+
 }

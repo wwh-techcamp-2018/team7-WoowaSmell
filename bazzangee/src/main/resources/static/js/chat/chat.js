@@ -1,6 +1,6 @@
-import { SocketManager } from '/js/util/socketManager.js';
-import { CHAT_ROOM } from '/js/util/enum.js';
-import { $, fetchManager } from '/js/util/utils.js';
+import {SocketManager} from '/js/util/socketManager.js';
+import {CHAT_ROOM} from '/js/util/enum.js';
+import {$, fetchManager} from '/js/util/utils.js';
 
 const CHAT_ROOM_START_INDEX = Object.keys(CHAT_ROOM).length; // 전체 카테고리 인덱스
 
@@ -15,13 +15,14 @@ export class Chat{
     }
 
     onLoadDocument() {
+        $("#chat-message-send").addEventListener("keyup", this.onKeyUpChatTextArea.bind(this));
+        $("#chat-send-image").addEventListener("change", this.changeImage.bind(this));
         this.addEventListeners();
     }
 
     addEventListeners() {
-        $("#chat-message-send").addEventListener("keydown", this.onKeyDownChatTextArea.bind(this));
-        $("#chat-send-image").addEventListener("click", this.onClickImageButton.bind(this));
-        $("#chat-send-file").addEventListener("click", this.onClickFileButton.bind(this));
+        $("#chat-message-send").addEventListener("keyup", this.onKeyUpChatTextArea.bind(this));
+        $("#chat-send-image").addEventListener("change", this.changeImage.bind(this));
         $("#chat-send-btn").addEventListener("click", this.onClickSendingButton.bind(this));
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
     }
@@ -31,19 +32,30 @@ export class Chat{
         setTimeout(function () {
             this.showPopup(false);
         }.bind(this), 1000);
-        // if(this.me == null) {
-        // }
-        // file 전송 구현
     }
 
-    onClickImageButton() {
-        this.showPopup(true);
-        setTimeout(function () {
-            this.showPopup(false);
-        }.bind(this), 1000);
-        // if(this.me == null) {
-        // }
-        // file 전송 구현
+    changeImage(evt) {
+        this.imageUploadHandler(evt);
+    }
+
+    // 이미지 업로드 Ajax
+    imageUploadHandler(evt) {
+        var formData = new FormData();
+        formData.append('data', evt.target.files[0]);
+
+        fetchManager({
+            url: '/api/reviews/upload',
+            method: 'POST',
+            body: formData,
+            callback: this.onSuccessImageUpload.bind(this)
+        });
+    }
+
+
+    onSuccessImageUpload(result) {
+        result.json().then(result => {
+            this.socketManager.sendMessage("/img", {}, {imageURL: result.url, roomId: this.chatRoomId});
+        })
     }
 
     onClickSendingButton() {
@@ -51,7 +63,12 @@ export class Chat{
             this.showModalFunc("loginModal");
             return;
         }
-        this.socketManager.sendMessage("/chat", {}, { message: $("#chat-message-send").value, roomId: this.chatRoomId });
+
+        // 채팅 창에 입력된 내용이 없이 엔터칠 경우
+        if($("#chat-message-send").value.trim().length === 0) {
+            return false;
+        }
+        this.socketManager.sendMessage("/chat", {}, {message: $("#chat-message-send").value, roomId: this.chatRoomId});
         $("#chat-message-send").value = null;
     }
 
@@ -64,10 +81,24 @@ export class Chat{
         this.socketManager.sendMessage("/good", {}, this.clickedTarget.getAttribute("data-value"));
     }
 
-    onKeyDownChatTextArea({keyCode, target}) {
-        if(keyCode === 13) {
-            this.socketManager.sendMessage("/chat", {}, { message: target.value, roomId: this.chatRoomId });
-            $("#chat-message-send").value = null;
+    onConnect(frame) {
+        this.subscribes();
+        $("#chat-message-container").innerHTML = null;
+        $("#chat-name").innerText = CHAT_ROOM[this.chatRoomId].name + " 채팅";
+        this.socketManager.sendMessage("/info", {}, {roomId: this.chatRoomId});
+    }
+
+
+    onKeyUpChatTextArea(evt) {
+        if (evt.keyCode === 13) {
+            if (!evt.shiftKey) {
+                // 채팅 창에 입력된 내용이 없이 엔터칠 경우
+                if ($("#chat-message-send").value.trim().length === 0) {
+                    return false;
+                }
+                this.socketManager.sendMessage("/chat", {}, {message: evt.target.value, roomId: this.chatRoomId});
+                $("#chat-message-send").value = null;
+            }
         }
     }
 
@@ -124,10 +155,17 @@ export class Chat{
     }
 
     addNewMessage(message) {
-        $("#chat-message-container").insertAdjacentHTML(
-            "beforeend",
-            HtmlGenerator.getChatMessageHTML(message, (this.me != null ? this.me.name : ""))
-        );
+        if(message.imageURL == null) {
+            $("#chat-message-container").insertAdjacentHTML(
+                "beforeend",
+                HtmlGenerator.getChatMessageHTML(message, (this.me != null ? this.me.name : ""))
+            );
+        } else {
+            $("#chat-message-container").insertAdjacentHTML(
+                "beforeend",
+                HtmlGenerator.getChatImageHTML(message,  (this.me != null ? this.me.name : ""))
+            );
+        }
         $(".chat-history").scrollTop = $(".chat-history").scrollHeight;
     }
 
@@ -136,10 +174,16 @@ export class Chat{
         this.socketManager.disconnect(this.loadChat.bind(this));
     }
 
+    sendBye() {
+        const message = "";
+        this.socketManager.sendMessage("/bye", {}, {message: message});
+    }
+
     initAlarmUI() {
         let alarms = localStorage.getItem("myAlarm");
         alarms = alarms ? JSON.parse(alarms) : [];
 
+        console.log(alarms);
         $("#my-alarm-badge").innerText = alarms.length;
         $("#my-alarm-list").innerHTML = null;
 
@@ -149,7 +193,7 @@ export class Chat{
     updateUI() {
         const isLogin = (this.me != null);
         $("#chat-message-send").disabled = !isLogin;
-        if(isLogin) {
+        if (isLogin) {
             $("#chat-avatar").setAttribute("src", this.me.imageUrl || "/img/avatar.png");
             $("#chat-message-send").classList.remove("disabled-ui");
         } else {
@@ -172,7 +216,12 @@ export class Chat{
     }
 
     showPopup(isVisible) {
-        if(isVisible) $("#dialog").classList.add("visible");
+        if (isVisible) $("#dialog").classList.add("visible");
         else $("#dialog").classList.remove("visible");
     }
+
+}
+
+class ChatControll {
+
 }

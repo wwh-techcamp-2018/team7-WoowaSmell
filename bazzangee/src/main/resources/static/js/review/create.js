@@ -1,4 +1,7 @@
 import {fetchManager} from "/js/util/utils.js";
+import {Chartjs} from "/js/chartjs/chartjs.js";
+
+const chartjs = new Chartjs();
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -48,20 +51,20 @@ function imageDeleteHandler(evt) {
 
 function onSuccessWrite(response) {
     response.json().then(reviewDto => {
-            var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
-            let reviewBox = $_(".submitted-li");
-            reviewBox.innerHTML = '';
-            reviewBox.innerHTML = reviewDtoHTML;
-            reviewBox.classList.toggle('submitted-li', false);
-            $(".rate").rate();
-        })
+        var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
+        let reviewBox = $_(".submitted-li");
+        reviewBox.innerHTML = '';
+        reviewBox.innerHTML = reviewDtoHTML;
+        reviewBox.classList.toggle('submitted-li', false);
+        chartjs.addChartListener();
+        $(".rate").rate();
+    })
 }
 
 function reviewSubmitHandler(evt) {
     const orderFood = evt.target.closest('li');
     orderFood.classList.toggle('submitted-li', true);
     const card = evt.target.closest(".card");
-
     var formData = new FormData();
     formData.append('orderFoodId', orderFood.getAttribute('data-id'));
     formData.append('contents', card.querySelector('.card-text').value);
@@ -203,6 +206,7 @@ function onSuccessUpdate(result) {
                 li.innerHTML = "";
                 li.innerHTML = HtmlGenerator.getOrderFoodHTML(result);
                 $('.rate').rate();
+                chartjs.addChartListener();
             }
         })
     });

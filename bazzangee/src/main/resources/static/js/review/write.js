@@ -6,7 +6,6 @@ function onSuccess(result) {
 }
 
 function imageUploadHandler() {
-    //TODO formData 사용하는 이유?
     var formData = new FormData();
     formData.append('data', $("#btnImageUpload").files[0]);
 

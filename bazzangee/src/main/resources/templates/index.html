@@ -48,8 +48,12 @@
                 <textarea name="message-to-send" id="chat-message-send" placeholder="메세지를 입력하세요." rows="3"></textarea>
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        <i class="fa fa-file-o" id="chat-send-file"></i> &nbsp;&nbsp;&nbsp;
-                        <i class="fa fa-file-image-o" id="chat-send-image"></i>
+                        <!--<i class="fa fa-file-o" id="chat-send-file"></i>--> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="fa fa-file-image-o">
+                            <!--<i class="fa fa-file-image-o" id="chat-send-image">-->
+                                <input type="file" class="invisible" id="chat-send-image" accept="image/*">
+                            <!--</i>-->
+                        </label>
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                         <button id="chat-send-btn" class="btn btn-primary bg-main float-right" type="button">보내기</button>
@@ -183,6 +187,13 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div id="chart_div" class="dialog">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dialog-content" style="background: #fbfbfb; box-shadow: 5px 5px grey">
+        <div class="x_title">
+        </div>
+        <canvas id="foodChart" class="chart"></canvas>
+    </div>
+</div>
 {{/partial}}
 {{#partial "footer"}}
 <script src="/jquery/dist/jquery.min.js"></script>
@@ -196,5 +207,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="module" src="/js/user/login.js"></script>
 <script type="module" src="/js/user/kakaologin.js"></script>
+<script src="/js/chartjs/Chart.js"></script>
+<script src="/js/chartjs/Chart.min.js"></script>
 {{/partial}}
 {{>base}}

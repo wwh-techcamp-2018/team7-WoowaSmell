@@ -6,9 +6,10 @@ function $_(selector) {
 }
 
 export class ReviewScroll{
-    constructor({foodCategoryId, chatobj}) {
+    constructor({foodCategoryId, chatobj, chartobj}) {
         this.foodCategoryId = foodCategoryId;
         this.chat = chatobj;
+        this.chart = chartobj;
         this.filterId = 0;
         this.currentPage = 0;
         this.canLoad = true;
@@ -93,6 +94,7 @@ export class ReviewScroll{
             $_("#loader").classList.toggle("invisible");
             this.canLoad = true;
             $(".rate").rate();
+            this.chart.addChartListener();
         })
     }
 

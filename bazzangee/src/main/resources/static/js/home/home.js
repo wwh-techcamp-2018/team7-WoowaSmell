@@ -1,5 +1,6 @@
 import { ReviewScroll } from "/js/review/reviewScroll.js";
 import { Chat } from "/js/chat/chat.js";
+import { Chartjs } from "/js/chartjs/chartjs.js"
 import { JoinValidator } from "/js/user/joinValidator.js";
 
 $(document).ready(function(){
@@ -16,6 +17,7 @@ function showModal(modalId) {
     $("#" + modalId).modal('show');
 }
 
+const chartjs = new Chartjs();
 const chat = new Chat({
     showModalFunc: showModal
 });
@@ -26,4 +28,9 @@ const reviewScroll = new ReviewScroll({
 const joinValidator = new JoinValidator({
     hideModalFunc: hideModal,
     showModalFunc: showModal
+});
+const reviewScroll = new ReviewScroll({
+    foodCategoryId : 0,
+    chatobj : chat,
+    chartobj : chartjs
 });

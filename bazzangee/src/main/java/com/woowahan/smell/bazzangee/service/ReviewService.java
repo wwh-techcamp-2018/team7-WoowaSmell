@@ -102,7 +102,7 @@ public class ReviewService {
                 .findFirst();
 
         return GoodResponseDto.ofString(updateGood(sessionUser, review, optionalGood))
-                .setReviewTitle(review.getTitle())
+                .setReviewTitle(review.getOrderFood().getFood().getName())
                 .setUserName(sessionUser.getName())
                 .setWriterId(review.getUser().getId())
                 .setGoodCount(review.getGoods().size());

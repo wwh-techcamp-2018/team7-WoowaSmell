@@ -26,11 +26,15 @@ public class ChatMessage {
     @Column
     private LocalDateTime writtenTime;
 
-    public ChatMessage(User user, Chat chat, String contents) {
+    @Column
+    private String imageURL;
+
+    public ChatMessage(User user, Chat chat, String contents, String imageURL) {
         this.user = user;
         this.chat = chat;
         this.contents = contents;
         this.writtenTime = LocalDateTime.now();
+        this.imageURL = imageURL;
     }
 
     public ChatMessageResponseDto toChatMessageResponseDto() {
@@ -39,6 +43,8 @@ public class ChatMessage {
                 user.getId(),
                 user.getName(),
                 contents,
+                user.getImageUrl(),
+                imageURL,
                 writtenTime
         );
     }
