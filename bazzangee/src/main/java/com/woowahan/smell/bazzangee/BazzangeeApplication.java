@@ -10,7 +10,7 @@ public class BazzangeeApplication {
 
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
-//            + "classpath:aws.yml,"
+            + "classpath:aws.yml,"
             + "/home/ubuntu/Project/travis/db-application.yml";
 
     public static void main(String[] args) {
