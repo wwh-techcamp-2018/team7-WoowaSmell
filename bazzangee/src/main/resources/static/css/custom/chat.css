@@ -61,6 +61,7 @@ textarea {
     margin-bottom: 30px;
     width: 70%;
     position: relative;
+    word-break: break-all;
 }
 .my-message {
     background: #36bfb8;
