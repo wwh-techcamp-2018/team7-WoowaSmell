@@ -1,7 +1,9 @@
 import {$, fetchManager} from "/js/util/utils.js";
 
 export class JoinValidator{
-    constructor() {
+    constructor({hideModalFunc, showModalFunc}) {
+        this.hideModalFunc = hideModalFunc;
+        this.showModalFunc = showModalFunc;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
     }
 
@@ -18,7 +20,7 @@ export class JoinValidator{
             headers: { 'content-type': 'application/json'},
             body: JSON.stringify({
                 userId: form.email.value,
-                password: form.password.value,
+                password: form.joinpassword.value,
                 rePassword: form.repassword.value,
                 name: form.name.value,
                 phoneNumber: form.phone.value,
@@ -37,42 +39,41 @@ export class JoinValidator{
         const birthRegex = /^\d{4}-\d{2}-\d{2}$/;
 
         if(!emailRegex.test($("#email").value.trim())) {
-            $("#join-validation-span").text("이메일 형식이 올바르지 않습니다.");
+            $("#join-validation-span").innerText = "이메일 형식이 올바르지 않습니다.";
             return false;
         }
 
-        if(!passwordRegex.test($("#password").value.trim()) || !passwordRegex.test($("#repassword").value.trim())) {
-            $("#join-validation-span").text("비밀번호는 8-16자리 영문,숫자,특수문자로 조합으로 설정해주세요.");
+        if(!passwordRegex.test($("#joinpassword").value.trim()) || !passwordRegex.test($("#repassword").value.trim())) {
+            $("#join-validation-span").innerText = "비밀번호는 8-16자리 영문,숫자,특수문자로 조합으로 설정해주세요.";
             return false;
         }
 
-        if($("#password").value.trim() !== $("#repassword").value.trim()) {
-            $("#join-validation-span").text("비밀번호가 일치하지 않습니다.");
+        if($("#joinpassword").value.trim() !== $("#repassword").value.trim()) {
+            $("#join-validation-span").innerText = "비밀번호가 일치하지 않습니다.";
             return false;
         }
 
         if(!nameRegex.test($("#name").value.trim())) {
-            $("#join-validation-span").text("이름 형식이 올바르지 않습니다.");
+            $("#join-validation-span").innerText = "이름 형식이 올바르지 않습니다.";
             return false;
         }
 
         if(!phoneRegex.test($("#phone").value.trim())) {
-            $("#join-validation-span").text("핸드폰 형식이 올바르지 않습니다.");
+            $("#join-validation-span").innerText = "핸드폰 형식이 올바르지 않습니다.";
             return false;
         }
 
         if(!birthRegex.test($("#birth").value.trim())) {
-            $("#join-validation-span").text("생년월일 형식이 올바르지 않습니다.");
+            $("#join-validation-span").innerText = "생년월일 형식이 올바르지 않습니다.";
             return false;
         }
+        $("#join-validation-span").innerText = null;
         return true;
     }
 
     onSuccessJoin(result) {
-        $("#join-dialog").classList.toggle("visible");
-        setTimeout(function () {
-            location.href = '/';
-        }, 2000);
+        this.hideModalFunc("joinModal");
+        this.showModalFunc("joinSuccessModal");
     }
 
     onFailJoin() {

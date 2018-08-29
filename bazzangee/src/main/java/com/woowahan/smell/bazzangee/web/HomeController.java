@@ -1,6 +1,7 @@
 package com.woowahan.smell.bazzangee.web;
 
 import com.woowahan.smell.bazzangee.domain.User;
+import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,27 +22,13 @@ public class HomeController {
         return "/index";
     }
 
-    @GetMapping("/login")
-    public String login(HttpSession session) {
-        if(getUserFromSession(session) != null) {
-            return "redirect:/";
-        }
-        return "/user/login";
-    }
-
     @GetMapping("/closet")
     public String closet(HttpSession session, Model model) {
         User loginUser = getUserFromSession(session);
         if(loginUser == null) {
-            return "/login";
+            return "error_400";
         }
         model.addAttribute("loginUser", loginUser);
         return "/closet/closet";
     }
-
-    @GetMapping("/join")
-    public String join() {
-        return "/user/join";
-    }
-
 }

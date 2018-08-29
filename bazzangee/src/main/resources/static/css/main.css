@@ -1,5 +1,11 @@
 #join-validation-span{
     color: red;
+    display: flex;
+}
+#login-validate-span{
+    color: red;
+    text-align: center;
+    width: 100%;
 }
 
 .join-dialog {

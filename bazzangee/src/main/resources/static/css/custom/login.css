@@ -1,53 +1,125 @@
-body#LoginForm{ background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
-.form-heading { color:#fff; font-size:23px;}
-.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
-.login-form .form-control {
-    background: #f7f7f7 none repeat scroll 0 0;
-    border: 1px solid #d4d4d4;
-    border-radius: 4px;
-    font-size: 14px;
-    height: 50px;
-    line-height: 50px;
+#kakao-login-btn{
+    margin-top: 5px;
+    content: url("/img/kakao_login_light.png");
 }
-.main-div {
-    background: #ffffff none repeat scroll 0 0;
+#kakao-login-btn:hover{
+    content: url("/img/kakao_login_dark.png");
+}
+
+/****** LOGIN MODAL ******/
+.loginmodal-container {
+    padding: 30px;
+    max-width: 350px;
+    width: 100% !important;
+    background-color: #F7F7F7;
+    margin: 0 auto;
     border-radius: 2px;
-    margin: 10px auto 30px;
-    max-width: 38%;
-    padding: 50px 70px 70px 71px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: roboto;
 }
 
-.login-form .form-group {
-    margin-bottom:10px;
+.loginmodal-container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    font-family: roboto;
 }
-.login-form{ text-align:center;}
-.forgot a {
-    color: #777777;
-    font-size: 14px;
-    text-decoration: underline;
-}
-.login-form  .btn.btn-primary {
-    background: #f0ad4e none repeat scroll 0 0;
-    border-color: #f0ad4e;
-    color: #ffffff;
-    font-size: 14px;
+
+.loginmodal-container input[type=submit] {
     width: 100%;
-    height: 50px;
-    line-height: 50px;
-    padding: 0;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
 }
-.forgot {
-    text-align: left; margin-bottom:30px;
+
+.loginmodal-container input[type=text], input[type=password] {
+    height: 44px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    /* border-radius: 2px; */
+    padding: 0 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
-.botto-text {
-    color: #ffffff;
+
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+    border: 1px solid #b9b9b9;
+    border-top: 1px solid #a0a0a0;
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.loginmodal {
+    text-align: center;
     font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    height: 36px;
+    padding: 0 8px;
+    /* border-radius: 3px; */
+    /* -webkit-user-select: none;
+      user-select: none; */
+}
+
+.loginmodal-submit {
+    /* border: 1px solid #3079ed; */
+    border: 0px;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #4d90fe;
+    padding: 17px 0px;
+    font-family: roboto;
+    font-size: 14px;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.loginmodal-submit:hover {
+    /* border: 1px solid #2f5bb7; */
+    border: 0px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    background-color: #357ae8;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.loginmodal-container a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 400;
+    text-align: center;
+    display: inline-block;
+    opacity: 0.6;
+    transition: opacity ease 0.5s;
+}
+
+.login-help{
+    font-size: 12px;
+}
+.modal-footer {
+    display: block;
+    margin: 0;
+}
+.modal-footer .btn {
+    font-weight: bold;
+}
+.modal-footer .progress {
+    display: none;
+    height: 32px;
+    margin: 0;
+}
+.input-group-addon {
+    color: #36bfb8;
     margin: auto;
 }
-.login-form .btn.btn-primary.reset {
-    background: #ff9900 none repeat scroll 0 0;
+@media (min-width: 576px){
+    #join-modal-dialog{
+        max-width: 750px;
+    }
 }
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}

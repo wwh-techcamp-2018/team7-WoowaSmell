@@ -4,8 +4,9 @@ import {$, fetchManager} from '/js/util/utils.js';
 
 const CHAT_ROOM_START_INDEX = Object.keys(CHAT_ROOM).length; // 전체 카테고리 인덱스
 
-export class Chat {
-    constructor() {
+export class Chat{
+    constructor({showModalFunc}) {
+        this.showModalFunc = showModalFunc;
         this.me = null;
         this.chatRoomId = CHAT_ROOM_START_INDEX;
         this.socketManager = new SocketManager();
@@ -58,8 +59,8 @@ export class Chat {
     }
 
     onClickSendingButton() {
-        if (this.me == null) {
-            location.href = "/login";
+        if(this.me == null) {
+            this.showModalFunc("loginModal");
             return;
         }
 
