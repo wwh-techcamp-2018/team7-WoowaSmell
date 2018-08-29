@@ -1,6 +1,7 @@
 {{#partial "header"}}
 <link href="/css/custom/timeline.css" rel="stylesheet">
 <link href="/css/custom/chat.css" rel="stylesheet">
+<link href="/css/custom/login.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/rater/rater.css">
 {{/partial}}
@@ -64,14 +65,48 @@
         <img src="img/ready.png" style="max-width: 100%"/>
     </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-align: right">×</button>
+                    <img src="/img/login_logo.png" width="100%">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="userId" placeholder="이메일을 입력해주세요.">
+                        </div>
+                    </div> <!-- /.form-group -->
 
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요.">
+                        </div> <!-- /.input-group -->
+                    </div> <!-- /.form-group -->
+                </div> <!-- /.modal-body -->
+
+                <div class="modal-footer">
+                    <button type="submit" id="btnLogin" class="form-control btn btn-primary bg-main" style="border-color: #36bfb8;">로그인</button>
+                    <div id="kakao-login-btn" class="form-control btn width100"></div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
+                            <span class="sr-only">progress</span>
+                        </div>
+                    </div>
+                </div> <!-- /.modal-footer -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 {{/partial}}
 {{#partial "footer"}}
 <script type="module" src="/js/home/home.js"></script>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 <script src="/jquery/dist/jquery.min.js"></script>
-<script src="/css/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/review/rater.js" charset="utf-8"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="module" src="/js/user/login.js"></script>
+<script type="module" src="/js/user/kakaologin.js"></script>
 {{/partial}}
 {{>base}}
