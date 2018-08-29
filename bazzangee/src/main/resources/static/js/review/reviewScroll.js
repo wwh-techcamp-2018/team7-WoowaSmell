@@ -49,6 +49,7 @@ export class ReviewScroll{
         this.currentPage = 0;
         this.removeAllTimelines();
         this.loadReviews();
+        this.chat.changeChatRoom(this.foodCategoryId);
     }
 
     removeAllTimelines() {
@@ -63,6 +64,7 @@ export class ReviewScroll{
 
     onLoadDocument() {
         this.loadReviews();
+        this.chat.changeChatRoom(this.foodCategoryId);
     }
 
     loadReviews() {
@@ -82,7 +84,6 @@ export class ReviewScroll{
 
     onSuccessLoad(response) {
         response.json().then((reviews) => {
-            this.chat.changeChatRoom(this.foodCategoryId);
             if(reviews.length === 0) {
                 this.canLoad = false;
                 document.removeEventListener('scroll', this.onScrollDown.bind(this));

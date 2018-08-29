@@ -3,27 +3,26 @@ function goHome() {
 }
 
 function onSuccess() {
-    console.log("어서와~ 배짱이 생활은 처음이지?");
     goHome();
 }
 
 function onError(result) {
-    let message = result.message;
-    alert(message);
+    $("#login-validate-span").innerText = result.message;
 }
 
 function checkValidForLogin(form) {
     if (!form.userId.value.trim()) {
-        alert("아이디를 입력하세요");
+        $("#login-validate-span").innerText = "아이디를 입력하세요";
         form.userId.focus();
         return false;
     }
 
     if (!form.password.value.trim()) {
-        alert("비밀번호를 입력하세요");
+        $("#login-validate-span").innerText = "비밀번호를 입력하세요";
         form.password.focus();
         return false;
     }
+    $("#login-validate-span").innerText = null;
     return true;
 }
 
@@ -52,6 +51,6 @@ function initializeEventListener() {
 
 document.addEventListener("DOMContentLoaded", () => {
     initializeEventListener();
-})
+});
 
 import {$, fetchManager} from "/js/util/utils.js";

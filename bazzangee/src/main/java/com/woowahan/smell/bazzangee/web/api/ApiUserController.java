@@ -6,6 +6,7 @@ import com.woowahan.smell.bazzangee.dto.KakaoDto;
 import com.woowahan.smell.bazzangee.dto.UserJoinDto;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
+import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.UserService;
 import com.woowahan.smell.bazzangee.utils.HttpSessionUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -66,5 +67,12 @@ public class ApiUserController {
         }
         HttpSessionUtils.removeUserInSession(session);
         return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
+    }
+
+    @GetMapping("/auth")
+    public ResponseEntity<Void> checkAuthForCloset(HttpSession session) throws NotMatchException {
+        if(HttpSessionUtils.getUserFromSession(session) == null)
+            throw new UnAuthenticationException("로그인한 유저만 이용 가능합니다.");
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/closet")).build();
     }
 }
