@@ -1,4 +1,4 @@
-import {fetchManager, throttle, addDropdownListener} from "/js/util/utils.js";
+import {fetchManager, throttle} from "/js/util/utils.js";
 import {logoutListener} from "/js/user/kakaologout.js";
 
 function $_(selector) {
@@ -6,19 +6,18 @@ function $_(selector) {
 }
 
 export class ReviewScroll{
-    constructor({foodCategoryId, chatobj}) {
+    constructor({foodCategoryId, chatobj, chartobj}) {
         this.foodCategoryId = foodCategoryId;
         this.chat = chatobj;
+        this.chart = chartobj;
         this.filterId = 0;
         this.currentPage = 0;
         this.canLoad = true;
         this.clickedTarget = null;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
         document.addEventListener('scroll', this.onScrollDown.bind(this));
-        $_("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
         $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
-        addDropdownListener();
         // $_("#logout").addEventListener("click", logoutListener);
     }
 
@@ -66,21 +65,6 @@ export class ReviewScroll{
         this.loadReviews();
     }
 
-    onclickGoodButton({target}) {
-        if (!target.classList.contains("good-btn") && !target.parentElement.classList.contains("good-btn")
-            && !target.parentElement.parentElement.classList.contains("good-btn"))
-            return;
-
-        this.clickedTarget = target;
-        fetchManager({
-            url: '/api/reviews/' + this.clickedTarget.getAttribute("data-value") + '/good',
-            method: 'GET',
-            headers: { 'content-type': 'application/json'},
-            callback: this.onSuccessUpdateGood.bind(this),
-            errCallback: this.onFailUpdateGood.bind(this)
-        });
-    }
-
     loadReviews() {
         if(!this.canLoad) return;
         this.canLoad = false;
@@ -110,13 +94,8 @@ export class ReviewScroll{
             $_("#loader").classList.toggle("invisible");
             this.canLoad = true;
             $(".rate").rate();
+            this.chart.addChartListener();
         })
-    }
-
-    onSuccessUpdateGood(response) {
-        response.json().then((reviewDto) => {
-            this.clickedTarget.closest(".good-btn").lastElementChild.innerHTML = reviewDto.goodCount;
-        });
     }
 
     appendReviewHTML(reviewDto) {
@@ -130,10 +109,6 @@ export class ReviewScroll{
             var noImageHTML = `<img src="/img/noImage.png" width="500" height="auto"/>`;
             $_("#timeline_standard").insertAdjacentHTML("beforeend", noImageHTML);
         }
-    }
-
-    onFailUpdateGood(error) {
-        alert(error.message);
     }
 
     onFailUpdateGood(error) {

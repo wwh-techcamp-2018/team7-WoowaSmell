@@ -11,12 +11,11 @@ public enum ChatRoomName {
     GENERAL("/smell-general"),
     CHICKEN("/smell-chicken"),
     PIZZA("/smell-pizza"),
-    WESTERN_FOOD("/smell-western-food"),
     KOREAN_FOOD("/smell-korean-food"),
     CHINESE_FOOD("/smell-chinese-food"),
-    JAPANESE_FOOD("/smell-japanese-food"),
-    SNACK_BAR("/smell-snack-bar"),
-    HAMBURGER("/smell-hamburger");
+    JAPANESE_FOOD("/smell-jokbal-and-bosam"),
+    WESTERN_FOOD("/smell-western-food"),
+    SNACK_BAR("/smell-night-food");
 
     private String roomName;
 

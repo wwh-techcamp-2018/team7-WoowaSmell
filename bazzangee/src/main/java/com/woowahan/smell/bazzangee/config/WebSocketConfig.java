@@ -3,6 +3,7 @@ package com.woowahan.smell.bazzangee.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.woowahan.smell.bazzangee.interceptor.HttpHandshakeInterceptor;
 import com.woowahan.smell.bazzangee.security.HTMLCharacterEscapes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.converter.MessageConverter;
@@ -11,10 +12,10 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static com.woowahan.smell.bazzangee.config.ChatRoomName.*;
-
+@Slf4j
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
@@ -43,17 +44,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-//        registry.addEndpoint(GENERAL.getRoomName())
-//                .setHandshakeHandler(new SocketHandshakeHandler())
-//                .withSockJS();
-        registry.addEndpoint(GENERAL.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(CHICKEN.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(PIZZA.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(WESTERN_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(KOREAN_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(CHINESE_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(JAPANESE_FOOD.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(SNACK_BAR.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
-        registry.addEndpoint(HAMBURGER.getRoomName()).addInterceptors(new HttpHandshakeInterceptor()).withSockJS();
+        Arrays.stream(ChatRoomName.values()).forEach((chatRoom) ->
+                registry.addEndpoint(chatRoom.getRoomName())
+                        .addInterceptors(new HttpHandshakeInterceptor())
+                        .withSockJS());
     }
 }

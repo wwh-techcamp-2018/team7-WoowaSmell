@@ -15,10 +15,6 @@ public class Restaurant {
 
     @Column
     private String name;
-    @Column
-    private String address;
-    @Column
-    private String phoneNumber;
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Food> foods;
@@ -28,4 +24,5 @@ public class Restaurant {
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_food_category"))
     private FoodCategory foodCategory;
+
 }

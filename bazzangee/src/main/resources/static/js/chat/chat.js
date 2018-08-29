@@ -2,24 +2,28 @@ import {SocketManager} from '/js/util/socketManager.js';
 import {CHAT_ROOM} from '/js/util/enum.js';
 import {$, fetchManager} from '/js/util/utils.js';
 
-const CHAT_ROOM_START_INDEX = 9;
+const CHAT_ROOM_START_INDEX = Object.keys(CHAT_ROOM).length; // 전체 카테고리 인덱스
 
 export class Chat {
     constructor() {
         this.me = null;
         this.chatRoomId = CHAT_ROOM_START_INDEX;
         this.socketManager = new SocketManager();
+        this.clickedTarget = null;
         document.addEventListener("DOMContentLoaded", this.onLoadDocument.bind(this));
     }
 
     onLoadDocument() {
-        $("#chat-message-send").addEventListener("keyup", this.onKeyDownChatTextArea.bind(this));
+        $("#chat-message-send").addEventListener("keyup", this.onKeyUpChatTextArea.bind(this));
         $("#chat-send-image").addEventListener("change", this.changeImage.bind(this));
-        $("#chat-send-btn").addEventListener("click", this.onClickSendingButton.bind(this));
+        this.addEventListeners();
     }
 
-    onClickTabButton({target}) {
-        this.changeChatRoom(target.value);
+    addEventListeners() {
+        $("#chat-message-send").addEventListener("keyup", this.onKeyUpChatTextArea.bind(this));
+        $("#chat-send-image").addEventListener("click", this.changeImage.bind(this));
+        $("#chat-send-btn").addEventListener("click", this.onClickSendingButton.bind(this));
+        $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
     }
 
     onClickFileButton() {
@@ -53,7 +57,7 @@ export class Chat {
         })
     }
 
-    onClickSendingButton({target}) {
+    onClickSendingButton() {
         if (this.me == null) {
             location.href = "/login";
             return;
@@ -67,9 +71,13 @@ export class Chat {
         $("#chat-message-send").value = null;
     }
 
-    loadChat() {
-        this.socketManager.createSocket(CHAT_ROOM[this.chatRoomId].url);
-        this.socketManager.connect(this.onConnect.bind(this));
+    onclickGoodButton({target}) {
+        if (!target.classList.contains("good-btn") && !target.parentElement.classList.contains("good-btn")
+            && !target.parentElement.parentElement.classList.contains("good-btn"))
+            return;
+
+        this.clickedTarget = target;
+        this.socketManager.sendMessage("/good", {}, this.clickedTarget.getAttribute("data-value"));
     }
 
     onConnect(frame) {
@@ -79,11 +87,12 @@ export class Chat {
         this.socketManager.sendMessage("/info", {}, {roomId: this.chatRoomId});
     }
 
-    onKeyDownChatTextArea(evt) {
+
+    onKeyUpChatTextArea(evt) {
         if (evt.keyCode === 13) {
-            if(!evt.shiftKey){
+            if (!evt.shiftKey) {
                 // 채팅 창에 입력된 내용이 없이 엔터칠 경우
-                if($("#chat-message-send").value.trim().length === 0) {
+                if ($("#chat-message-send").value.trim().length === 0) {
                     return false;
                 }
                 this.socketManager.sendMessage("/chat", {}, {message: evt.target.value, roomId: this.chatRoomId});
@@ -92,23 +101,59 @@ export class Chat {
         }
     }
 
+    onCompleteGoodEvent(response) {
+        const result = JSON.parse(response.body);
+        if(result.message === "LIKE" || result.message === "UNLIKE") {
+            this.clickedTarget.closest(".good-btn").lastElementChild.innerHTML = result.goodCount;
+        } else {
+            alert(result.message);
+        }
+    }
+
     onReceiveMessage(response) {
         this.addNewMessage(JSON.parse(response.body));
+    }
+
+    onReceiveAlarm(response) {
+        const result = JSON.parse(response.body);
+        this.updateAlarmUI(result);
+        this.saveAlarmInfo(result);
     }
 
     onReceiveInitialInfo(response) {
         const result = JSON.parse(response.body);
         this.me = result.loginUser;
+        if(this.me != null) {
+            this.initAlarmUI();
+            this.subscribeMyAlarm();
+        }
         result.chatMessageResponseDtos.forEach(this.addNewMessage.bind(this));
         this.updateUI();
     }
 
-    onExitOtherUser(response) {
-        console.log('onExitOtherUser', JSON.parse(response.body));
+    loadChat() {
+        this.socketManager.createSocket(CHAT_ROOM[this.chatRoomId].url);
+        this.socketManager.connect(this.onConnect.bind(this));
+    }
+
+    onConnect(frame) {
+        this.subscribes();
+        $("#chat-message-container").innerHTML = null;
+        $("#chat-name").innerText = CHAT_ROOM[this.chatRoomId].name + " 채팅";
+        this.socketManager.sendMessage("/info", {}, { roomId: this.chatRoomId });
+    }
+
+    subscribes() {
+        this.socketManager.subscribe("/topic/message", this.onReceiveMessage.bind(this));
+        this.socketManager.subscribe("/user/queue/info", this.onReceiveInitialInfo.bind(this));
+        this.socketManager.subscribe("/user/queue/good", this.onCompleteGoodEvent.bind(this));
+    }
+
+    subscribeMyAlarm() {
+        this.socketManager.subscribe("/queue/" + this.me.id + "/good", this.onReceiveAlarm.bind(this));
     }
 
     addNewMessage(message) {
-        console.log(message);
         if(message.imageURL == null) {
             $("#chat-message-container").insertAdjacentHTML(
                 "beforeend",
@@ -125,7 +170,7 @@ export class Chat {
 
     changeChatRoom(newRoomId) {
         this.chatRoomId = (newRoomId == 0 ? CHAT_ROOM_START_INDEX : newRoomId);
-        this.socketManager.disconnect(this.sendBye.bind(this), this.loadChat.bind(this));
+        this.socketManager.disconnect(this.loadChat.bind(this));
     }
 
     sendBye() {
@@ -133,10 +178,15 @@ export class Chat {
         this.socketManager.sendMessage("/bye", {}, {message: message});
     }
 
-    subscribes() {
-        this.socketManager.subscribe("/topic/message", this.onReceiveMessage.bind(this));
-        this.socketManager.subscribe("/topic/bye", this.onExitOtherUser.bind(this));
-        this.socketManager.subscribe("/user/queue/info", this.onReceiveInitialInfo.bind(this));
+    initAlarmUI() {
+        let alarms = localStorage.getItem("myAlarm");
+        alarms = alarms ? JSON.parse(alarms) : [];
+
+        console.log(alarms);
+        $("#my-alarm-badge").innerText = alarms.length;
+        $("#my-alarm-list").innerHTML = null;
+
+        alarms.forEach((alarm) => $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(alarm)));
     }
 
     updateUI() {
@@ -150,6 +200,18 @@ export class Chat {
             $("#chat-message-send").classList.add("disabled-ui");
         }
         $("#chat-send-btn").innerText = (isLogin ? "보내기" : "로그인하기");
+    }
+
+    updateAlarmUI(goodResponseDto) {
+        $("#my-alarm-badge").innerText = Number($("#my-alarm-badge").innerText) + 1;
+        $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(goodResponseDto));
+    }
+
+    saveAlarmInfo(info) {
+        let alarms = localStorage.getItem("myAlarm");
+        alarms = alarms ? JSON.parse(alarms) : [];
+        alarms.push(info);
+        localStorage.setItem("myAlarm", JSON.stringify(alarms));
     }
 
     showPopup(isVisible) {

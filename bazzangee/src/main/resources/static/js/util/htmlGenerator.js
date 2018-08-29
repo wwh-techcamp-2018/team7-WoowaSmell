@@ -18,9 +18,9 @@ const HtmlGenerator = (function () {
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 card-contents" style="padding: 0px">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <h4>${reviewDto.restaurant.name} - ${reviewDto.foodName}</h4>
+                                    <h4>${reviewDto.foodName}</h4>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="rate" data-rate-value="${reviewDto.review.starPoint}" style="pointer-events:none;"></div>
@@ -28,8 +28,9 @@ const HtmlGenerator = (function () {
                                         <p class="t-right fs07em">${reviewDto.userName}</p>
                                         <p class="t-right">
                                             <a href="#" style="font-weight: 600; color: aliceblue">
-                                                <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
+                                                <i class="fa fa-map-marker"> ${reviewDto.restaurant.name}</i>
                                             </a>
+                                            <button class="statistics" value="${reviewDto.restaurant.id}"></button>
                                         </p>
                                     </div>
                                 </div>
@@ -61,9 +62,9 @@ const HtmlGenerator = (function () {
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 card-contents" style="padding: 0px">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <h4>${orderFood.food.restaurant.name} - ${orderFood.food.name}</h4>
+                                <h4>${orderFood.food.name}</h4>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="rate" data-rate-value="${review.starPoint}" style="pointer-events:none;"></div>
@@ -71,8 +72,9 @@ const HtmlGenerator = (function () {
                                     <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
-                                            <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                            <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
                                         </a>
+                                        <button class="statistics" value="${orderFood.food.restaurant.id}"></button>
                                     </p>
                                     <div class="update-delete-btn">
                                         <input type="button" class="btn-review-update-form btn btn-danger" value="수정">
@@ -95,7 +97,7 @@ const HtmlGenerator = (function () {
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h4>${orderFood.food.restaurant.name} - ${orderFood.food.name}</h4>
+                            <h4>${orderFood.food.name}</h4>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
@@ -113,8 +115,9 @@ const HtmlGenerator = (function () {
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
-                                        <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                        <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
                                     </a>
+                                    <button class="statistics" value="${orderFood.food.restaurant.id}"></button>
                                 </p>
                             </div>
                         </div>
@@ -145,9 +148,9 @@ const HtmlGenerator = (function () {
                            </button>
                        </div>
                    </div>
-                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
+                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 card-contents" style="padding: 0px">
                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                       <h4>${reviewDto.restaurant.name} - ${reviewDto.foodName}</h4>
+                       <h4>${reviewDto.foodName}</h4>
                        </div>
                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                            <div class="rate" data-rate-value="${reviewDto.review.starPoint}" style="pointer-events:none;"></div>
@@ -155,8 +158,9 @@ const HtmlGenerator = (function () {
                            <p class="t-right fs07em">${reviewDto.userName}</p>
                            <p class="t-right">
                                <a href="#" style="font-weight: 600; color: aliceblue">
-                                   <i class="fa fa-map-marker"></i>${reviewDto.restaurant.address}
+                                   <i class="fa fa-map-marker"> ${reviewDto.restaurant.name}</i>
                                </a>
+                               <button class="statistics" value="${reviewDto.restaurant.id}"></button>
                            </p>
                             <div class="update-delete-btn">
                               <input type="button" class="btn-review-update-form btn btn-danger" value="수정">
@@ -183,7 +187,7 @@ const HtmlGenerator = (function () {
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h4>${orderFood.food.restaurant.name} - ${orderFood.food.name}</h4>
+                            <h4>${orderFood.food.name}</h4>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <button type="button" class="orderfood-review-write">리뷰 쓰기</button>
@@ -201,8 +205,9 @@ const HtmlGenerator = (function () {
                                 <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
-                                        <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                        <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
                                     </a>
+
                                 </p>
                             </div>
                         </div>
@@ -234,7 +239,7 @@ const HtmlGenerator = (function () {
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <h4>${orderFood.food.restaurant.name} - ${orderFood.food.name}</h4>
+                                <h4>${orderFood.food.name}</h4>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 card">
                                     <div class="rate" data-rate-value="${review.starPoint}"></div>
@@ -243,8 +248,9 @@ const HtmlGenerator = (function () {
                                     <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
-                                            <i class="fa fa-map-marker"></i>${orderFood.food.restaurant.address}
+                                            <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
                                         </a>
+                                        <button class="statistics" value="${orderFood.food.restaurant.id}"></button>
                                     </p>
                                     <div class="update-delete-btn">
                                         <input type="button" class="btn-review-update btn btn-danger" value="수정">
@@ -310,8 +316,13 @@ const HtmlGenerator = (function () {
                     </li>
                 <li>`;
             }
-        }
+        },
 
+        getMyAlarmHTML(goodResponseDto) {
+            return `<a class="dropdown-item" href="#">
+                ${goodResponseDto.userName} 님이 ${goodResponseDto.reviewTitle} 에 부러워요를 눌렀습니다.
+            </a>`;
+        }
     }
 })();
 

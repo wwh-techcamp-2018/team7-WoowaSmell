@@ -4,12 +4,12 @@ import com.woowahan.smell.bazzangee.domain.Good;
 import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.Review;
 import com.woowahan.smell.bazzangee.domain.User;
-import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
-import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
+import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
+import com.woowahan.smell.bazzangee.dto.response.GoodResponseDto;
+import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.repository.GoodRepository;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.repository.FoodCategoryRepository;
-import com.woowahan.smell.bazzangee.repository.GoodRepository;
 import com.woowahan.smell.bazzangee.repository.OrderFoodRepository;
 import com.woowahan.smell.bazzangee.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +20,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class ReviewService {
+    private final String UNLIKE = "UNLIKE";
+    private final String LIKE   = "LIKE";
+
     @Autowired
     private ReviewRepository reviewRepository;
     @Autowired
@@ -91,19 +95,30 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDto updateGood(Long id, User sessionUser) {
+    public GoodResponseDto updateGood(Long id, User sessionUser) {
         Review review = reviewRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당하는 리뷰가 없습니다."));
-        List<Good> goods = review.getGoods().stream().filter((good) -> good.matchUser(sessionUser)).collect(Collectors.toList());
+        Optional<Good> optionalGood = review.getGoods().stream()
+                .filter((good) -> good.matchUser(sessionUser))
+                .findFirst();
 
+        return GoodResponseDto.ofString(updateGood(sessionUser, review, optionalGood))
+                .setReviewTitle(review.getOrderFood().getFood().getName())
+                .setUserName(sessionUser.getName())
+                .setWriterId(review.getUser().getId())
+                .setGoodCount(review.getGoods().size());
+    }
+
+    private String updateGood(User sessionUser, Review review, Optional<Good> optionalGood) {
         // 이미 좋아요를 눌렀던 사용자일 경우
-        if (goods.size() > 0) {
-            review.removeGood(goods.get(0));
-            goodRepository.delete(goods.get(0));
-        } else {
-            review.addGood(new Good(sessionUser, review));
+        if (optionalGood.isPresent()) {
+            review.removeGood(optionalGood.get());
+            goodRepository.delete(optionalGood.get());
+            return UNLIKE;
         }
+
         // 좋아요를 누르지 않았던 사용자일 경우
-        return review.toReviewDto();
+        review.addGood(new Good(sessionUser, review));
+        return LIKE;
     }
 
     public List<ReviewResponseDto> getListsByCategoryOrderByWrittenTime(Pageable pageable, Long categoryId) {

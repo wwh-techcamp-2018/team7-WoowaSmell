@@ -3,8 +3,8 @@ package com.woowahan.smell.bazzangee.web.api;
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
 import com.woowahan.smell.bazzangee.domain.OrderFood;
 import com.woowahan.smell.bazzangee.domain.User;
-import com.woowahan.smell.bazzangee.dto.ReviewRequestDto;
-import com.woowahan.smell.bazzangee.dto.ReviewResponseDto;
+import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
+import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
 import com.woowahan.smell.bazzangee.service.ReviewService;
 import com.woowahan.smell.bazzangee.utils.FileUtils;
@@ -89,7 +89,7 @@ public class ApiReviewController {
 
         // JSONObject 사용
         JSONObject jsonObject = new JSONObject();
-        String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")));
+        String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), null);
         jsonObject.put("url", url);
         return jsonObject;
     }
@@ -136,12 +136,5 @@ public class ApiReviewController {
             return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByWrittenTime(pageable, categoryId));
         }
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.getListsByCategoryOrderByStarPoint(pageable, categoryId));
-    }
-
-    @GetMapping("/{id}/good")
-    public ResponseEntity<ReviewResponseDto> addGood(@PathVariable Long id, HttpSession httpSession) {
-        if (!HttpSessionUtils.isLoginUser(httpSession))
-            throw new UnAuthenticationException("로그인 후 이용 가능합니다.");
-        return ResponseEntity.status(HttpStatus.OK).body(reviewService.updateGood(id, getUserFromSession(httpSession)));
     }
 }

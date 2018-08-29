@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.dto;
+package com.woowahan.smell.bazzangee.dto.response;
 
 import lombok.*;
 

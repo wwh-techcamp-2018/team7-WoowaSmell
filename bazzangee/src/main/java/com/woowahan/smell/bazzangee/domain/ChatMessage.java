@@ -1,6 +1,6 @@
 package com.woowahan.smell.bazzangee.domain;
 
-import com.woowahan.smell.bazzangee.dto.ChatMessageResponseDto;
+import com.woowahan.smell.bazzangee.dto.response.ChatMessageResponseDto;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 

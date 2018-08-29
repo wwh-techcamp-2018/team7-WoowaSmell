@@ -38,6 +38,7 @@ public class HomeController {
         model.addAttribute("loginUser", loginUser);
         return "/closet/closet";
     }
+
     @GetMapping("/join")
     public String join() {
         return "/user/join";
