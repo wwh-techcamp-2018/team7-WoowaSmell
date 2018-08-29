@@ -810,7 +810,7 @@ a:focus {
     font-weight: 500;
     color: #ECF0F1 !important;
     margin-left: 0 !important;
-    line-height: 32px
+    line-height: 32px;
 }
 .site_title {
     text-overflow: ellipsis;
