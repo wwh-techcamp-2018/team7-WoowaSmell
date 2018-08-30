@@ -87,8 +87,8 @@ export class Chartjs {
         data.datasets[0].data = [];
 
         for (var i = 0; i < foodPoints.length; i++) {
-            data.labels[i] = foodPoints[i].NAME;
-            data.datasets[0].data[i] = foodPoints[i].AVG_POINT;
+            data.labels[i] = foodPoints[i].name;
+            data.datasets[0].data[i] = foodPoints[i].avg_point;
 //            data.labels[i] = foodPoints[i].name;
 //            data.datasets[0].data[i] = foodPoints[i].avg_point;
         }

@@ -5,6 +5,7 @@ import com.woowahan.smell.bazzangee.converter.LocalDateConverter;
 import com.woowahan.smell.bazzangee.converter.LocalDateTimeConverter;
 import com.woowahan.smell.bazzangee.filter.RequestBodyXSSFileter;
 import com.woowahan.smell.bazzangee.interceptor.BasicAuthInterceptor;
+import com.woowahan.smell.bazzangee.interceptor.CheckUriInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +40,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(basicAuthInterceptor());
+        registry.addInterceptor(new CheckUriInterceptor())
+                .addPathPatterns("/*");
     }
 
     @Bean
@@ -65,7 +68,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     // Request Body
     @Bean
-    public FilterRegistrationBean getRequestBodyXSSFIleterRegistrationBean() {
+    public FilterRegistrationBean getRequestBodyXSSFileterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new RequestBodyXSSFileter());
         registrationBean.addUrlPatterns("/api/reviews/update", "/chat"); //filter를 거칠 url patterns
