@@ -1,5 +1,4 @@
 import {fetchManager, throttle} from "/js/util/utils.js";
-import {logoutListener} from "/js/user/kakaologout.js";
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -18,7 +17,6 @@ export class ReviewScroll{
         document.addEventListener('scroll', this.onScrollDown.bind(this));
         $_("#buttons").addEventListener("click", this.onClickCategories.bind(this));
         $_("#timeline-align-container").addEventListener("click", this.onClickRadios.bind(this));
-        // $_("#logout").addEventListener("click", logoutListener);
     }
 
     onClickRadios({target}) {
