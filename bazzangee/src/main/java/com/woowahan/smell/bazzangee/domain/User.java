@@ -1,5 +1,6 @@
 package com.woowahan.smell.bazzangee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.woowahan.smell.bazzangee.dto.UserLoginDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import lombok.*;
@@ -21,6 +22,7 @@ public class User extends BaseTimeEntity {
     @Column(unique = true)
     private String userId;
     @Column
+    @JsonIgnore
     private String password;
     @Column
     private String name;

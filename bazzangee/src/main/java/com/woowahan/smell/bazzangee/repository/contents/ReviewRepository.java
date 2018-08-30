@@ -1,7 +1,7 @@
-package com.woowahan.smell.bazzangee.repository;
+package com.woowahan.smell.bazzangee.repository.contents;
 
-import com.woowahan.smell.bazzangee.domain.FoodCategory;
-import com.woowahan.smell.bazzangee.domain.Review;
+import com.woowahan.smell.bazzangee.domain.food.FoodCategory;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

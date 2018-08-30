@@ -1,5 +1,8 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.food;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
+import com.woowahan.smell.bazzangee.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,6 +27,7 @@ public class OrderFood {
     private int quantity;
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_order_food_user"))
+    @JsonIgnore
     private User orderedUser;
     @OneToOne(mappedBy = "orderFood")
     private Review review;

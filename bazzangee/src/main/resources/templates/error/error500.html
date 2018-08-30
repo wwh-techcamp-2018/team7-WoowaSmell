@@ -20,14 +20,15 @@
     <div style="width: 100%;">
         <h1>500</h1>
         <h2 style="color: white">서버 에러</h2>
-        <p style="color: white">저희의 잘못입니다.ㅠㅠ</p>
+        <p style="color: white">배달의 민조에게 문의 부탁드립니다. 죄송합니다.</p>
+        <p style="color: white">5초 후에 이전 페이지로 이동합니다.</p>
     </div>
     <img src="/img/noAuth.png" max-width="50%" style="position: absolute; right: 0;">
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#main_container").classList.toggle("invisible");
-        setTimeout(function(){ history.back();}, 1000);
+        setTimeout(function(){ history.back();}, 5000);
 
     });
 </script>

@@ -89,6 +89,8 @@ export class Chartjs {
         for (var i = 0; i < foodPoints.length; i++) {
             data.labels[i] = foodPoints[i].name;
             data.datasets[0].data[i] = foodPoints[i].avg_point;
+//            data.labels[i] = foodPoints[i].name;
+//            data.datasets[0].data[i] = foodPoints[i].avg_point;
         }
 
         var ctx = document.getElementById("foodChart");

@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.dto.request;
 
-import com.woowahan.smell.bazzangee.domain.OrderFood;
-import com.woowahan.smell.bazzangee.domain.Review;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;

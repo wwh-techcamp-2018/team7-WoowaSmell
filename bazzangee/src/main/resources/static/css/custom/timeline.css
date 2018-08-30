@@ -20,8 +20,9 @@ timeline.css
 
 #timeline-align-container{
 	display: flex;
-	text-align: right;
-	padding-left: 600px;
+	/*text-align: right;*/
+	/*padding-left: 600px;*/
+	margin-left: 300px;
 }
 
 #receipt-align-container{
@@ -58,7 +59,6 @@ timeline.css
 	display: block;
 	width: 30%;
 	padding-right: 100px;
-	padding-left: 38px;
 	position: absolute;
 }
 
@@ -67,12 +67,12 @@ timeline.css
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:first-child {
-	font-size: 0.9em;
+	font-size: 0.8em;
 	color: #bdd0db;
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:last-child {
-	font-size: 2.0em;
+	font-size: 1em;
 	color: #288C87;
 }
 
@@ -425,23 +425,6 @@ input[type="radio"]:disabled + .label-text:before{
 	line-height: 1.4;
 	position: relative;
 	border-radius: 5px;
-}
-
-.cbp_tmtimeline_right > li .cbp_tmlabel:after {
-	right: 100%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-right-color: #333;
-	border-width: 10px;
-	top: 10px;
-}
-
-.cbp_tmtimeline_right > li:nth-child(odd) .cbp_tmlabel:after {
-    border-right-color: #483f35;
 }
 
 .cbp_tmtimeline_right > li .cbp_tmicon {

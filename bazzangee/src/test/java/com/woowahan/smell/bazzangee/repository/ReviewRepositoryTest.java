@@ -1,6 +1,8 @@
 package com.woowahan.smell.bazzangee.repository;
 
-import com.woowahan.smell.bazzangee.domain.Review;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
+import com.woowahan.smell.bazzangee.repository.contents.GoodRepository;
+import com.woowahan.smell.bazzangee.repository.contents.ReviewRepository;
 import com.woowahan.smell.bazzangee.vo.PageVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;

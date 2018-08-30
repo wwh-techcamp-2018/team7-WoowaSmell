@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.dto.request;
 
-import com.woowahan.smell.bazzangee.domain.Chat;
-import com.woowahan.smell.bazzangee.domain.ChatMessage;
+import com.woowahan.smell.bazzangee.domain.contents.Chat;
+import com.woowahan.smell.bazzangee.domain.contents.ChatMessage;
 import com.woowahan.smell.bazzangee.domain.User;
 import lombok.*;
 

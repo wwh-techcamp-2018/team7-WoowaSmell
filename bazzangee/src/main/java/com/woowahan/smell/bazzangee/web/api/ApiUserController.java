@@ -66,6 +66,7 @@ public class ApiUserController {
             log.info("this is KAKAO User!");
         }
         HttpSessionUtils.removeUserInSession(session);
+//        return ResponseEntity.status(HttpStatus.FOUND).build();
         return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/")).build();
     }
 

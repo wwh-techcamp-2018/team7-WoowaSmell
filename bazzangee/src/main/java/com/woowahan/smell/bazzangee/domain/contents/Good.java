@@ -1,6 +1,7 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.contents;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.smell.bazzangee.domain.User;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 

@@ -23,7 +23,8 @@ Kakao.init(KAKAO_LOGIN_KEY);
 $("#kakao-login-btn").addEventListener("click", loginWithKakao);
 function loginWithKakao() {
     // 로그인 창을 띄웁니다.
-    Kakao.Auth.login({
+    console.log("logiin!!");
+    Kakao.Auth.loginForm({
         success: function(authObj) {
             const accessToken = JSON.stringify(authObj);
             Kakao.API.request({
@@ -61,6 +62,7 @@ function kakaoLogin(res, accessToken) {
 }
 
 function onSuccess(res) {
+//    Kakao.cleanup();
     location.href = "/";
 }
 

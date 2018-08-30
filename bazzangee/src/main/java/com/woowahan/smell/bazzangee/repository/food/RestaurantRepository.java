@@ -1,6 +1,6 @@
-package com.woowahan.smell.bazzangee.repository;
+package com.woowahan.smell.bazzangee.repository.food;
 
-import com.woowahan.smell.bazzangee.domain.Restaurant;
+import com.woowahan.smell.bazzangee.domain.food.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

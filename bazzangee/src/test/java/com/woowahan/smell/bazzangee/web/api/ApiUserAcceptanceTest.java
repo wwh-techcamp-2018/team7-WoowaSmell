@@ -16,25 +16,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class ApiUserAcceptanceTest extends AcceptanceTest {
-    private UserLoginDto userLoginDto;
-    @Before
-    public void setUp() throws Exception {
-        userLoginDto =
-                UserLoginDto.builder()
-                .userId("serverwizard@naver.com")
-                .password("password").build();
-    }
 
     @Test
     public void 회원가입_생성() {
-        UserJoinDto newUser = new UserJoinDto("gusdk7656@naver.com", "1234qwer!", "1234qwer!", "권현아", "01040908370", LocalDate.parse("1995-08-25"));
+        UserJoinDto newUser = new UserJoinDto("gusdk765611@naver.com", "1234qwer!", "1234qwer!", "권현아", "01040908370", LocalDate.parse("1995-08-25"));
         ResponseEntity response = template().postForEntity("/api/users", newUser, User.class);
-        AssertionsForClassTypes.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
     @Test
     public void 로그인_테스트() {
-        ResponseEntity<Void> response = template().postForEntity("/api/users/login", userLoginDto, Void.class);
+        UserJoinDto newUser = new UserJoinDto("serverwizard1010@naver.com", "1234qwer!", "1234qwer!", "홍종완", "01040908370", LocalDate.parse("1995-08-25"));
+        template().postForEntity("/api/users", newUser, User.class);
+
+        ResponseEntity<Void> response = template().postForEntity("/api/users/login", newUser, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }

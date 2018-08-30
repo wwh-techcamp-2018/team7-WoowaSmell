@@ -1,7 +1,14 @@
+import { ClosetReviewScroll } from "/js/review/closetReviewScroll.js";
+import { ClosetWebSocket } from "/js/closet/closetWebSocket.js";
 import {fetchManager} from "/js/util/utils.js";
 import {Chartjs} from "/js/chartjs/chartjs.js";
 
 const chartjs = new Chartjs();
+const closetWebSocket = new ClosetWebSocket();
+const closetReviewScroll = new ClosetReviewScroll({
+    foodCategoryId : 0,
+    chartobj : chartjs
+});
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -24,14 +31,13 @@ function onFailLoad(result) {
             element.querySelector('.card').classList.toggle('add-food-image', false);
             element.querySelector(".btn-primary").value = "";
         }
-
     });
 }
 
 function imageUploadHandler(evt) {
     const card = evt.target.closest(".card");
     card.classList.toggle('add-food-image', true);
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('data', card.querySelector(".btn-primary").files[0]);
     fetchManager({
         url: '/api/reviews/upload',
@@ -51,11 +57,10 @@ function imageDeleteHandler(evt) {
 
 function onSuccessWrite(response) {
     response.json().then(reviewDto => {
-        var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
-        let reviewBox = $_(".submitted-li");
-        reviewBox.innerHTML = '';
-        reviewBox.innerHTML = reviewDtoHTML;
-        reviewBox.classList.toggle('submitted-li', false);
+        var target = $_(".submitted-li");
+        var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto, target.getAttribute("data-id"));
+        $_("#timeline_standard").insertAdjacentHTML("afterbegin", reviewDtoHTML);
+        target.remove();
         chartjs.addChartListener();
         $(".rate").rate();
     })
@@ -65,6 +70,7 @@ function reviewSubmitHandler(evt) {
     const orderFood = evt.target.closest('li');
     orderFood.classList.toggle('submitted-li', true);
     const card = evt.target.closest(".card");
+
     var formData = new FormData();
     formData.append('orderFoodId', orderFood.getAttribute('data-id'));
     formData.append('contents', card.querySelector('.card-text').value);
@@ -87,6 +93,8 @@ function reviewWriteHandler(evt) {
         element.classList.toggle('invisible', true);
         element.parentElement.querySelector(".review-create-btn").classList.toggle('invisible', false);
     });
+    const img_src = evt.target.closest('li').querySelector("img").getAttribute("src"); // 원래 이미지 주소 가져와서
+    evt.target.closest('li').querySelector("img").setAttribute("data-src", img_src) // 임시저장해주기
 
     const card = evt.target.closest('li').querySelector('.card');
     card.classList.toggle('invisible', false);
@@ -97,7 +105,6 @@ function reviewWriteHandler(evt) {
     card.querySelector('.btn-primary').addEventListener("change", imageUploadHandler);
     evt.target.closest('li').querySelector('.btn-remove-image').addEventListener("click", imageDeleteHandler);
     card.querySelector('.btn-review-submit').addEventListener("click", reviewSubmitHandler);
-
 }
 
 function onSuccessUpdateForm(result) {
@@ -128,12 +135,9 @@ function reviewUpdateFormHandler(evt) {
 
 function onSuccessDelete(result) {
     result.json().then(result => {
-        document.querySelectorAll("li").forEach(function (li) {
-            if(li.getAttribute("data-id") == result.id) {
-                li.innerHTML = "";
-                li.innerHTML = HtmlGenerator.getDeleteReviewHTML(result);
-            }
-        })
+        $_(".deleted-li").remove();
+        const orderFoodHTML = HtmlGenerator.getOrderFoodWithoutReviewHTML(result)
+        $_("#receipt_standard").insertAdjacentHTML("afterbegin", orderFoodHTML);
     });
 }
 
@@ -146,7 +150,9 @@ function reviewDeleteHandler(evt) {
         evt.target.blur();
         return;
     }
-    const orderFoodId = evt.target.closest("li").getAttribute("data-id");
+    const target = evt.target.closest("li");
+    const orderFoodId = target.getAttribute("data-id");
+    target.classList.toggle("deleted-li", true);
     fetchManager({
         url: '/api/reviews/' + orderFoodId,
         method: 'DELETE',
@@ -160,7 +166,7 @@ function onSuccessUpdateCancel(result) {
         document.querySelectorAll("li").forEach(function (li) {
             if(li.getAttribute("data-id") == result.id) {
                 li.innerHTML = "";
-                li.innerHTML = HtmlGenerator.getOrderFoodHTML(result);
+                li.innerHTML = HtmlGenerator.getOrderFoodWithReviewHTML(result);
                 $('.rate').rate();
             }
         })
@@ -192,7 +198,7 @@ function onSuccessImageUpdateUpload(result) {
 
 function imageUpdateUploadHandler(evt) {
     const card = evt.target.closest("li");
-    var formData = new FormData();
+    let formData = new FormData();
     card.classList.toggle('add-update-image', true);
     formData.append('data', card.querySelector(".btn-image-update-upload").files[0]);
     fetchManager({
@@ -209,7 +215,7 @@ function onSuccessUpdate(result) {
         document.querySelectorAll("li").forEach(function (li) {
             if(li.getAttribute("data-id") == result.id) {
                 li.innerHTML = "";
-                li.innerHTML = HtmlGenerator.getOrderFoodHTML(result);
+                li.innerHTML = HtmlGenerator.getOrderFoodWithReviewHTML(result);
                 $('.rate').rate();
                 chartjs.addChartListener();
             }
@@ -238,53 +244,19 @@ function reviewUpdateHandler(evt) {
         callback: onSuccessUpdate,
         errCallback: onFailUpdate
     });
-
-}
-
-function onSuccessUpdateGood(result) {
-    const target = document.querySelector('.add-review-good');
-    target.classList.toggle('add-review-good', false);
-    result.json().then(result => {
-        target.closest(".good-btn").lastElementChild.innerHTML = result.goodCount;
-    })
-}
-
-function onFailUpdateGood(result) {
-    alert(result.message);
-}
-
-function reviewGoodHandler(evt) {
-    evt.target.classList.toggle('add-review-good', true);
-    fetchManager({
-        url: '/api/reviews/' + evt.target.getAttribute("data-value") + '/good',
-        method: 'GET',
-        headers: { 'content-type': 'application/json'},
-        callback: onSuccessUpdateGood,
-        errCallback: onFailUpdateGood
-    });
 }
 
 function reviewWriteCancelHandler(evt) {
-    const card = evt.target.closest('li').querySelector('.card');
+    const list = evt.target.closest('li');
+    const card = list.querySelector('.card');
     card.classList.toggle('invisible', true);
     card.parentElement.querySelector(".review-create-btn").classList.toggle("invisible", false);
-
-    card.closest("li").querySelector(".review_upload_image").src = "";
-    card.querySelector('.btn-danger').classList.toggle('invisible', false);
-    card.classList.toggle('add-food-image', false);
+    list.querySelector('.btn-danger').classList.toggle('invisible', true);
+    list.querySelector("img").setAttribute("src", list.querySelector("img").getAttribute("data-src"))
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // const reviewScroll = new ReviewScroll();
     document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
-        // 리뷰 작성 버튼
-        if(evt.target.classList.contains('orderfood-review-write') || evt.target.classList.contains('review-create-btn-image')) {
-            reviewWriteHandler(evt);
-        }
-        // 리뷰작성 취소 버튼
-        if(evt.target.classList.contains('btn-review-submit-cancel')) {
-            reviewWriteCancelHandler(evt);
-        }
         // 수정폼 버튼
         if(evt.target.classList.contains('btn-review-update-form')) {
             reviewUpdateFormHandler(evt);
@@ -307,13 +279,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if(evt.target.classList.contains('good-btn') || evt.target.parentElement.classList.contains("good-btn")) {
-            reviewGoodHandler(evt);
+            closetWebSocket.onclickGoodButton(evt);
         }
+    });
 
+    document.querySelector('.cbp_tmtimeline_right').addEventListener("click", (evt) => {
+            // 리뷰 작성 버튼
+            if(evt.target.classList.contains('orderfood-review-write') || evt.target.classList.contains('review-create-btn-image')) {
+                reviewWriteHandler(evt);
+            }
+            // 리뷰작성 취소 버튼
+            if(evt.target.classList.contains('btn-review-submit-cancel')) {
+                reviewWriteCancelHandler(evt);
+            }
     });
 });
-
-
 
 
 

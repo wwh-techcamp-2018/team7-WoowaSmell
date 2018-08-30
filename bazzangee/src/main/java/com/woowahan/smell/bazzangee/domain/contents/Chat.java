@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.contents;
 
 import lombok.Getter;
 import org.hibernate.annotations.LazyCollection;

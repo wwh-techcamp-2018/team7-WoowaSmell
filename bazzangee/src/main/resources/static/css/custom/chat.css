@@ -45,6 +45,10 @@ textarea {
     overflow-y: scroll;
     /*height: 300px;*/
 }
+/*.message-data {*/
+    /*margin-bottom: 15px;*/
+/*>>>>>>> 194263a*/
+/*}*/
 
 .message-data-time {
     color: #92959E;
