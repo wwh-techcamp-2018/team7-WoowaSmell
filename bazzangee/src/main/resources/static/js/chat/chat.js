@@ -27,13 +27,6 @@ export class Chat{
         $("#timeline_standard").addEventListener("click", this.onclickGoodButton.bind(this));
     }
 
-    onClickFileButton() {
-        this.showPopup(true);
-        setTimeout(function () {
-            this.showPopup(false);
-        }.bind(this), 1000);
-    }
-
     changeImage(evt) {
         this.imageUploadHandler(evt);
     }
@@ -50,7 +43,6 @@ export class Chat{
             callback: this.onSuccessImageUpload.bind(this)
         });
     }
-
 
     onSuccessImageUpload(result) {
         result.json().then(result => {
@@ -218,9 +210,4 @@ export class Chat{
         if (isVisible) $("#dialog").classList.add("visible");
         else $("#dialog").classList.remove("visible");
     }
-
-}
-
-class ChatControll {
-
 }
