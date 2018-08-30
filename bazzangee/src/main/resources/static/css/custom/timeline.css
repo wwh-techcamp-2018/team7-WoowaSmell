@@ -9,17 +9,19 @@ timeline.css
 
 #buttons{
     width: 1000px;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 #chat-container{
 	position: fixed;
 	right: 0;
+	padding-right: 60px;
 }
 
 #timeline-align-container{
 	display: flex;
 	text-align: right;
+	padding-left: 600px;
 }
 
 #receipt-align-container{
@@ -29,7 +31,7 @@ timeline.css
 }
 
 .cbp_tmtimeline {
-	margin: 20px 0 0 0;
+	margin: 0px 0 0 0;
 	padding: 0;
 	list-style: none;
 	position: relative;
@@ -54,8 +56,9 @@ timeline.css
 /* The date/time */
 .cbp_tmtimeline > li .cbp_tmtime {
 	display: block;
-	width: 40%;
+	width: 30%;
 	padding-right: 100px;
+	padding-left: 38px;
 	position: absolute;
 }
 
@@ -425,20 +428,20 @@ input[type="radio"]:disabled + .label-text:before{
 }
 
 .cbp_tmtimeline_right > li .cbp_tmlabel:after {
-	1right: 100%;
-	1border: solid transparent;
-	1content: " ";
-	1height: 0;
-	1width: 0;
-	1position: absolute;
-	1pointer-events: none;
-	1border-right-color: #333;
-	1border-width: 10px;
-	1top: 10px;
+	right: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-right-color: #333;
+	border-width: 10px;
+	top: 10px;
 }
 
 .cbp_tmtimeline_right > li:nth-child(odd) .cbp_tmlabel:after {
-    1border-right-color: #483f35;
+    border-right-color: #483f35;
 }
 
 .cbp_tmtimeline_right > li .cbp_tmicon {

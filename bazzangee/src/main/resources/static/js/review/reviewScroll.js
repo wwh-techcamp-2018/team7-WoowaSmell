@@ -43,6 +43,7 @@ export class ReviewScroll{
         if(target.value == this.foodCategoryId) {
             return;
         }
+        console.log("this.foodCategoryId : " + this.foodCategoryId);
         $_("#buttons").children[this.foodCategoryId].classList.toggle("clicked");
         target.classList.toggle("clicked");
         this.foodCategoryId = target.value;

@@ -1,7 +1,6 @@
 package com.woowahan.smell.bazzangee.repository;
 
 import com.woowahan.smell.bazzangee.domain.User;
-import com.woowahan.smell.bazzangee.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +33,7 @@ public class UserRepositoryTest {
         //when
         User user = userRepository.findByUserId(savedUser.getUserId()).orElseThrow(() -> new IllegalArgumentException("해당하는 사용자가 없습니다."));
 
-//        assertThat(user.getWrittenTime()).isAfter(now);
-//        assertThat(user.getUpdatedTime()).isAfter(now);
+        assertThat(user.getWrittenTime()).isAfter(now);
+        assertThat(user.getUpdatedTime()).isAfter(now);
     }
 }

@@ -1,9 +1,6 @@
 package com.woowahan.smell.bazzangee.security;
 
-import com.woowahan.smell.bazzangee.exception.BadRequestException;
-import com.woowahan.smell.bazzangee.exception.ErrorResponse;
-import com.woowahan.smell.bazzangee.exception.NotMatchException;
-import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
+import com.woowahan.smell.bazzangee.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +36,7 @@ public class SecurityControllerAdvice {
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> badRequest(Exception exception) {
-        log.debug("BadRequestException is happened!");
+        log.info("BadRequestException is happened!");
         return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
@@ -49,5 +46,4 @@ public class SecurityControllerAdvice {
         log.debug("IllegalArgumentException is happened!");
         return new ResponseEntity<>(ErrorResponse.ofString(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
-
 }

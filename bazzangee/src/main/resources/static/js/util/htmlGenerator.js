@@ -1,4 +1,4 @@
-//const iconPath = '/img/category_image_no_name/';
+ //const iconPath = '/img/category_image_no_name/';
 //const iconImages = ['chicken.png', 'pizza.png', 'hansik.png', 'jungsik.png', 'jokbal.png', 'ilsik.png', 'yasik.png']
 const HtmlGenerator = (function () {
     const iconPath = '/img/category_image_no_name/';
@@ -367,26 +367,31 @@ const HtmlGenerator = (function () {
         },
 
         getChatMessageHTML(messageDto, username) {
+            let year  = messageDto.writtenTime.year;
+            let month = ("0" + messageDto.writtenTime.monthValue).slice(-2);
+            let day = ("0" + messageDto.writtenTime.dayOfMonth).slice(-2);
+
             let hour = ("0" + messageDto.writtenTime.hour).slice(-2);
             let minute = ("0" + messageDto.writtenTime.minute).slice(-2);
             let second = ("0" + messageDto.writtenTime.second).slice(-2);
             let contents = messageDto.contents.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-            console.log(contents);
+            let profileImgURL = messageDto.profileImgURL;
+            if(profileImgURL == null) {
+                profileImgURL = "/img/no_profile.png";
+            }
             if (messageDto.username !== username) {
-                return `<li>
+                return `<li style="margin-left: -19px;">
                     <div class="message-data">
-                        <img src="${messageDto.profileImgURL}" width="41">
-                        <span class="message-data-name"> ${messageDto.username}</span>
-                        <span class="message-data-time">${hour}:${minute}:${second}</span>
+                        <img src="${profileImgURL}" width="41" style="margin-top: 24px;">
+                        <span class="message-data-name" style="font-size: 13px;"> ${messageDto.username}</span>
+                        <span class="message-data-time">${year}-${month}-${day} ${hour}:${minute}</span>
                     </div>
                     <div class="message other-message">${contents}</div>
                 </li>`;
             } else {
-                return `<li class="clearfix">
+                return `<li class="clearfix" style="margin-left: -19px;">
                     <div class="message-data align-right">
-                        <img src="${messageDto.profileImgURL}" width="41">
-                        <span class="message-data-name" >${messageDto.username}</span>
-                        <span class="message-data-time" >${hour}:${minute}:${second}</span> &nbsp; &nbsp;
+                        <span class="message-data-time" >${year}-${month}-${day} ${hour}:${minute}</span> &nbsp; &nbsp;
                     </div>
                     <div class="message my-message float-right">${contents}</div>
                     </li>
@@ -395,24 +400,30 @@ const HtmlGenerator = (function () {
         },
 
         getChatImageHTML(messageDto, username) {
+            let year  = messageDto.writtenTime.year;
+            let month = ("0" + messageDto.writtenTime.monthValue).slice(-2);
+            let day = ("0" + messageDto.writtenTime.dayOfMonth).slice(-2);
+
             let hour = ("0" + messageDto.writtenTime.hour).slice(-2);
             let minute = ("0" + messageDto.writtenTime.minute).slice(-2);
             let second = ("0" + messageDto.writtenTime.second).slice(-2);
+            let profileImgURL = messageDto.profileImgURL;
+            if(profileImgURL == null) {
+                profileImgURL = "/img/no_profile.png";
+            }
             if (messageDto.username !== username) {
-                return `<li>
+                return `<li style="margin-left: -19px;">
                     <div class="message-data">
-                         <img src="${messageDto.profileImgURL}" width="41">
-                        <span class="message-data-name">${messageDto.username}</span>
-                        <span class="message-data-time">${hour}:${minute}:${second}</span>
+                        <img src="${profileImgURL}" width="41" style="margin-top: 24px;">
+                        <span class="message-data-name" style="font-size: 13px;">${messageDto.username}</span>
+                        <span class="message-data-time">${year}-${month}-${day} ${hour}:${minute}</span>
                     </div>
                     <div class="message other-message"><img src="${messageDto.imageURL}" width="150" height="150"></div>
                 </li>`;
             } else {
                 return `<li class="clearfix">
                     <div class="message-data align-right">
-                        <img src="${messageDto.profileImgURL}" width="41">
-                        <span class="message-data-name" >${messageDto.username}</span>
-                        <span class="message-data-time" >${hour}:${minute}:${second}</span> &nbsp; &nbsp;
+                        <span class="message-data-time" >${year}-${month}-${day} ${hour}:${minute}</span> &nbsp; &nbsp;
                     </div>
                     <div class="message my-message float-right"><img src="${messageDto.imageURL}" width="150" height="150"></div>
                     </li>

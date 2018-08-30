@@ -8,6 +8,12 @@ public class StringTest {
     @Test
     public void lastIndexOf() {
         String fileName = "aaa.txt";
-        assertThat(fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length())).isEqualTo("txt");
+        assertThat(fileName.lastIndexOf(".")).isEqualTo(3);
+    }
+
+    @Test
+    public void substring() {
+        String fileName = "aaa.txt";
+        assertThat(fileName.substring(fileName.lastIndexOf("."))).isEqualTo(".txt");
     }
 }
