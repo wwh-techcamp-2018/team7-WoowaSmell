@@ -73,7 +73,6 @@ const HtmlGenerator = (function () {
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="rate" data-rate-value="${review.starPoint}" style="pointer-events:none;"></div>
                                     <p>${contents}</p>
-                                    <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
                                             <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
@@ -120,7 +119,6 @@ const HtmlGenerator = (function () {
                                         </div>
                                     </div>
                                 </div>
-                                <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
                                         <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
@@ -302,7 +300,6 @@ const HtmlGenerator = (function () {
                                         </div>
                                     </div>
                                 </div>
-                                <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                 <p class="t-right">
                                     <a href="#" style="font-weight: 600; color: aliceblue">
                                         <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
@@ -345,7 +342,6 @@ const HtmlGenerator = (function () {
                                     <div class="rate" data-rate-value="${review.starPoint}"></div>
                                     <p><textarea rows="4" cols="50" name="contents" class="card-text">${contents}</textarea></p>
                                      <input type="file" name="image" class="btn-image-update-upload btn btn-primary" accept="image/*">
-                                    <p class="t-right fs07em">${orderFood.orderedUser.name}</p>
                                     <p class="t-right">
                                         <a href="#" style="font-weight: 600; color: aliceblue">
                                             <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>

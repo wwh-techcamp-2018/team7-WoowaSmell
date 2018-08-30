@@ -1,8 +1,9 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.food;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.smell.bazzangee.domain.contents.Chat;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.dto.response;
 
-import com.woowahan.smell.bazzangee.domain.Restaurant;
-import com.woowahan.smell.bazzangee.domain.Review;
+import com.woowahan.smell.bazzangee.domain.food.Restaurant;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

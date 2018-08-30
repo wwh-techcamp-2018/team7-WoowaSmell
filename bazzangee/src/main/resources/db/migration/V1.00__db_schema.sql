@@ -1,3 +1,105 @@
+CREATE TABLE `chat` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `chat_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contents` longtext,
+  `imageurl` varchar(255) DEFAULT NULL,
+  `written_time` datetime DEFAULT NULL,
+  `chat_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_chat_message_chat` (`chat_id`),
+  KEY `FKf7tbywofv1iojpxc1kw8c3bx7` (`user_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `food` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `image_url` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `restaurant_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_food_restaurant` (`restaurant_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `food_category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_time` datetime DEFAULT NULL,
+  `creator` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `chat_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK6ir45m2ea0xuumaiwphbed5co` (`chat_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `good` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `review_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_good_review` (`review_id`),
+  KEY `fk_good_user` (`user_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `order_food` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_time` datetime DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `food_id` bigint(20) DEFAULT NULL,
+  `ordered_user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKey0a06m123d6wkkcwvtdijwvs` (`food_id`),
+  KEY `fk_order_food_user` (`ordered_user_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `restaurant` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `food_category_id` bigint(20) DEFAULT NULL,
+  `parent_restaurant_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_restaurant_food_category` (`food_category_id`),
+  KEY `fk_restaurant_parent_restaurant` (`parent_restaurant_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `review` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `updated_time` datetime DEFAULT NULL,
+  `written_time` datetime DEFAULT NULL,
+  `contents` longtext,
+  `image_url` varchar(255) DEFAULT NULL,
+  `is_deleted` bit(1) DEFAULT b'0',
+  `origin_name` varchar(255) DEFAULT NULL,
+  `star_point` double DEFAULT NULL,
+  `food_category_id` bigint(20) DEFAULT NULL,
+  `order_food_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_review_food_category` (`food_category_id`),
+  KEY `FKniaf6fl6etnb9fjeu8aqsdo5o` (`order_food_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `updated_time` datetime DEFAULT NULL,
+  `written_time` datetime DEFAULT NULL,
+  `birth` date DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_a3imlf41l37utmxiquukk8ajc` (`user_id`)
+) ENGINE=MyISAM;
+
 insert into user (user_id, password, name, phone_number) values ('serverwizard@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기', '012-1233-1233');
 insert into user (user_id, password, name, phone_number) values ('serverwizard2@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '자바지기2', '013-1233-1233');
 insert into user (user_id, password, name, phone_number) values ('kwonhyeona@naver.com', '$2a$10$xfi04lvpOR5J2H2aTINQ2e08V/n9Xjc9XWTDUz2Ry03zDbk4y/a4a', '권현아', '010-1234-1234');

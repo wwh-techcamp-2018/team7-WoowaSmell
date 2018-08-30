@@ -1,9 +1,9 @@
 package com.woowahan.smell.bazzangee.service;
 
-import com.woowahan.smell.bazzangee.domain.Restaurant;
+import com.woowahan.smell.bazzangee.domain.food.Restaurant;
 import com.woowahan.smell.bazzangee.dto.RestaurantStatisticsDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
-import com.woowahan.smell.bazzangee.repository.RestaurantRepository;
+import com.woowahan.smell.bazzangee.repository.food.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
