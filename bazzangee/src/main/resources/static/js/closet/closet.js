@@ -256,7 +256,6 @@ function reviewWriteCancelHandler(evt) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // const reviewScroll = new ReviewScroll();
     document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
         // 수정폼 버튼
         if(evt.target.classList.contains('btn-review-update-form')) {
