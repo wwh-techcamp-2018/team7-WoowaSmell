@@ -9,7 +9,19 @@
                     </i>
                     알림
                 </a>
-                <div id="my-alarm-list" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div id="alarm-container" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    <div id="alarm-header">
+                        <p style="color: white; font-weight: inherit; margin: 0px; font-size: 1vw;">부러워요 알림입니다.</p>
+                    </div>
+                    <div id="my-alarm-list-container">
+                        {{#loginUser}}
+                        <p id="no-alarm-p" style="text-align: center; font-size: 0.6vw; margin-top: 5px;">알림이 없습니다.</p>
+                        {{/loginUser}}
+                        {{^loginUser}}
+                        <p style="text-align: center; font-size: 0.6vw; margin-top: 5px;">로그인이 필요합니다.</p>
+                        {{/loginUser}}
+                        <div id="my-alarm-list"></div>
+                    </div>
                 </div>
             </div>
         </li>

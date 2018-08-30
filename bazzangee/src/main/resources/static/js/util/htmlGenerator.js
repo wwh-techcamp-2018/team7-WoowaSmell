@@ -417,8 +417,9 @@ const HtmlGenerator = (function () {
         },
 
         getMyAlarmHTML(goodResponseDto) {
-            return `<a class="dropdown-item" href="#">
-                ${goodResponseDto.userName} 님이 ${goodResponseDto.reviewTitle} 에 부러워요를 눌렀습니다.
+            return `<a class="dropdown-item alarm-item" href="#">
+                <p style="margin-bottom: 2px">${goodResponseDto.userName} 님이 부러워요를 눌렀습니다.</p>
+                <p style="margin-bottom: 0px">리뷰 : ${goodResponseDto.reviewTitle}</p>
             </a>`;
         }
     }
