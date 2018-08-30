@@ -84,7 +84,12 @@
 .width100{
     width: 100%;
 }
-
+.width300{
+    width: 300px;
+}
+.width600{
+    width: 600px;
+}
 .padding-bottom-20{
     padding-bottom: 20px;
 }

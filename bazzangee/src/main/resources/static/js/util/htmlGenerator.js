@@ -1,4 +1,4 @@
- //const iconPath = '/img/category_image_no_name/';
+//const iconPath = '/img/category_image_no_name/';
 //const iconImages = ['chicken.png', 'pizza.png', 'hansik.png', 'jungsik.png', 'jokbal.png', 'ilsik.png', 'yasik.png']
 const HtmlGenerator = (function () {
     const iconPath = '/img/category_image_no_name/';
@@ -10,9 +10,12 @@ const HtmlGenerator = (function () {
             let writtenTime = written.slice(11, 16);
             let reviewId = reviewDto.review.id;
             let reviewHTML = `<li>
-                            <time class="cbp_tmtime" datetime="${reviewDto.review.writtenTime}"><span>${writtenDate}</span> <span>${writtenTime}</span></time>
+                            <time class="cbp_tmtime" datetime="${reviewDto.review.writtenTime}">
+                               <p class="timeline-date">${writtenDate}</p>
+                               <p class="timeline-time">${writtenTime}</p>
+                           </time>
                             <div class="cbp_tmicon cbp_tmicon-phone"></div>
-                            <div class="cbp_tmlabel" style="display: flex">
+                            <div class="cbp_tmlabel width600" style="display: flex">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <img src="${reviewDto.review.imageUrl}" width="100%">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-top: 10px">
@@ -220,7 +223,6 @@ const HtmlGenerator = (function () {
                                     <a href="#" style="font-weight: 600; color: aliceblue">
                                         <i class="fa fa-map-marker"> ${orderFood.food.restaurant.name}</i>
                                     </a>
-
                                 </p>
                             </div>
                         </div>
@@ -351,4 +353,3 @@ const HtmlGenerator = (function () {
         }
     }
 })();
-
