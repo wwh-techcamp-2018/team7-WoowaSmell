@@ -1,6 +1,10 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.contents;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.smell.bazzangee.domain.BaseTimeEntity;
+import com.woowahan.smell.bazzangee.domain.User;
+import com.woowahan.smell.bazzangee.domain.food.FoodCategory;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
 import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
@@ -28,10 +32,8 @@ public class Review extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "user_id"))
+    @JsonIgnore
     private User user;
-
-    @Column
-    private String title;
 
     @Column
     @Lob
@@ -52,9 +54,11 @@ public class Review extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_review_food_category"))
+    @JsonIgnore
     private FoodCategory foodCategory;
     @Column
     @ColumnDefault("false")
+    @JsonIgnore
     private boolean isDeleted;
 
     public Review(OrderFood orderFood, User loginUser, String contents, double starPoint) {

@@ -1,14 +1,14 @@
 package com.woowahan.smell.bazzangee.service;
 
-import com.woowahan.smell.bazzangee.domain.Chat;
-import com.woowahan.smell.bazzangee.domain.ChatMessage;
+import com.woowahan.smell.bazzangee.domain.contents.Chat;
+import com.woowahan.smell.bazzangee.domain.contents.ChatMessage;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.request.ChatMessageRequestDto;
 import com.woowahan.smell.bazzangee.dto.response.ChatMessageResponseDto;
 import com.woowahan.smell.bazzangee.exception.BadRequestException;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
-import com.woowahan.smell.bazzangee.repository.ChatMessageRepository;
-import com.woowahan.smell.bazzangee.repository.ChatRepository;
+import com.woowahan.smell.bazzangee.repository.contents.ChatMessageRepository;
+import com.woowahan.smell.bazzangee.repository.contents.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

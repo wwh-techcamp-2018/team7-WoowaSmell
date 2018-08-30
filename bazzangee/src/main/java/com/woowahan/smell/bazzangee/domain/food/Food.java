@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.food;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

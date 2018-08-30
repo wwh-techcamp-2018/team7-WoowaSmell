@@ -3,7 +3,7 @@ package com.woowahan.smell.bazzangee.aws;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.woowahan.smell.bazzangee.repository.ReviewRepository;
+import com.woowahan.smell.bazzangee.repository.contents.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

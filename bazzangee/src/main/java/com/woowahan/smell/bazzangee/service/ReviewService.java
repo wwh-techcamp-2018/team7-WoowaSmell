@@ -1,17 +1,17 @@
 package com.woowahan.smell.bazzangee.service;
 
-import com.woowahan.smell.bazzangee.domain.Good;
-import com.woowahan.smell.bazzangee.domain.OrderFood;
-import com.woowahan.smell.bazzangee.domain.Review;
+import com.woowahan.smell.bazzangee.domain.contents.Good;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
+import com.woowahan.smell.bazzangee.domain.contents.Review;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.response.GoodResponseDto;
 import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;
-import com.woowahan.smell.bazzangee.repository.GoodRepository;
+import com.woowahan.smell.bazzangee.repository.contents.GoodRepository;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
-import com.woowahan.smell.bazzangee.repository.FoodCategoryRepository;
-import com.woowahan.smell.bazzangee.repository.OrderFoodRepository;
-import com.woowahan.smell.bazzangee.repository.ReviewRepository;
+import com.woowahan.smell.bazzangee.repository.food.FoodCategoryRepository;
+import com.woowahan.smell.bazzangee.repository.food.OrderFoodRepository;
+import com.woowahan.smell.bazzangee.repository.contents.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
