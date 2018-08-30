@@ -55,24 +55,12 @@ function imageDeleteHandler(evt) {
     review_li.querySelector('.btn-primary').value = '';
 }
 
-//function onSuccessWrite(response) {
-//    response.json().then(reviewDto => {
-//        var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
-//        let reviewBox = $_(".submitted-li");
-//        reviewBox.innerHTML = '';
-//        reviewBox.innerHTML = reviewDtoHTML;
-//        reviewBox.classList.toggle('submitted-li', false);
-//        chartjs.addChartListener();
-//        $(".rate").rate();
-//    })
-//}
-
 function onSuccessWrite(response) {
     response.json().then(reviewDto => {
         var target = $_(".submitted-li");
         var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto, target.getAttribute("data-id"));
         $_("#timeline_standard").insertAdjacentHTML("afterbegin", reviewDtoHTML);
-        target.remove();rces/static/js/closet/closet.js
+        target.remove();
         chartjs.addChartListener();
         $(".rate").rate();
     })
@@ -90,7 +78,6 @@ function reviewSubmitHandler(evt) {
     if(card.querySelector(".btn-primary").files.length != 0) {
         formData.append('image', card.querySelector(".btn-primary").files[0]);
     }
-//    evt.target.closest('li').remove();
 
     fetchManager({
         url: '/api/reviews',
@@ -145,17 +132,6 @@ function reviewUpdateFormHandler(evt) {
         errCallback: onFailUpdateForm
     });
 }
-
-//function onSuccessDelete(result) {
-//    result.json().then(result => {
-//        document.querySelectorAll("li").forEach(function (li) {
-//            if(li.getAttribute("data-id") == result.id) {
-//                li.innerHTML = "";
-//                li.innerHTML = HtmlGenerator.getDeleteReviewHTML(result);
-//            }
-//        })
-//    });
-//}
 
 function onSuccessDelete(result) {
     result.json().then(result => {
@@ -269,55 +245,19 @@ function reviewUpdateHandler(evt) {
         errCallback: onFailUpdate
     });
 }
-//
-//function reviewWriteCancelHandler(evt) {
-//    const list = evt.target.closest('li');
-//    const card = list.querySelector('.card');
-//    card.classList.toggle('invisible', true);
-//    card.parentElement.querySelector(".review-create-btn").classList.toggle("invisible", false);
-//
-////    card.closest("li").querySelector(".review_upload_image").src = "";
-//    card.querySelector('.btn-danger').classList.toggle('invisible', false);
-//    list.querySelector("img").setAttribute("src", list.querySelector("img").getAttribute("data-src"))
-////    card.classList.toggle('add-food-image', false);
-//}
-
 
 function reviewWriteCancelHandler(evt) {
     const list = evt.target.closest('li');
     const card = list.querySelector('.card');
     card.classList.toggle('invisible', true);
     card.parentElement.querySelector(".review-create-btn").classList.toggle("invisible", false);
-//    list.querySelector("input").value="";
-//    list.querySelector("textarea").value="";
-//    list.querySelector(".rate").setAttribute("data-rate-value", "0");
     list.querySelector('.btn-danger').classList.toggle('invisible', true);
     list.querySelector("img").setAttribute("src", list.querySelector("img").getAttribute("data-src"))
-//    card.classList.toggle('add-food-image', false);
 }
-//
-//
-//function reviewUpdateCancelHandler(evt) {
-//    const orderFoodId = evt.target.closest("li").getAttribute("data-id");
-//    fetchManager({
-//        url: '/api/reviews/' + orderFoodId,
-//        method: 'GET',
-//        callback: onSuccessUpdateCancel,
-//        errCallback: onFailUpdateCancel
-//    });
-//}
 
 document.addEventListener("DOMContentLoaded", function() {
     // const reviewScroll = new ReviewScroll();
     document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
-        // 리뷰 작성 버튼
-//        if(evt.target.classList.contains('orderfood-review-write') || evt.target.classList.contains('review-create-btn-image')) {
-//            reviewWriteHandler(evt);
-//        }
-//        // 리뷰작성 취소 버튼
-//        if(evt.target.classList.contains('btn-review-submit-cancel')) {
-//            reviewWriteCancelHandler(evt);
-//        }
         // 수정폼 버튼
         if(evt.target.classList.contains('btn-review-update-form')) {
             reviewUpdateFormHandler(evt);
