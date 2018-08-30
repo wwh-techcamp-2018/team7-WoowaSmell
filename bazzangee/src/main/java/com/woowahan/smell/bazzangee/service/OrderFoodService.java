@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,17 +55,25 @@ public class OrderFoodService {
     }
 
     public List<OrderFood> getListsOrderByStarPoint(User user) {
-        List<OrderFood> validOrderFoods = orderFoodRepository.findAllByOrderedUser(user)
-                .stream()
-                .filter(orderFood -> orderFood.hasValidReview())
-                .collect(Collectors.toList());
-        Collections.sort(validOrderFoods, new StarPointComparator());
-        if (validOrderFoods.isEmpty()) {
+        List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUserOrderByStarPoint(user);
+        List<OrderFood> withoutReview = orderFoodRepository.findAllByOrderedUserWithoutReview(user);
+        orderFoods.addAll(withoutReview);
+        if (orderFoods.isEmpty()) {
             throw new NotMatchException("there is no validOrderFoods!");
         }
-        return validOrderFoods;
+        return orderFoods;
     }
 
+    public List<OrderFood> getListsByCategoryOrderByStarPoint(User user, Long categoryId) {
+        FoodCategory foodCategory = foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!"));
+        List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUserAndCategoryOrderByStarPoint(user, foodCategory);
+        List<OrderFood> withoutReview = orderFoodRepository.findAllByCategoryWithoutReview(user, foodCategory);
+        orderFoods.addAll(withoutReview);
+        if (orderFoods.isEmpty()) {
+            throw new NotMatchException("there is no validOrderFoods!");
+        }
+        return orderFoods;
+    }
 //    public List<OrderFood> getListsOrderByGoodsCount(User user) {
 //        List<OrderFood> validOrderFoods = orderFoodRepository.findAllByOrderedUser(user)
 //                .stream()
@@ -77,30 +86,45 @@ public class OrderFoodService {
 //        }
 //        return validOrderFoods;
 //    }
+//
+//    public List<OrderFood> getListsByCategoryOrderByStarPoint(User user, Long categoryId) {
+//        FoodCategory foodCategory = foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!"));
+//        List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUser(user);
+//        if (orderFoods.isEmpty()) {
+//            throw new NotMatchException("there is no OrderFoods!");
+//        }
+//        log.info("orderFoods : {}", orderFoods);
+//        orderFoods = orderFoods
+//                .stream()
+//                .filter(orderFood -> orderFood.hasValidReview() && foodCategory.equals(orderFood.getReview().getFoodCategory()))
+//                .collect(Collectors.toList());
+//        Collections.sort(orderFoods, new StarPointComparator());
+//        if (orderFoods.isEmpty()) {
+//            throw new NotMatchException("there is no OrderFoods by this category!");
+//        }
+//        return orderFoods;
+//    }
 
-    public List<OrderFood> getListsByCategoryOrderByStarPoint(User user, Long categoryId) {
-        FoodCategory foodCategory = foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("there is no such foodCategory!"));
-        List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUser(user);
+    public List<OrderFood> getListsOrderByGoodsCount(User user) {
+        log.info("YOUS : {}", orderFoodRepository.findAllByOrderedUserWithoutReview(user));
+        List<OrderFood> orderFoods = orderFoodRepository.findAllByOrderedUserOrderByGoodCountDesc(user);
+        List<OrderFood> withoutReview = orderFoodRepository.findAllByOrderedUserWithoutReview(user);
+        orderFoods.addAll(withoutReview);
         if (orderFoods.isEmpty()) {
-            throw new NotMatchException("there is no OrderFoods!");
-        }
-        log.info("orderFoods : {}", orderFoods);
-        orderFoods = orderFoods
-                .stream()
-                .filter(orderFood -> orderFood.hasValidReview() && foodCategory.equals(orderFood.getReview().getFoodCategory()))
-                .collect(Collectors.toList());
-        Collections.sort(orderFoods, new StarPointComparator());
-        if (orderFoods.isEmpty()) {
-            throw new NotMatchException("there is no OrderFoods by this category!");
+            throw new NotMatchException("there is no validOrderFoods!");
         }
         return orderFoods;
     }
 
-    public List<OrderFood> getListsOrderByGoodsCount(User user) {
-        return orderFoodRepository.findAllByOrderedUserOrderByGoodCountDesc(user);
-    }
-
     public List<OrderFood> getListsByCategoryOrderByGoodsCount(User user, Long categoryId) {
-        return orderFoodRepository.findAllByCategoryOrderByGoodsCount(user, foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("선택하신 음식 카테고리가 존재하지 않습니다.!")));
+        FoodCategory foodCategory = foodCategoryRepository.findById(categoryId).orElseThrow(() -> new NotMatchException("선택하신 음식 카테고리가 존재하지 않습니다.!"));
+        log.info("YOU : {}", orderFoodRepository.findAllByCategoryWithoutReview(user, foodCategory));
+        List<OrderFood> orderFoods = orderFoodRepository.findAllByCategoryOrderByGoodsCount(user, foodCategory);
+        List<OrderFood> withoutReview = orderFoodRepository.findAllByCategoryWithoutReview(user, foodCategory);
+        orderFoods.addAll(withoutReview);
+        if (orderFoods.isEmpty()) {
+            throw new NotMatchException("there is no validOrderFoods!");
+        }
+        return orderFoods;
     }
 }
