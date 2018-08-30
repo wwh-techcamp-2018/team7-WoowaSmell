@@ -26,7 +26,7 @@ public class HomeController {
     public String closet(HttpSession session, Model model) {
         User loginUser = getUserFromSession(session);
         if(loginUser == null) {
-            return "error_400";
+            return "/login/login";
         }
         model.addAttribute("loginUser", loginUser);
         return "/closet/closet";

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>배짱이 생활</title>
+    <link href="/img/baezzangee.ico" rel="shortcut icon">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        #main_container{
+            text-align: center;
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-top: 80px;
+            display: flex;
+            background: #3FBDB3;
+        }
+        #kakao-login-btn{
+            margin-top: 5px;
+            content: url("/img/kakao_login_light.png");
+        }
+        #kakao-login-btn:hover{
+            content: url("/img/kakao_login_dark.png");
+        }
+        #login-validate-span{
+            color: red;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="margin: 0px">
+<div id="main_container" class="bg-main">
+    <img src="/img/login.png" style="margin: auto; width: 100%; max-width: 750px;">
+</div>
+<div class="row">
+    <div class="offset-lg-4 offset-md-3 offset-sm-2 offset-xs-2 col-lg-4 col-md-6 col-sm-8 col-xs-8" style="margin-top: 40px">
+        <h4 style="text-align: center; margin-bottom: 20px">로그인 정보를 입력해주세요.</h4>
+        <form role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="email" class="form-control" id="userId" placeholder="이메일을 입력해주세요.">
+                </div>
+            </div> <!-- /.form-group -->
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요.">
+                </div> <!-- /.input-group -->
+            </div> <!-- /.form-group -->
+            <p id="login-validate-span"></p>
+            <button type="submit" id="btnLogin" class="form-control btn width100" style="background: #36bfb8; border-color: #36bfb8; color: white">로그인</button>
+            <img id="kakao-login-btn" width="100%">
+        </form>
+    </div>
+</div>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="module" src="/js/user/login.js"></script>
+<script type="module" src="/js/user/kakaologin.js"></script>
+</body>
+</html>
