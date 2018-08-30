@@ -15,11 +15,21 @@ public interface OrderFoodRepository extends CrudRepository<OrderFood, Long> {
 
     List<OrderFood> findAllByOrderedUserOrderByOrderTimeDesc(User user);
 
-    List<OrderFood> findAllByOrderedUser(User user);
+    @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user ORDER BY (o.review.starPoint) DESC")
+    List<OrderFood> findAllByOrderedUserOrderByStarPoint(@Param("user") User user);
+
+    @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user AND o.review.foodCategory = :foodCategory ORDER BY (o.review.starPoint) DESC")
+    List<OrderFood> findAllByOrderedUserAndCategoryOrderByStarPoint(@Param("user") User user, @Param("foodCategory") FoodCategory foodCategory);
 
     @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user ORDER BY SIZE (o.review.goods) DESC")
     List<OrderFood> findAllByOrderedUserOrderByGoodCountDesc(@Param("user") User user);
 
+    @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user AND o.review is empty")
+    List<OrderFood> findAllByOrderedUserWithoutReview(@Param("user") User user);
+
     @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user AND o.review.foodCategory = :foodCategory ORDER BY SIZE (o.review.goods) DESC")
     List<OrderFood> findAllByCategoryOrderByGoodsCount(@Param("user") User user, @Param("foodCategory") FoodCategory foodCategory);
+
+    @Query("SELECT o FROM OrderFood o WHERE o.orderedUser = :user AND o.food.restaurant.foodCategory = :foodCategory AND o.review is empty")
+    List<OrderFood> findAllByCategoryWithoutReview(@Param("user") User user, @Param("foodCategory") FoodCategory foodCategory);
 }
