@@ -1,7 +1,7 @@
 package com.woowahan.smell.bazzangee.web.api;
 
 import com.woowahan.smell.bazzangee.aws.S3Uploader;
-import com.woowahan.smell.bazzangee.domain.OrderFood;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.dto.request.ReviewRequestDto;
 import com.woowahan.smell.bazzangee.dto.response.ReviewResponseDto;

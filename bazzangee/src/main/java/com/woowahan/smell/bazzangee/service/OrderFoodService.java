@@ -1,12 +1,12 @@
 package com.woowahan.smell.bazzangee.service;
 
-import com.woowahan.smell.bazzangee.domain.FoodCategory;
-import com.woowahan.smell.bazzangee.domain.OrderFood;
+import com.woowahan.smell.bazzangee.domain.food.FoodCategory;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
 import com.woowahan.smell.bazzangee.domain.User;
 import com.woowahan.smell.bazzangee.exception.NotMatchException;
 import com.woowahan.smell.bazzangee.exception.UnAuthenticationException;
-import com.woowahan.smell.bazzangee.repository.FoodCategoryRepository;
-import com.woowahan.smell.bazzangee.repository.OrderFoodRepository;
+import com.woowahan.smell.bazzangee.repository.food.FoodCategoryRepository;
+import com.woowahan.smell.bazzangee.repository.food.OrderFoodRepository;
 import com.woowahan.smell.bazzangee.utils.StarPointComparator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
