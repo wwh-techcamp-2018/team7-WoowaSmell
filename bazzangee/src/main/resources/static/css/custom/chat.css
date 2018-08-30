@@ -40,36 +40,45 @@ textarea {
     margin-top: 12px;
 }
 .chat-history {
-    padding: 30px 30px 20px;
+    /*padding: 30px 30px 20px;*/
     border-bottom: 2px solid white;
     overflow-y: scroll;
     /*height: 300px;*/
 }
-.message-data {
-    margin-bottom: 15px;
-}
+/*.message-data {*/
+    /*margin-bottom: 15px;*/
+/*>>>>>>> 194263a*/
+/*}*/
+
 .message-data-time {
     color: #92959E;
     padding-left: 6px;
+    font-size: 10px;
 }
 .message {
     color: white;
-    padding: 5px 10px;
-    line-height: 26px;
-    font-size: 16px;
+    line-height: 14px;
+    font-size: 13px;
     border-radius: 7px;
-    margin-bottom: 30px;
-    width: 70%;
+    margin-bottom: -7px;
+    width: 50%;
     position: relative;
     word-break: break-all;
 }
 .my-message {
     background: #36bfb8;
+    padding: 7px;
+    font-size: 13px;
+    margin-right: 12px;
+    margin-bottom: 8px;
 }
 
 .other-message {
     border: 2px solid #36bfb8;
     color: black;
+    padding: 5px;
+    margin-left: 43px;
+    margin-top: -23px;
 }
 
 .chat-message {

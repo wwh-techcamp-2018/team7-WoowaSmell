@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,12 +17,9 @@ import java.util.List;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@DataJpaTest
 public class ReviewRepositoryTest {
    private static final Logger log = LoggerFactory.getLogger(ReviewRepositoryTest.class);
-    @Autowired
-    private GoodRepository goodRepository;
-
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -31,7 +28,7 @@ public class ReviewRepositoryTest {
         PageVO pageVO = new PageVO();
         List<Review> reviews = reviewRepository.findAllByIsDeletedFalseOrderByGoodsSIZE(pageVO.makePageable(Sort.Direction.DESC.ordinal(), "id")).getContent();
         for (Review review : reviews) {
-            log.info("review contents : {}", review.getContents());
+            log.info("good count : {}", review.getGoods().size());
         }
     }
 }

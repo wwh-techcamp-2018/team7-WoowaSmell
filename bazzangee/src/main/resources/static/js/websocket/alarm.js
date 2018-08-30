@@ -9,11 +9,26 @@ export class Alarm{
         this.socketManager = socketManager;
         this.clickedTarget = null;
         this.subscribeGoodTopic();
+        this.addEventListener();
 
         if(this.me != null) {
             this.initAlarmUI();
             this.subscribeMyAlarm();
         }
+    }
+
+    addEventListener() {
+        $("#my-alarm").addEventListener("click", this.onClickAlarmButton.bind(this));
+    }
+
+    onClickAlarmButton() {
+        let alarms = localStorage.getItem("myAlarm");
+        alarms = alarms ? JSON.parse(alarms) : [];
+        alarms.forEach((alarm) => {
+            alarm["isShow"] = true;
+        });
+        $("#my-alarm-badge").innerText = 0;
+        localStorage.setItem("myAlarm", JSON.stringify(alarms));
     }
 
     onclickGoodButton(target) {

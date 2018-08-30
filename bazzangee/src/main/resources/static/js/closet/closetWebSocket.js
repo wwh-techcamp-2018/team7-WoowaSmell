@@ -1,4 +1,4 @@
-import {SocketManager} from '/js/util/socketManager.js';
+import {SocketManager} from '/js/websocket/socketManager.js';
 import {$} from '/js/util/utils.js';
 import {Alarm} from "/js/websocket/alarm.js";
 

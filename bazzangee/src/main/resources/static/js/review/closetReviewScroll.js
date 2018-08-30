@@ -44,6 +44,7 @@ export class ClosetReviewScroll{
 
     removeAllTimelines() {
         $_("#timeline_standard").innerHTML = '';
+        $_("#receipt_standard").innerHTML = '';
     }
 
     loadReviews() {

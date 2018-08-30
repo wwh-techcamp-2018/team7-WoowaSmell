@@ -26,7 +26,7 @@ public class ApiUserAcceptanceTest extends AcceptanceTest {
 
     @Test
     public void 로그인_테스트() {
-        UserJoinDto newUser = new UserJoinDto("serverwizard@naver.com", "1234qwer!", "1234qwer!", "홍종완", "01040908370", LocalDate.parse("1995-08-25"));
+        UserJoinDto newUser = new UserJoinDto("serverwizard1010@naver.com", "1234qwer!", "1234qwer!", "홍종완", "01040908370", LocalDate.parse("1995-08-25"));
         template().postForEntity("/api/users", newUser, User.class);
 
         ResponseEntity<Void> response = template().postForEntity("/api/users/login", newUser, Void.class);
