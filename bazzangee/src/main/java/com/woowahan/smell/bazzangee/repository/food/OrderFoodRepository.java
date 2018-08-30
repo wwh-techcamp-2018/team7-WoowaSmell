@@ -1,12 +1,11 @@
-package com.woowahan.smell.bazzangee.repository;
+package com.woowahan.smell.bazzangee.repository.food;
 
-import com.woowahan.smell.bazzangee.domain.FoodCategory;
-import com.woowahan.smell.bazzangee.domain.OrderFood;
+import com.woowahan.smell.bazzangee.domain.food.FoodCategory;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
 import com.woowahan.smell.bazzangee.domain.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Optional;

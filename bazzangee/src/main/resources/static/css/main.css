@@ -7,6 +7,27 @@
     text-align: center;
     width: 100%;
 }
+#alarm-container{
+    min-width: 300px;
+    max-width: 400px;
+    padding: 0px;
+    border: 1px solid #90949c;
+}
+#alarm-header{
+    background: #fac023;
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+#my-alarm-list-container{
+    overflow-y: scroll;
+    height: 150px;
+}
+.alarm-item{
+    font-size: 0.9vw;
+}
+.alarm-item:hover{
+    background: #fac0233b;
+}
 
 .join-dialog {
     display: none; /* Hidden by default */

@@ -1,6 +1,6 @@
 package com.woowahan.smell.bazzangee.utils;
 
-import com.woowahan.smell.bazzangee.domain.OrderFood;
+import com.woowahan.smell.bazzangee.domain.food.OrderFood;
 
 import java.util.Comparator;
 

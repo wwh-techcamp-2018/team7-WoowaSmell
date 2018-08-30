@@ -1,7 +1,14 @@
+import { ClosetReviewScroll } from "/js/review/closetReviewScroll.js";
+import { ClosetWebSocket } from "/js/closet/closetWebSocket.js";
 import {fetchManager} from "/js/util/utils.js";
 import {Chartjs} from "/js/chartjs/chartjs.js";
 
 const chartjs = new Chartjs();
+const closetWebSocket = new ClosetWebSocket();
+const closetReviewScroll = new ClosetReviewScroll({
+    foodCategoryId : 0,
+    chartobj : chartjs
+});
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -24,14 +31,13 @@ function onFailLoad(result) {
             element.querySelector('.card').classList.toggle('add-food-image', false);
             element.querySelector(".btn-primary").value = "";
         }
-
     });
 }
 
 function imageUploadHandler(evt) {
     const card = evt.target.closest(".card");
     card.classList.toggle('add-food-image', true);
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('data', card.querySelector(".btn-primary").files[0]);
     fetchManager({
         url: '/api/reviews/upload',
@@ -66,7 +72,7 @@ function onSuccessWrite(response) {
         var target = $_(".submitted-li");
         var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto, target.getAttribute("data-id"));
         $_("#timeline_standard").insertAdjacentHTML("afterbegin", reviewDtoHTML);
-        target.remove();
+        target.remove();rces/static/js/closet/closet.js
         chartjs.addChartListener();
         $(".rate").rate();
     })
@@ -216,7 +222,7 @@ function onSuccessImageUpdateUpload(result) {
 
 function imageUpdateUploadHandler(evt) {
     const card = evt.target.closest("li");
-    var formData = new FormData();
+    let formData = new FormData();
     card.classList.toggle('add-update-image', true);
     formData.append('data', card.querySelector(".btn-image-update-upload").files[0]);
     fetchManager({
@@ -261,30 +267,6 @@ function reviewUpdateHandler(evt) {
         }),
         callback: onSuccessUpdate,
         errCallback: onFailUpdate
-    });
-
-}
-
-function onSuccessUpdateGood(result) {
-    const target = document.querySelector('.add-review-good');
-    target.classList.toggle('add-review-good', false);
-    result.json().then(result => {
-        target.closest(".good-btn").lastElementChild.innerHTML = result.goodCount;
-    })
-}
-
-function onFailUpdateGood(result) {
-    alert(result.message);
-}
-
-function reviewGoodHandler(evt) {
-    evt.target.classList.toggle('add-review-good', true);
-    fetchManager({
-        url: '/api/reviews/' + evt.target.getAttribute("data-value") + '/good',
-        method: 'GET',
-        headers: { 'content-type': 'application/json'},
-        callback: onSuccessUpdateGood,
-        errCallback: onFailUpdateGood
     });
 }
 //
@@ -358,9 +340,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if(evt.target.classList.contains('good-btn') || evt.target.parentElement.classList.contains("good-btn")) {
-            reviewGoodHandler(evt);
+            closetWebSocket.onclickGoodButton(evt);
         }
-
     });
 
     document.querySelector('.cbp_tmtimeline_right').addEventListener("click", (evt) => {
@@ -374,8 +355,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
     });
 });
-
-
 
 
 

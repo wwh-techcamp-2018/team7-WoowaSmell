@@ -1,5 +1,5 @@
 import { ReviewScroll } from "/js/review/reviewScroll.js";
-import { Chat } from "/js/chat/chat.js";
+import { Chat } from "/js/websocket/chat.js";
 import { Chartjs } from "/js/chartjs/chartjs.js"
 import { JoinValidator } from "/js/user/joinValidator.js";
 

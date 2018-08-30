@@ -1,7 +1,7 @@
-package com.woowahan.smell.bazzangee.repository;
+package com.woowahan.smell.bazzangee.repository.contents;
 
-import com.woowahan.smell.bazzangee.domain.Chat;
-import com.woowahan.smell.bazzangee.domain.ChatMessage;
+import com.woowahan.smell.bazzangee.domain.contents.Chat;
+import com.woowahan.smell.bazzangee.domain.contents.ChatMessage;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

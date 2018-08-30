@@ -1,4 +1,4 @@
-package com.woowahan.smell.bazzangee.domain;
+package com.woowahan.smell.bazzangee.domain.food;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -20,6 +20,7 @@ public class Restaurant {
     private List<Food> foods;
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_parent_restaurant"))
+    @JsonIgnore
     private Restaurant parentRestaurant;
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_restaurant_food_category"))

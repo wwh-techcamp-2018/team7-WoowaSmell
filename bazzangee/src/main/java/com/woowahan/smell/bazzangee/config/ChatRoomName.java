@@ -15,7 +15,8 @@ public enum ChatRoomName {
     CHINESE_FOOD("/smell-chinese-food"),
     JAPANESE_FOOD("/smell-jokbal-and-bosam"),
     WESTERN_FOOD("/smell-western-food"),
-    SNACK_BAR("/smell-night-food");
+    SNACK_BAR("/smell-night-food"),
+    CLOSET("/smell-closet");
 
     private String roomName;
 
