@@ -33,7 +33,7 @@ export class Chat{
 
     // 이미지 업로드 Ajax
     imageUploadHandler(evt) {
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('data', evt.target.files[0]);
 
         fetchManager({
@@ -78,7 +78,6 @@ export class Chat{
         $("#chat-name").innerText = CHAT_ROOM[this.chatRoomId].name + " 채팅";
         this.socketManager.sendMessage("/info", {}, {roomId: this.chatRoomId});
     }
-
 
     onKeyUpChatTextArea(evt) {
         if (evt.keyCode === 13) {
@@ -165,20 +164,19 @@ export class Chat{
         this.socketManager.disconnect(this.loadChat.bind(this));
     }
 
-    sendBye() {
-        const message = "";
-        this.socketManager.sendMessage("/bye", {}, {message: message});
-    }
-
     initAlarmUI() {
         let alarms = localStorage.getItem("myAlarm");
         alarms = alarms ? JSON.parse(alarms) : [];
 
-        console.log(alarms);
-        $("#my-alarm-badge").innerText = alarms.length;
-        $("#my-alarm-list").innerHTML = null;
+        if(alarms.length > 0) $("#no-alarm-p").classList.add("invisible");
 
-        alarms.forEach((alarm) => $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(alarm)));
+        let notShowCount = 0;
+        alarms.forEach((alarm) => {
+            if(!Boolean(alarm.isShow)) notShowCount++;
+            $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(alarm))
+        });
+        $("#my-alarm-badge").innerText = notShowCount;
+        $("#my-alarm-list").innerHTML = null;
     }
 
     updateUI() {
@@ -195,6 +193,7 @@ export class Chat{
     }
 
     updateAlarmUI(goodResponseDto) {
+        $("#no-alarm-p").classList.add("invisible");
         $("#my-alarm-badge").innerText = Number($("#my-alarm-badge").innerText) + 1;
         $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(goodResponseDto));
     }
@@ -202,12 +201,9 @@ export class Chat{
     saveAlarmInfo(info) {
         let alarms = localStorage.getItem("myAlarm");
         alarms = alarms ? JSON.parse(alarms) : [];
+        info["isShow"] = false;
         alarms.push(info);
-        localStorage.setItem("myAlarm", JSON.stringify(alarms));
-    }
 
-    showPopup(isVisible) {
-        if (isVisible) $("#dialog").classList.add("visible");
-        else $("#dialog").classList.remove("visible");
+        localStorage.setItem("myAlarm", JSON.stringify(alarms));
     }
 }

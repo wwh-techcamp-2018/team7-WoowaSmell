@@ -47,6 +47,15 @@ public class ChatController {
         );
     }
 
+    @MessageMapping("me")
+    @SendToUser("/queue/me")
+    public User info(SimpMessageHeaderAccessor messageHeaderAccessor) {
+        User talker = getSessionUser(messageHeaderAccessor.getSessionAttributes());
+        if(talker == null)
+            throw new UnAuthenticationException("로그인한 사용자만 이용 가능합니다.");
+        return talker.toLimitInfoUser();
+    }
+
     @MessageMapping("chat")
     @SendTo("/topic/message")
     public ChatMessageResponseDto chat(ChatMessageRequestDto chatMessageRequestDto, SimpMessageHeaderAccessor messageHeaderAccessor) {

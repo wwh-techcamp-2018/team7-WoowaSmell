@@ -1,7 +1,14 @@
+import { ClosetReviewScroll } from "/js/review/closetReviewScroll.js";
+import { ClosetWebSocket } from "/js/closet/closetWebSocket.js";
 import {fetchManager} from "/js/util/utils.js";
 import {Chartjs} from "/js/chartjs/chartjs.js";
 
 const chartjs = new Chartjs();
+const closetWebSocket = new ClosetWebSocket();
+const closetReviewScroll = new ClosetReviewScroll({
+    foodCategoryId : 0,
+    chartobj : chartjs
+});
 
 function $_(selector) {
     return document.querySelector(selector);
@@ -24,14 +31,13 @@ function onFailLoad(result) {
             element.querySelector('.card').classList.toggle('add-food-image', false);
             element.querySelector(".btn-primary").value = "";
         }
-
     });
 }
 
 function imageUploadHandler(evt) {
     const card = evt.target.closest(".card");
     card.classList.toggle('add-food-image', true);
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('data', card.querySelector(".btn-primary").files[0]);
     fetchManager({
         url: '/api/reviews/upload',
@@ -51,7 +57,7 @@ function imageDeleteHandler(evt) {
 
 function onSuccessWrite(response) {
     response.json().then(reviewDto => {
-        var reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
+        let reviewDtoHTML = HtmlGenerator.getCreateReviewHTML(reviewDto);
         let reviewBox = $_(".submitted-li");
         reviewBox.innerHTML = '';
         reviewBox.innerHTML = reviewDtoHTML;
@@ -65,7 +71,7 @@ function reviewSubmitHandler(evt) {
     const orderFood = evt.target.closest('li');
     orderFood.classList.toggle('submitted-li', true);
     const card = evt.target.closest(".card");
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('orderFoodId', orderFood.getAttribute('data-id'));
     formData.append('contents', card.querySelector('.card-text').value);
     formData.append("starPoint", card.querySelector('.rate').getAttribute('data-rate-value'));
@@ -192,7 +198,7 @@ function onSuccessImageUpdateUpload(result) {
 
 function imageUpdateUploadHandler(evt) {
     const card = evt.target.closest("li");
-    var formData = new FormData();
+    let formData = new FormData();
     card.classList.toggle('add-update-image', true);
     formData.append('data', card.querySelector(".btn-image-update-upload").files[0]);
     fetchManager({
@@ -237,30 +243,6 @@ function reviewUpdateHandler(evt) {
         }),
         callback: onSuccessUpdate,
         errCallback: onFailUpdate
-    });
-
-}
-
-function onSuccessUpdateGood(result) {
-    const target = document.querySelector('.add-review-good');
-    target.classList.toggle('add-review-good', false);
-    result.json().then(result => {
-        target.closest(".good-btn").lastElementChild.innerHTML = result.goodCount;
-    })
-}
-
-function onFailUpdateGood(result) {
-    alert(result.message);
-}
-
-function reviewGoodHandler(evt) {
-    evt.target.classList.toggle('add-review-good', true);
-    fetchManager({
-        url: '/api/reviews/' + evt.target.getAttribute("data-value") + '/good',
-        method: 'GET',
-        headers: { 'content-type': 'application/json'},
-        callback: onSuccessUpdateGood,
-        errCallback: onFailUpdateGood
     });
 }
 
@@ -307,13 +289,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if(evt.target.classList.contains('good-btn') || evt.target.parentElement.classList.contains("good-btn")) {
-            reviewGoodHandler(evt);
+            closetWebSocket.onclickGoodButton(evt);
         }
-
     });
 });
-
-
 
 
 

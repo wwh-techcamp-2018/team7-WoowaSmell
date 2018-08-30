@@ -6,6 +6,7 @@
     <link href="/img/baezzangee.ico" rel="shortcut icon">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/custom/login.css" rel="stylesheet">
     <style>
         #main_container{
             text-align: center;
@@ -14,13 +15,6 @@
             padding-top: 80px;
             display: flex;
             background: #3FBDB3;
-        }
-        #kakao-login-btn{
-            margin-top: 5px;
-            content: url("/img/kakao_login_light.png");
-        }
-        #kakao-login-btn:hover{
-            content: url("/img/kakao_login_dark.png");
         }
         #login-validate-span{
             color: red;
@@ -53,6 +47,17 @@
         </form>
     </div>
 </div>
+<div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 200px">
+        <div class="modal-content">
+            <form role="form">
+                <div class="modal-body" style="padding: 0px">
+                    <img src="/img/login_success.png" width="100%">
+                </div> <!-- /.modal-body -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script src="/jquery/dist/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
