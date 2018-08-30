@@ -30,3 +30,13 @@ const reviewScroll = new ReviewScroll({
     chatobj : chat,
     chartobj : chartjs
 });
+
+function setDomHeightHandler () {
+    document.querySelector(".chat-history").setAttribute("style", "height : " + (window.innerHeight - Number(document.querySelector("#chat-container").offsetTop) - 220) + "px");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    setDomHeightHandler();
+    window.addEventListener("resize", setDomHeightHandler);
+});
+

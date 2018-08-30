@@ -144,6 +144,13 @@
     word-break: break-all;
 }
 
+@media (min-width: 0px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-flow: row nowrap !important;
+        justify-content: flex-start !important;
+    }
+}
+
 .btn-primary {
     background-color: transparent;
     border-color: transparent;

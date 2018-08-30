@@ -76,7 +76,7 @@ div.source-links {
 }
 
 /* Show and affix the side nav when space allows it */
-@media (min-width: 992px) {
+@media (min-width: 0px) {
     .bs-sidebar .nav > .active > ul {
         display: block;
     }

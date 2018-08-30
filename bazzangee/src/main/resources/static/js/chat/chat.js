@@ -63,7 +63,6 @@ export class Chat{
             this.showModalFunc("loginModal");
             return;
         }
-
         // 채팅 창에 입력된 내용이 없이 엔터칠 경우
         if($("#chat-message-send").value.trim().length === 0) {
             return false;
