@@ -113,7 +113,7 @@ const HtmlGenerator = (function () {
                             <div class="review-create-btn" align="center">
                                 <button type="button" class="orderfood-review-write btn">리뷰 <img class="review-create-btn-image" src="/img/review_icon.png" > 쓰기</button>
                             </div>
-                            <div class="card card-position invisible">
+                            <div class="card card-position review-write-form invisible">
                                 <div class="card-body">
                                     <div class="rate" data-rate-value="0"></div>
                                     <textarea rows="4" cols="50" name="contents" class="card-text" placeholder="리뷰를 작성해주세요."></textarea>

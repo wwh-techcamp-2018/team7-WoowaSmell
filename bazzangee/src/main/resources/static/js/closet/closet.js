@@ -89,7 +89,7 @@ function reviewSubmitHandler(evt) {
 }
 
 function reviewWriteHandler(evt) {
-    document.querySelectorAll('.card').forEach( (element) => {
+    document.querySelectorAll('.review-write-form').forEach( (element) => {
         element.classList.toggle('invisible', true);
         element.parentElement.querySelector(".review-create-btn").classList.toggle('invisible', false);
     });
@@ -138,6 +138,7 @@ function onSuccessDelete(result) {
         $_(".deleted-li").remove();
         const orderFoodHTML = HtmlGenerator.getOrderFoodWithoutReviewHTML(result)
         $_("#receipt_standard").insertAdjacentHTML("afterbegin", orderFoodHTML);
+        chartjs.addChartListener();
     });
 }
 
@@ -253,6 +254,8 @@ function reviewWriteCancelHandler(evt) {
     card.parentElement.querySelector(".review-create-btn").classList.toggle("invisible", false);
     list.querySelector('.btn-danger').classList.toggle('invisible', true);
     list.querySelector("img").setAttribute("src", list.querySelector("img").getAttribute("data-src"))
+    evt.target.closest("li").querySelector(".btn-primary").value = "";
+
 }
 
 document.addEventListener("DOMContentLoaded", function() {
