@@ -3,30 +3,32 @@ function goHome() {
 }
 
 function onSuccess() {
-    alert("어서와~ 배민찬은 처음이지?");
+    console.log($("#loginSuccessModal"));
+    if($("#loginSuccessModal") != null) {
+        $("#loginSuccessModal").modal("show");
+        setTimeout(goHome, 1500);
+        return;
+    }
     goHome();
 }
 
 function onError(result) {
-    let message = result.message;
-    // if (result.hasOwnProperty("errors")) {
-    //     message = result.errors[0].errorMessage;
-    // }
-    alert(message);
+    $_("#login-validate-span").innerText = result.message;
 }
 
 function checkValidForLogin(form) {
     if (!form.userId.value.trim()) {
-        alert("아이디를 입력하세요");
+        $_("#login-validate-span").innerText = "아이디를 입력하세요";
         form.userId.focus();
         return false;
     }
 
     if (!form.password.value.trim()) {
-        alert("비밀번호를 입력하세요");
+        $_("#login-validate-span").innerText = "비밀번호를 입력하세요";
         form.password.focus();
         return false;
     }
+    $_("#login-validate-span").innerText = null;
     return true;
 }
 
@@ -50,11 +52,15 @@ function loginButtonHandler(evt) {
 }
 
 function initializeEventListener() {
-    $("#btnLogin").addEventListener("click", loginButtonHandler);
+    $_("#btnLogin").addEventListener("click", loginButtonHandler);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     initializeEventListener();
-})
+});
 
-import {$, fetchManager} from "/js/utils.js";
+function $_(selector) {
+    return document.querySelector(selector);
+}
+
+import {fetchManager} from "/js/util/utils.js";

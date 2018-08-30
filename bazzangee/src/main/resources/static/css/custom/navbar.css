@@ -1,0 +1,163 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+    position: relative;
+    width: 36px;
+    font-size: 24px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0;
+    font-family: sans-serif;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+    top: 3px;
+    line-height: 12px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+    top: -10px;
+}
+
+@media (min-width: 576px) {
+    .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
+        text-align: center;
+        display: table-cell;
+        height: 70px;
+        vertical-align: middle;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
+        display: block;
+        width: 48px;
+        margin: 2px auto 4px auto;
+        top: 0;
+        line-height: 24px;
+    }
+
+    .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa > .badge {
+        top: -7px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
+        text-align: center;
+        display: table-cell;
+        height: 70px;
+        vertical-align: middle;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa {
+        display: block;
+        width: 48px;
+        margin: 2px auto 4px auto;
+        top: 0;
+        line-height: 24px;
+    }
+
+    .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
+        top: -7px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+        text-align: center;
+        display: table-cell;
+        height: 70px;
+        vertical-align: middle;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+        display: block;
+        width: 48px;
+        margin: 2px auto 4px auto;
+        top: 0;
+        line-height: 24px;
+    }
+
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+        top: -7px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
+        text-align: center;
+        display: table-cell;
+        height: 70px;
+        vertical-align: middle;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa {
+        display: block;
+        width: 48px;
+        margin: 2px auto 4px auto;
+        top: 0;
+        line-height: 24px;
+    }
+
+    .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa > .badge {
+        top: -7px;
+    }
+}
+.bg-main {
+    background: #36bfb8 !important;
+}
+.color-main {
+    color: #36bfb8 !important;
+}
+.navbar-nav > li > a{
+    font-weight:500;
+    line-height:32px;
+    padding: 13px 15px 12px;
+    position: relative;
+    display: block;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background: white;
+}
+
+.menubar {
+    text-align: center;
+    width: 185px;
+    padding-top: 15px;
+}
+
+.menubar li ul {
+    top: 100%;
+    position: absolute;
+    background: #36bfb8 !important;
+    width: 185px;
+    z-index: 10;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+.navbar-header{
+    text-align: center;
+    width: 100%;
+}

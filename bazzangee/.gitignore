@@ -1,6 +1,7 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+.DS_STORE
 
 ### STS ###
 .apt_generated
@@ -16,6 +17,7 @@
 *.iws
 *.iml
 *.ipr
+.DS_Store
 /out/
 
 ### NetBeans ###
@@ -26,5 +28,4 @@
 /.nb-gradle/
 
 ### Team7 Security Files ###
-application.properties
-.travis.yml
+aws.yml

@@ -1,5 +1,32 @@
 #join-validation-span{
     color: red;
+    display: flex;
+}
+#login-validate-span{
+    color: red;
+    text-align: center;
+    width: 100%;
+}
+#alarm-container{
+    min-width: 300px;
+    max-width: 400px;
+    padding: 0px;
+    border: 1px solid #90949c;
+}
+#alarm-header{
+    background: #fac023;
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+#my-alarm-list-container{
+    overflow-y: scroll;
+    height: 150px;
+}
+.alarm-item{
+    font-size: 0.9vw;
+}
+.alarm-item:hover{
+    background: #fac0233b;
 }
 
 .join-dialog {
@@ -44,16 +71,135 @@
     display: block;
 }
 
-t-center{
+.t-center{
     text-align: center;
 }
-t-right{
+.t-right{
     text-align: right;
 }
-t-left{
+.t-left{
     text-align: left;
 }
 
-padding-bottom-20{
+.width100{
+    width: 100%;
+}
+.width300{
+    width: 300px;
+}
+.width600{
+    width: 600px;
+}
+.padding-bottom-20{
     padding-bottom: 20px;
+}
+
+.category_button{
+  background: url(/img/menu_image/category-background.jpeg);
+  border:none;
+  padding:0px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+
+  width: 110px;
+  height: 110px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.category_button:before,category_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.category_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.category_button:hover:before,category_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+.clicked{
+    border:none;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-position {
+    position: relative;
+}
+
+.card-text {
+    height: 100px;
+}
+
+.btn-remove-image {
+    float: right;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#tabbar{
+    box-shadow: 10px 5px 15px lightgrey;
+    background: url(/img/menu_image/category-background.jpeg);
+    background-size: 110px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+
+.card-contents {
+    word-break: break-all;
+}
+
+@media (min-width: 0px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-flow: row nowrap !important;
+        justify-content: flex-start !important;
+    }
+}
+
+.btn-primary {
+    background-color: transparent;
+    border-color: transparent;
+    width: 250px;
+}
+
+.update-delete-btn, .submit-cancel-btn, .update-cancel-btn{
+    margin-top: 5px;
+    float: right;
+}
+
+.btn-review-update-form, .btn-review-update, .btn-review-delete, .btn-review-submit, .btn-review-submit-cancel, .btn-review-update-cancel {
+    color: white;
+    background-color: transparent;
+    border: 1px solid;
+    font-size: 10px;
+}
+
+.review-create-btn {
+    margin: 20px 0;
+}
+
+.review-create-btn-image {
+    width: 40px;
+    height: 40px;
 }

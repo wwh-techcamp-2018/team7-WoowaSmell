@@ -1,0 +1,76 @@
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" style="padding: 0px 300px; min-width: 1404px">
+    <a class="navbar-brand" href="/"><img src="/img/logo.png" height="70px" /></a>
+    <ul class="navbar-nav ml-auto navbar-left">
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a id="my-alarm" class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-envelope-o">
+                        <span id="my-alarm-badge" class="badge badge-danger">0</span>
+                    </i>
+                    알림
+                </a>
+                <div id="alarm-container" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    <div id="alarm-header">
+                        <p style="color: white; font-weight: inherit; margin: 0px; font-size: 1vw;">부러워요 알림입니다.</p>
+                    </div>
+                    <div id="my-alarm-list-container">
+                        {{#loginUser}}
+                        <p id="no-alarm-p" style="text-align: center; font-size: 0.6vw; margin-top: 5px;">알림이 없습니다.</p>
+                        {{/loginUser}}
+                        {{^loginUser}}
+                        <p style="text-align: center; font-size: 0.6vw; margin-top: 5px;">로그인이 필요합니다.</p>
+                        {{/loginUser}}
+                        <div id="my-alarm-list"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color: gray; font-weight: bold;" href="/closet">
+                <i class="fa fa-bullhorn"> </i>내 옷장
+            </a>
+        </li>
+        {{#loginUser}}
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#loginUser.imageUrl}}
+                    <img src="{{loginUser.imageUrl}}" style="width: 29px; height: 29px"> {{loginUser.name}}
+                    {{/loginUser.imageUrl}}
+                    {{^loginUser.imageUrl}}
+                    <img src="/img/avatar.png" style="width: 29px; height: 29px"> {{loginUser.name}}
+                    {{/loginUser.imageUrl}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="/api/users/logout" id="logout">Logout</a>
+                </div>
+            </div>
+        </li>
+        {{/loginUser}}
+        {{^loginUser}}
+        <li class="nav-item">
+            <div class="dropdown show">
+                <a class="btn nav-link dropdown-toggle" style="color: gray; font-weight: bold;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/img/no_profile.png" style="width: 29px; height: 29px"> 예비 배짱이
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#joinModal">Join</a>
+                </div>
+            </div>
+        </li>
+        {{/loginUser}}
+    </ul>
+</nav>
+<div id="tabbar" align="center">char
+    <div id="buttons">
+        <button value="0" class="category_button clicked" style="background-image: url(/img/menu_image/general.png);"></button>
+        <button value="1" class="category_button" style="background-image: url(/img/menu_image/chicken.jpeg);"></button>
+        <button value="2" class="category_button" style="background-image: url(/img/menu_image/pizza.jpeg);"></button>
+        <button value="3" class="category_button" style="background-image: url(/img/menu_image/hansik.jpeg);"></button>
+        <button value="4" class="category_button" style="background-image: url(/img/menu_image/jungsik.jpeg);"></button>
+        <button value="5" class="category_button" style="background-image: url(/img/menu_image/jokbal.jpeg);"></button>
+        <button value="6" class="category_button" style="background-image: url(/img/menu_image/ilsik.jpeg);"></button>
+        <button value="7" class="category_button" style="background-image: url(/img/menu_image/yasik.jpeg);"></button>
+    </div>
+</div>
