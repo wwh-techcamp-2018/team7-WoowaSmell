@@ -17,10 +17,6 @@ export class Alarm{
     }
 
     onclickGoodButton(target) {
-        if (!target.classList.contains("good-btn") && !target.parentElement.classList.contains("good-btn")
-            && !target.parentElement.parentElement.classList.contains("good-btn"))
-            return;
-
         this.clickedTarget = target;
         this.socketManager.sendMessage("/good", {}, this.clickedTarget.getAttribute("data-value"));
     }
@@ -56,12 +52,12 @@ export class Alarm{
         if(alarms.length > 0) $("#no-alarm-p").classList.add("invisible");
 
         let notShowCount = 0;
+        $("#my-alarm-list").innerHTML = null;
         alarms.forEach((alarm) => {
             if(!Boolean(alarm.isShow)) notShowCount++;
             $("#my-alarm-list").insertAdjacentHTML("afterbegin", HtmlGenerator.getMyAlarmHTML(alarm))
         });
         $("#my-alarm-badge").innerText = notShowCount;
-        $("#my-alarm-list").innerHTML = null;
     }
 
     updateAlarmUI(goodResponseDto) {

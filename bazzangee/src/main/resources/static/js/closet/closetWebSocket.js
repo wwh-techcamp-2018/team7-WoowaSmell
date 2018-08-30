@@ -18,6 +18,9 @@ export class ClosetWebSocket {
     }
 
     onclickGoodButton({target}) {
+        if (!target.classList.contains("good-btn") && !target.parentElement.classList.contains("good-btn")
+            && !target.parentElement.parentElement.classList.contains("good-btn"))
+            return;
         this.alarm.onclickGoodButton(target);
     }
 
