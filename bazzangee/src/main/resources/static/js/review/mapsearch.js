@@ -49,11 +49,22 @@ function mapSearchHandler(evt) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('.cbp_tmtimeline').addEventListener("click", (evt) => {
-        if(evt.target.className === 'fa fa-map-marker') {
-            mapSearchHandler(evt);
-        }
-    });
+    var timeline = document.querySelector('.cbp_tmtimeline');
+    var receipt = document.querySelector('.cbp_tmtimeline_right');
+    if(timeline != null) {
+        timeline.addEventListener("click", (evt) => {
+            if(evt.target.className === 'fa fa-map-marker') {
+                mapSearchHandler(evt);
+            }
+        });
+    }
+    if(receipt != null) {
+        receipt.addEventListener("click", (evt) => {
+            if(evt.target.className === 'fa fa-map-marker') {
+                mapSearchHandler(evt);
+            }
+        });
+    }
 });
 
 import {$, fetchManager} from "/js/util/utils.js";
