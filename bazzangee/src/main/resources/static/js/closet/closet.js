@@ -114,6 +114,7 @@ function onSuccessUpdateForm(result) {
                 li.innerHTML = "";
                 li.innerHTML = HtmlGenerator.getReviewUpdateFormHTML(result);
                 $('.rate').rate();
+                chartjs.addChartListener();
             }
         })
     });
@@ -169,6 +170,7 @@ function onSuccessUpdateCancel(result) {
                 li.innerHTML = "";
                 li.innerHTML = HtmlGenerator.getOrderFoodWithReviewHTML(result);
                 $('.rate').rate();
+                chartjs.addChartListener();
             }
         })
     });
