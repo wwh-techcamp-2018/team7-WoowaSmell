@@ -204,6 +204,7 @@ function imageUpdateUploadHandler(evt) {
     let formData = new FormData();
     card.classList.toggle('add-update-image', true);
     formData.append('data', card.querySelector(".btn-image-update-upload").files[0]);
+    formData.append("orderFoodId", card.closest("li").getAttribute("data-id"));
     fetchManager({
         url: '/api/reviews/upload',
         method: 'POST',
