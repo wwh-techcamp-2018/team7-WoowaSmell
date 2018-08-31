@@ -15,20 +15,49 @@ timeline.css
 #chat-container{
 	position: fixed;
 	right: 0;
-	padding-right: 60px;
+	padding-right: 20%;
+}
+
+@media (min-width: 1600px) and (max-width: 1820px) {
+	#chat-container {
+		padding-right: 10%;
+	}
+	#home-container {
+		margin-left: 7%;
+	}
+}
+@media (max-width: 1600px) {
+	#chat-container {
+		padding-right: 5%;
+	}
+	#home-container {
+		margin-left: 3% !important;
+	}
 }
 
 #timeline-align-container{
-	display: flex;
-	/*text-align: right;*/
-	/*padding-left: 600px;*/
-	margin-left: 300px;
+	text-align: right;
 }
 
 #receipt-align-container{
 	display: flex;
 	text-align: right;
 	margin-top: 30px;
+}
+
+.timeline-date{
+	font-size: 0.8rem;
+	text-align: right;
+	margin-right: 30px;
+	color: #bdd0db;
+	margin-bottom: 0px;
+}
+
+.timeline-time{
+	font-size: 1rem;
+	text-align: right;
+	margin-right: 30px;
+	color: #36bfb8;
 }
 
 .cbp_tmtimeline {
