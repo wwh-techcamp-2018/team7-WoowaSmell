@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.woowahan.smell.bazzangee.repository.contents.ReviewRepository;
+import com.woowahan.smell.bazzangee.repository.food.OrderFoodRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -31,10 +32,14 @@ public class S3Uploader {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public String upload(MultipartFile multipartFile, String dirName, String existImageUrl) throws IOException {
+    @Autowired
+    private OrderFoodRepository orderFoodRepository;
+
+    public String upload(MultipartFile multipartFile, String dirName, String existImageUrl, Long orderFoodId) throws IOException {
         log.info("multipartFile : {}, existImageUrl : {}", multipartFile, existImageUrl);
         if(multipartFile == null && existImageUrl == null) {
-            return HONEY_COMBO_IMGURL;
+            return orderFoodRepository.findById(orderFoodId).orElseThrow(() -> new IllegalArgumentException("해당 주문내역이 존재하지 않습니다"))
+                    .getFood().getRestaurant().getFoodCategory().getImageUrl();
         }
 
         if(multipartFile == null && !StringUtils.isBlank(existImageUrl)) {

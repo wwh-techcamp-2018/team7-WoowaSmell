@@ -114,6 +114,7 @@ function onSuccessUpdateForm(result) {
                 li.innerHTML = "";
                 li.innerHTML = HtmlGenerator.getReviewUpdateFormHTML(result);
                 $('.rate').rate();
+                chartjs.addChartListener();
             }
         })
     });
@@ -169,6 +170,7 @@ function onSuccessUpdateCancel(result) {
                 li.innerHTML = "";
                 li.innerHTML = HtmlGenerator.getOrderFoodWithReviewHTML(result);
                 $('.rate').rate();
+                chartjs.addChartListener();
             }
         })
     });
@@ -202,6 +204,7 @@ function imageUpdateUploadHandler(evt) {
     let formData = new FormData();
     card.classList.toggle('add-update-image', true);
     formData.append('data', card.querySelector(".btn-image-update-upload").files[0]);
+    formData.append("orderFoodId", card.closest("li").getAttribute("data-id"));
     fetchManager({
         url: '/api/reviews/upload',
         method: 'POST',
@@ -255,7 +258,6 @@ function reviewWriteCancelHandler(evt) {
     list.querySelector('.btn-danger').classList.toggle('invisible', true);
     list.querySelector("img").setAttribute("src", list.querySelector("img").getAttribute("data-src"))
     evt.target.closest("li").querySelector(".btn-primary").value = "";
-
 }
 
 document.addEventListener("DOMContentLoaded", function() {

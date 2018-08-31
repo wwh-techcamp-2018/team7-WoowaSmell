@@ -47,7 +47,7 @@ public class ApiReviewController {
         if(!StringUtils.isValidTextLength(reviewRequestDto.getContents())) {
             throw new ValidationException("입력가능한 최대 글자 수는 200자 입니다.");
         }
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/reviewImage/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl(), reviewRequestDto.getOrderFoodId());
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.create(reviewRequestDto, url, HttpSessionUtils.getUserFromSession(session)));
     }
 
@@ -73,7 +73,7 @@ public class ApiReviewController {
             throw new ValidationException("입력가능한 최대 글자 수는 200자 입니다.");
         }
         log.info("reviewRequestDto : {}", reviewRequestDto);
-        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl());
+        String url = s3Uploader.upload(reviewRequestDto.getImage(), String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), reviewRequestDto.getSavedImageUrl(), null);
 
         return ResponseEntity.status(HttpStatus.OK).body(reviewService.update(reviewRequestDto.getOrderFoodId(), url, reviewRequestDto, HttpSessionUtils.getUserFromSession(session)));
     }
@@ -89,7 +89,7 @@ public class ApiReviewController {
 
         // JSONObject 사용
         JSONObject jsonObject = new JSONObject();
-        String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), null);
+        String url = s3Uploader.upload(multipartFile, String.format("static/image/%s", LocalDate.now().toString().replace("-", "")), null, null);
         jsonObject.put("url", url);
         return jsonObject;
     }
