@@ -38,11 +38,7 @@ deploy:
     wait-until-deployed: true
     on:
       repo: wwh-techcamp-2018/team7-WoowaSmell #Github 주소
-<<<<<<< HEAD
-      branch: dev
-=======
       branch: master
->>>>>>> upstream/master
 
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -56,8 +52,4 @@ deploy:
     wait-until-deployed: true
     on:
       repo: wwh-techcamp-2018/team7-WoowaSmell
-<<<<<<< HEAD
-      branch: dev
-=======
       branch: master
->>>>>>> upstream/master
